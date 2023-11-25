@@ -7,11 +7,9 @@ use serde::{Deserialize, Serialize};
 #[sea_orm(table_name = "aprs")]
 pub struct Model {
     #[sea_orm(primary_key, auto_increment = false, column_type = "Text")]
-    pub pair_address: String,
+    pub plugin_address: String,
     #[sea_orm(primary_key, auto_increment = false, column_type = "Text")]
     pub token_address: String,
-    #[sea_orm(primary_key, auto_increment = false)]
-    pub chain_id: i32,
     #[sea_orm(column_type = "Double", nullable)]
     pub apr: Option<f64>,
     #[sea_orm(column_type = "Double", nullable)]
@@ -28,20 +26,20 @@ pub struct Model {
 pub enum Relation {
     #[sea_orm(
         belongs_to = "super::assets::Entity",
-        from = "(Column::TokenAddress, Column::ChainId)",
-        to = "(super::assets::Column::Address, super::assets::Column::ChainId)",
+        from = "Column::TokenAddress",
+        to = "super::assets::Column::Address",
         on_update = "NoAction",
         on_delete = "NoAction"
     )]
     Assets,
     #[sea_orm(
-        belongs_to = "super::pairs::Entity",
-        from = "(Column::PairAddress, Column::ChainId)",
-        to = "(super::pairs::Column::Address, super::pairs::Column::ChainId)",
+        belongs_to = "super::plugins::Entity",
+        from = "Column::PluginAddress",
+        to = "super::plugins::Column::Address",
         on_update = "NoAction",
         on_delete = "NoAction"
     )]
-    Pairs,
+    Plugins,
 }
 
 impl Related<super::assets::Entity> for Entity {
@@ -50,18 +48,9 @@ impl Related<super::assets::Entity> for Entity {
     }
 }
 
-impl Related<super::pairs::Entity> for Entity {
+impl Related<super::plugins::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::Pairs.def()
-    }
-}
-
-impl Related<super::bribes::Entity> for Entity {
-    fn to() -> RelationDef {
-        super::assets::Relation::Bribes.def()
-    }
-    fn via() -> Option<RelationDef> {
-        Some(super::assets::Relation::Aprs.def().rev())
+        Relation::Plugins.def()
     }
 }
 

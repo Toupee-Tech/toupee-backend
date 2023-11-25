@@ -10,33 +10,31 @@ pub struct Model {
     pub bribe_address: String,
     #[sea_orm(column_type = "Double")]
     pub reward_amount: f64,
-    pub chain_id: i32,
     #[sea_orm(primary_key, auto_increment = false, column_type = "Text")]
     pub token_address: String,
+    pub token: Json,
     #[sea_orm(primary_key, auto_increment = false, column_type = "Text")]
-    pub pair_address: String,
-    #[sea_orm(column_type = "Json")]
-    pub token: serde_json::Value,
+    pub plugin_address: String,
 }
 
 #[derive(Copy, Clone, Debug, EnumIter, DeriveRelation)]
 pub enum Relation {
     #[sea_orm(
         belongs_to = "super::assets::Entity",
-        from = "(Column::TokenAddress, Column::ChainId)",
-        to = "(super::assets::Column::ChainId, super::assets::Column::Address)",
+        from = "Column::TokenAddress",
+        to = "super::assets::Column::Address",
         on_update = "NoAction",
         on_delete = "NoAction"
     )]
     Assets,
     #[sea_orm(
-        belongs_to = "super::pairs::Entity",
-        from = "(Column::PairAddress, Column::ChainId)",
-        to = "(super::pairs::Column::Address, super::pairs::Column::ChainId)",
+        belongs_to = "super::plugins::Entity",
+        from = "Column::PluginAddress",
+        to = "super::plugins::Column::Address",
         on_update = "NoAction",
         on_delete = "NoAction"
     )]
-    Pairs,
+    Plugins,
 }
 
 impl Related<super::assets::Entity> for Entity {
@@ -45,18 +43,9 @@ impl Related<super::assets::Entity> for Entity {
     }
 }
 
-impl Related<super::pairs::Entity> for Entity {
+impl Related<super::plugins::Entity> for Entity {
     fn to() -> RelationDef {
-        Relation::Pairs.def()
-    }
-}
-
-impl Related<super::aprs::Entity> for Entity {
-    fn to() -> RelationDef {
-        super::assets::Relation::Aprs.def()
-    }
-    fn via() -> Option<RelationDef> {
-        Some(super::assets::Relation::Bribes.def().rev())
+        Relation::Plugins.def()
     }
 }
 

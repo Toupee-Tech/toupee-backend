@@ -1,4 +1,4 @@
-pub use router::*;
+pub use velocimeter_router::*;
 /// This module was auto-generated with ethers-rs Abigen.
 /// More information at: <https://github.com/gakonst/ethers-rs>
 #[allow(
@@ -9,7 +9,7 @@ pub use router::*;
     dead_code,
     non_camel_case_types,
 )]
-pub mod router {
+pub mod velocimeter_router {
     #[allow(deprecated)]
     fn __abi() -> ::ethers::core::abi::Abi {
         ::ethers::core::abi::ethabi::Contract {
@@ -1571,32 +1571,34 @@ pub mod router {
         }
     }
     ///The parsed JSON ABI of the contract.
-    pub static ROUTER_ABI: ::ethers::contract::Lazy<::ethers::core::abi::Abi> = ::ethers::contract::Lazy::new(
-        __abi,
-    );
-    pub struct Router<M>(::ethers::contract::Contract<M>);
-    impl<M> ::core::clone::Clone for Router<M> {
+    pub static VELOCIMETERROUTER_ABI: ::ethers::contract::Lazy<
+        ::ethers::core::abi::Abi,
+    > = ::ethers::contract::Lazy::new(__abi);
+    pub struct VelocimeterRouter<M>(::ethers::contract::Contract<M>);
+    impl<M> ::core::clone::Clone for VelocimeterRouter<M> {
         fn clone(&self) -> Self {
             Self(::core::clone::Clone::clone(&self.0))
         }
     }
-    impl<M> ::core::ops::Deref for Router<M> {
+    impl<M> ::core::ops::Deref for VelocimeterRouter<M> {
         type Target = ::ethers::contract::Contract<M>;
         fn deref(&self) -> &Self::Target {
             &self.0
         }
     }
-    impl<M> ::core::ops::DerefMut for Router<M> {
+    impl<M> ::core::ops::DerefMut for VelocimeterRouter<M> {
         fn deref_mut(&mut self) -> &mut Self::Target {
             &mut self.0
         }
     }
-    impl<M> ::core::fmt::Debug for Router<M> {
+    impl<M> ::core::fmt::Debug for VelocimeterRouter<M> {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-            f.debug_tuple(::core::stringify!(Router)).field(&self.address()).finish()
+            f.debug_tuple(::core::stringify!(VelocimeterRouter))
+                .field(&self.address())
+                .finish()
         }
     }
-    impl<M: ::ethers::providers::Middleware> Router<M> {
+    impl<M: ::ethers::providers::Middleware> VelocimeterRouter<M> {
         /// Creates a new contract instance with the specified `ethers` client at
         /// `address`. The contract derefs to a `ethers::Contract` object.
         pub fn new<T: Into<::ethers::core::types::Address>>(
@@ -1606,7 +1608,7 @@ pub mod router {
             Self(
                 ::ethers::contract::Contract::new(
                     address.into(),
-                    ROUTER_ABI.clone(),
+                    VELOCIMETERROUTER_ABI.clone(),
                     client,
                 ),
             )
@@ -2068,7 +2070,7 @@ pub mod router {
         }
     }
     impl<M: ::ethers::providers::Middleware> From<::ethers::contract::Contract<M>>
-    for Router<M> {
+    for VelocimeterRouter<M> {
         fn from(contract: ::ethers::contract::Contract<M>) -> Self {
             Self::new(contract.address(), contract.client())
         }
@@ -2529,7 +2531,7 @@ pub mod router {
     pub struct WethCall;
     ///Container type for all of the contract's call
     #[derive(Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash)]
-    pub enum RouterCalls {
+    pub enum VelocimeterRouterCalls {
         UnsafeSwapExactTokensForTokens(UnsafeSwapExactTokensForTokensCall),
         AddLiquidity(AddLiquidityCall),
         AddLiquidityETH(AddLiquidityETHCall),
@@ -2555,7 +2557,7 @@ pub mod router {
         SwapExactTokensForTokensSimple(SwapExactTokensForTokensSimpleCall),
         Weth(WethCall),
     }
-    impl ::ethers::core::abi::AbiDecode for RouterCalls {
+    impl ::ethers::core::abi::AbiDecode for VelocimeterRouterCalls {
         fn decode(
             data: impl AsRef<[u8]>,
         ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError> {
@@ -2673,7 +2675,7 @@ pub mod router {
             Err(::ethers::core::abi::Error::InvalidData.into())
         }
     }
-    impl ::ethers::core::abi::AbiEncode for RouterCalls {
+    impl ::ethers::core::abi::AbiEncode for VelocimeterRouterCalls {
         fn encode(self) -> Vec<u8> {
             match self {
                 Self::UnsafeSwapExactTokensForTokens(element) => {
@@ -2737,7 +2739,7 @@ pub mod router {
             }
         }
     }
-    impl ::core::fmt::Display for RouterCalls {
+    impl ::core::fmt::Display for VelocimeterRouterCalls {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
             match self {
                 Self::UnsafeSwapExactTokensForTokens(element) => {
@@ -2785,113 +2787,117 @@ pub mod router {
             }
         }
     }
-    impl ::core::convert::From<UnsafeSwapExactTokensForTokensCall> for RouterCalls {
+    impl ::core::convert::From<UnsafeSwapExactTokensForTokensCall>
+    for VelocimeterRouterCalls {
         fn from(value: UnsafeSwapExactTokensForTokensCall) -> Self {
             Self::UnsafeSwapExactTokensForTokens(value)
         }
     }
-    impl ::core::convert::From<AddLiquidityCall> for RouterCalls {
+    impl ::core::convert::From<AddLiquidityCall> for VelocimeterRouterCalls {
         fn from(value: AddLiquidityCall) -> Self {
             Self::AddLiquidity(value)
         }
     }
-    impl ::core::convert::From<AddLiquidityETHCall> for RouterCalls {
+    impl ::core::convert::From<AddLiquidityETHCall> for VelocimeterRouterCalls {
         fn from(value: AddLiquidityETHCall) -> Self {
             Self::AddLiquidityETH(value)
         }
     }
-    impl ::core::convert::From<FactoryCall> for RouterCalls {
+    impl ::core::convert::From<FactoryCall> for VelocimeterRouterCalls {
         fn from(value: FactoryCall) -> Self {
             Self::Factory(value)
         }
     }
-    impl ::core::convert::From<GetAmountOutCall> for RouterCalls {
+    impl ::core::convert::From<GetAmountOutCall> for VelocimeterRouterCalls {
         fn from(value: GetAmountOutCall) -> Self {
             Self::GetAmountOut(value)
         }
     }
     impl ::core::convert::From<GetAmountOutWithAmountInAndTokenInAndStableCall>
-    for RouterCalls {
+    for VelocimeterRouterCalls {
         fn from(value: GetAmountOutWithAmountInAndTokenInAndStableCall) -> Self {
             Self::GetAmountOutWithAmountInAndTokenInAndStable(value)
         }
     }
-    impl ::core::convert::From<GetAmountsOutCall> for RouterCalls {
+    impl ::core::convert::From<GetAmountsOutCall> for VelocimeterRouterCalls {
         fn from(value: GetAmountsOutCall) -> Self {
             Self::GetAmountsOut(value)
         }
     }
-    impl ::core::convert::From<GetReservesCall> for RouterCalls {
+    impl ::core::convert::From<GetReservesCall> for VelocimeterRouterCalls {
         fn from(value: GetReservesCall) -> Self {
             Self::GetReserves(value)
         }
     }
-    impl ::core::convert::From<IsPairCall> for RouterCalls {
+    impl ::core::convert::From<IsPairCall> for VelocimeterRouterCalls {
         fn from(value: IsPairCall) -> Self {
             Self::IsPair(value)
         }
     }
-    impl ::core::convert::From<PairForCall> for RouterCalls {
+    impl ::core::convert::From<PairForCall> for VelocimeterRouterCalls {
         fn from(value: PairForCall) -> Self {
             Self::PairFor(value)
         }
     }
-    impl ::core::convert::From<QuoteAddLiquidityCall> for RouterCalls {
+    impl ::core::convert::From<QuoteAddLiquidityCall> for VelocimeterRouterCalls {
         fn from(value: QuoteAddLiquidityCall) -> Self {
             Self::QuoteAddLiquidity(value)
         }
     }
-    impl ::core::convert::From<QuoteRemoveLiquidityCall> for RouterCalls {
+    impl ::core::convert::From<QuoteRemoveLiquidityCall> for VelocimeterRouterCalls {
         fn from(value: QuoteRemoveLiquidityCall) -> Self {
             Self::QuoteRemoveLiquidity(value)
         }
     }
-    impl ::core::convert::From<RemoveLiquidityCall> for RouterCalls {
+    impl ::core::convert::From<RemoveLiquidityCall> for VelocimeterRouterCalls {
         fn from(value: RemoveLiquidityCall) -> Self {
             Self::RemoveLiquidity(value)
         }
     }
-    impl ::core::convert::From<RemoveLiquidityETHCall> for RouterCalls {
+    impl ::core::convert::From<RemoveLiquidityETHCall> for VelocimeterRouterCalls {
         fn from(value: RemoveLiquidityETHCall) -> Self {
             Self::RemoveLiquidityETH(value)
         }
     }
-    impl ::core::convert::From<RemoveLiquidityETHWithPermitCall> for RouterCalls {
+    impl ::core::convert::From<RemoveLiquidityETHWithPermitCall>
+    for VelocimeterRouterCalls {
         fn from(value: RemoveLiquidityETHWithPermitCall) -> Self {
             Self::RemoveLiquidityETHWithPermit(value)
         }
     }
-    impl ::core::convert::From<RemoveLiquidityWithPermitCall> for RouterCalls {
+    impl ::core::convert::From<RemoveLiquidityWithPermitCall>
+    for VelocimeterRouterCalls {
         fn from(value: RemoveLiquidityWithPermitCall) -> Self {
             Self::RemoveLiquidityWithPermit(value)
         }
     }
-    impl ::core::convert::From<SortTokensCall> for RouterCalls {
+    impl ::core::convert::From<SortTokensCall> for VelocimeterRouterCalls {
         fn from(value: SortTokensCall) -> Self {
             Self::SortTokens(value)
         }
     }
-    impl ::core::convert::From<SwapExactETHForTokensCall> for RouterCalls {
+    impl ::core::convert::From<SwapExactETHForTokensCall> for VelocimeterRouterCalls {
         fn from(value: SwapExactETHForTokensCall) -> Self {
             Self::SwapExactETHForTokens(value)
         }
     }
-    impl ::core::convert::From<SwapExactTokensForETHCall> for RouterCalls {
+    impl ::core::convert::From<SwapExactTokensForETHCall> for VelocimeterRouterCalls {
         fn from(value: SwapExactTokensForETHCall) -> Self {
             Self::SwapExactTokensForETH(value)
         }
     }
-    impl ::core::convert::From<SwapExactTokensForTokensCall> for RouterCalls {
+    impl ::core::convert::From<SwapExactTokensForTokensCall> for VelocimeterRouterCalls {
         fn from(value: SwapExactTokensForTokensCall) -> Self {
             Self::SwapExactTokensForTokens(value)
         }
     }
-    impl ::core::convert::From<SwapExactTokensForTokensSimpleCall> for RouterCalls {
+    impl ::core::convert::From<SwapExactTokensForTokensSimpleCall>
+    for VelocimeterRouterCalls {
         fn from(value: SwapExactTokensForTokensSimpleCall) -> Self {
             Self::SwapExactTokensForTokensSimple(value)
         }
     }
-    impl ::core::convert::From<WethCall> for RouterCalls {
+    impl ::core::convert::From<WethCall> for VelocimeterRouterCalls {
         fn from(value: WethCall) -> Self {
             Self::Weth(value)
         }

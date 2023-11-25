@@ -4,5 +4,4 @@ pub use super::aprs::Entity as Aprs;
 pub use super::assets::Entity as Assets;
 pub use super::bribes::Entity as Bribes;
 pub use super::gauges::Entity as Gauges;
-pub use super::killed_gauges::Entity as KilledGauges;
-pub use super::pairs::Entity as Pairs;
+pub use super::plugins::Entity as Plugins;

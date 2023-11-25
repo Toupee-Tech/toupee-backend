@@ -16,28 +16,21 @@ pub mod voter {
             constructor: ::core::option::Option::Some(::ethers::core::abi::ethabi::Constructor {
                 inputs: ::std::vec![
                     ::ethers::core::abi::ethabi::Param {
-                        name: ::std::borrow::ToOwned::to_owned("__ve"),
+                        name: ::std::borrow::ToOwned::to_owned("_VTOKEN"),
                         kind: ::ethers::core::abi::ethabi::ParamType::Address,
                         internal_type: ::core::option::Option::Some(
                             ::std::borrow::ToOwned::to_owned("address"),
                         ),
                     },
                     ::ethers::core::abi::ethabi::Param {
-                        name: ::std::borrow::ToOwned::to_owned("_factory"),
+                        name: ::std::borrow::ToOwned::to_owned("_gaugefactory"),
                         kind: ::ethers::core::abi::ethabi::ParamType::Address,
                         internal_type: ::core::option::Option::Some(
                             ::std::borrow::ToOwned::to_owned("address"),
                         ),
                     },
                     ::ethers::core::abi::ethabi::Param {
-                        name: ::std::borrow::ToOwned::to_owned("_gauges"),
-                        kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                        internal_type: ::core::option::Option::Some(
-                            ::std::borrow::ToOwned::to_owned("address"),
-                        ),
-                    },
-                    ::ethers::core::abi::ethabi::Param {
-                        name: ::std::borrow::ToOwned::to_owned("_bribes"),
+                        name: ::std::borrow::ToOwned::to_owned("_bribefactory"),
                         kind: ::ethers::core::abi::ethabi::ParamType::Address,
                         internal_type: ::core::option::Option::Some(
                             ::std::borrow::ToOwned::to_owned("address"),
@@ -47,82 +40,10 @@ pub mod voter {
             }),
             functions: ::core::convert::From::from([
                 (
-                    ::std::borrow::ToOwned::to_owned("_factories"),
+                    ::std::borrow::ToOwned::to_owned("OTOKEN"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("_factories"),
-                            inputs: ::std::vec![],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
-                                        ::std::boxed::Box::new(
-                                            ::ethers::core::abi::ethabi::ParamType::Address,
-                                        ),
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address[]"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("_gaugeFactories"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("_gaugeFactories"),
-                            inputs: ::std::vec![],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
-                                        ::std::boxed::Box::new(
-                                            ::ethers::core::abi::ethabi::ParamType::Address,
-                                        ),
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address[]"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("_killedGauges"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("_killedGauges"),
-                            inputs: ::std::vec![],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
-                                        ::std::boxed::Box::new(
-                                            ::ethers::core::abi::ethabi::ParamType::Address,
-                                        ),
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address[]"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("_ve"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("_ve"),
+                            name: ::std::borrow::ToOwned::to_owned("OTOKEN"),
                             inputs: ::std::vec![],
                             outputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
@@ -139,20 +60,40 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("addFactory"),
+                    ::std::borrow::ToOwned::to_owned("VTOKEN"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("addFactory"),
+                            name: ::std::borrow::ToOwned::to_owned("VTOKEN"),
+                            inputs: ::std::vec![],
+                            outputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address"),
+                                    ),
+                                },
+                            ],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("addBribeReward"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("addBribeReward"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_pairFactory"),
+                                    name: ::std::borrow::ToOwned::to_owned("_bribe"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_gaugeFactory"),
+                                    name: ::std::borrow::ToOwned::to_owned("_rewardToken"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
@@ -166,49 +107,28 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("attachTokenToGauge"),
+                    ::std::borrow::ToOwned::to_owned("addPlugin"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("attachTokenToGauge"),
+                            name: ::std::borrow::ToOwned::to_owned("addPlugin"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("account"),
+                                    name: ::std::borrow::ToOwned::to_owned("_plugin"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                             ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("blacklist"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("blacklist"),
-                            inputs: ::std::vec![
+                            outputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_token"),
+                                    name: ::std::string::String::new(),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                             ],
-                            outputs: ::std::vec![],
                             constant: ::core::option::Option::None,
                             state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
                         },
@@ -220,6 +140,34 @@ pub mod voter {
                         ::ethers::core::abi::ethabi::Function {
                             name: ::std::borrow::ToOwned::to_owned("bribefactory"),
                             inputs: ::std::vec![],
+                            outputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address"),
+                                    ),
+                                },
+                            ],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("bribes"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("bribes"),
+                            inputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::string::String::new(),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address"),
+                                    ),
+                                },
+                            ],
                             outputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
@@ -251,30 +199,6 @@ pub mod voter {
                                         ::std::borrow::ToOwned::to_owned("address[]"),
                                     ),
                                 },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_tokens"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
-                                        ::std::boxed::Box::new(
-                                            ::ethers::core::abi::ethabi::ParamType::Array(
-                                                ::std::boxed::Box::new(
-                                                    ::ethers::core::abi::ethabi::ParamType::Address,
-                                                ),
-                                            ),
-                                        ),
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address[][]"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
                             ],
                             outputs: ::std::vec![],
                             constant: ::core::option::Option::None,
@@ -297,21 +221,6 @@ pub mod voter {
                                     ),
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address[]"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_tokens"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
-                                        ::std::boxed::Box::new(
-                                            ::ethers::core::abi::ethabi::ParamType::Array(
-                                                ::std::boxed::Box::new(
-                                                    ::ethers::core::abi::ethabi::ParamType::Address,
-                                                ),
-                                            ),
-                                        ),
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address[][]"),
                                     ),
                                 },
                             ],
@@ -352,95 +261,8 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("createGauge"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("createGauge"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_pool"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_gaugeType"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("detachTokenFromGauge"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned(
-                                "detachTokenFromGauge",
-                            ),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("account"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
                     ::std::borrow::ToOwned::to_owned("distribute"),
                     ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("distribute"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_gauges"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
-                                        ::std::boxed::Box::new(
-                                            ::ethers::core::abi::ethabi::ParamType::Address,
-                                        ),
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address[]"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
                         ::ethers::core::abi::ethabi::Function {
                             name: ::std::borrow::ToOwned::to_owned("distribute"),
                             inputs: ::std::vec![
@@ -482,9 +304,26 @@ pub mod voter {
                             constant: ::core::option::Option::None,
                             state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
                         },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("distributeToBribes"),
+                    ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("distribute"),
-                            inputs: ::std::vec![],
+                            name: ::std::borrow::ToOwned::to_owned("distributeToBribes"),
+                            inputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::borrow::ToOwned::to_owned("_plugins"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
+                                        ::std::boxed::Box::new(
+                                            ::ethers::core::abi::ethabi::ParamType::Address,
+                                        ),
+                                    ),
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address[]"),
+                                    ),
+                                },
+                            ],
                             outputs: ::std::vec![],
                             constant: ::core::option::Option::None,
                             state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
@@ -504,40 +343,11 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("emergencyCouncil"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("emergencyCouncil"),
-                            inputs: ::std::vec![],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
                     ::std::borrow::ToOwned::to_owned("emitDeposit"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
                             name: ::std::borrow::ToOwned::to_owned("emitDeposit"),
                             inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::borrow::ToOwned::to_owned("account"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
@@ -568,15 +378,6 @@ pub mod voter {
                             name: ::std::borrow::ToOwned::to_owned("emitWithdraw"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
                                     name: ::std::borrow::ToOwned::to_owned("account"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
@@ -600,131 +401,17 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("external_bribes"),
+                    ::std::borrow::ToOwned::to_owned("gaugefactory"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("external_bribes"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("factories"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("factories"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("factoryLength"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("factoryLength"),
+                            name: ::std::borrow::ToOwned::to_owned("gaugefactory"),
                             inputs: ::std::vec![],
                             outputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("gaugeFactories"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("gaugeFactories"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("gaugeFactoriesLength"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned(
-                                "gaugeFactoriesLength",
-                            ),
-                            inputs: ::std::vec![],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
                                     ),
                                 },
                             ],
@@ -762,17 +449,21 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("governor"),
+                    ::std::borrow::ToOwned::to_owned("getPlugins"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("governor"),
+                            name: ::std::borrow::ToOwned::to_owned("getPlugins"),
                             inputs: ::std::vec![],
                             outputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
+                                        ::std::boxed::Box::new(
+                                            ::ethers::core::abi::ethabi::ParamType::Address,
+                                        ),
+                                    ),
                                     internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
+                                        ::std::borrow::ToOwned::to_owned("address[]"),
                                     ),
                                 },
                             ],
@@ -787,17 +478,6 @@ pub mod voter {
                         ::ethers::core::abi::ethabi::Function {
                             name: ::std::borrow::ToOwned::to_owned("initialize"),
                             inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_tokens"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Array(
-                                        ::std::boxed::Box::new(
-                                            ::ethers::core::abi::ethabi::ParamType::Address,
-                                        ),
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address[]"),
-                                    ),
-                                },
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::borrow::ToOwned::to_owned("_minter"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
@@ -817,34 +497,6 @@ pub mod voter {
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
                             name: ::std::borrow::ToOwned::to_owned("isAlive"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Bool,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("bool"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("isFactory"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("isFactory"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
@@ -897,66 +549,10 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("isGaugeFactory"),
+                    ::std::borrow::ToOwned::to_owned("killGauge"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("isGaugeFactory"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Bool,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("bool"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("isWhitelisted"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("isWhitelisted"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Bool,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("bool"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("killGaugeTotally"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("killGaugeTotally"),
+                            name: ::std::borrow::ToOwned::to_owned("killGauge"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::borrow::ToOwned::to_owned("_gauge"),
@@ -973,58 +569,6 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("killedGauges"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("killedGauges"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("killedGaugesLength"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("killedGaugesLength"),
-                            inputs: ::std::vec![],
-                            outputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
-                        },
-                    ],
-                ),
-                (
                     ::std::borrow::ToOwned::to_owned("lastVoted"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
@@ -1032,11 +576,9 @@ pub mod voter {
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
+                                        ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                             ],
@@ -1121,52 +663,30 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("pauseGauge"),
+                    ::std::borrow::ToOwned::to_owned("owner"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("pauseGauge"),
-                            inputs: ::std::vec![
+                            name: ::std::borrow::ToOwned::to_owned("owner"),
+                            inputs: ::std::vec![],
+                            outputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_gauge"),
+                                    name: ::std::string::String::new(),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                             ],
-                            outputs: ::std::vec![],
                             constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
                         },
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("poke"),
+                    ::std::borrow::ToOwned::to_owned("pluginForGauge"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("poke"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("poolForGauge"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("poolForGauge"),
+                            name: ::std::borrow::ToOwned::to_owned("pluginForGauge"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
@@ -1191,18 +711,16 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("poolVote"),
+                    ::std::borrow::ToOwned::to_owned("pluginVote"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("poolVote"),
+                            name: ::std::borrow::ToOwned::to_owned("pluginVote"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
+                                        ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                                 ::ethers::core::abi::ethabi::Param {
@@ -1230,10 +748,10 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("pools"),
+                    ::std::borrow::ToOwned::to_owned("plugins"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("pools"),
+                            name: ::std::borrow::ToOwned::to_owned("plugins"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
@@ -1260,57 +778,11 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("removeFactory"),
+                    ::std::borrow::ToOwned::to_owned("renounceOwnership"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("removeFactory"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_pos"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("replaceFactory"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("replaceFactory"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_pairFactory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_gaugeFactory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_pos"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
+                            name: ::std::borrow::ToOwned::to_owned("renounceOwnership"),
+                            inputs: ::std::vec![],
                             outputs: ::std::vec![],
                             constant: ::core::option::Option::None,
                             state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
@@ -1322,17 +794,7 @@ pub mod voter {
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
                             name: ::std::borrow::ToOwned::to_owned("reset"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                            ],
+                            inputs: ::std::vec![],
                             outputs: ::std::vec![],
                             constant: ::core::option::Option::None,
                             state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
@@ -1340,104 +802,13 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("restartGauge"),
+                    ::std::borrow::ToOwned::to_owned("reviveGauge"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("restartGauge"),
+                            name: ::std::borrow::ToOwned::to_owned("reviveGauge"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::borrow::ToOwned::to_owned("_gauge"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("setBribeFactory"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("setBribeFactory"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_bribeFactory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("setEmergencyCouncil"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned(
-                                "setEmergencyCouncil",
-                            ),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_council"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("setExternalBribeFor"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned(
-                                "setExternalBribeFor",
-                            ),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_gauge"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_external"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("setGovernor"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("setGovernor"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_governor"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
                                         ::std::borrow::ToOwned::to_owned("address"),
@@ -1469,6 +840,26 @@ pub mod voter {
                             ],
                             constant: ::core::option::Option::None,
                             state_mutability: ::ethers::core::abi::ethabi::StateMutability::View,
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("transferOwnership"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Function {
+                            name: ::std::borrow::ToOwned::to_owned("transferOwnership"),
+                            inputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::Param {
+                                    name: ::std::borrow::ToOwned::to_owned("newOwner"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    internal_type: ::core::option::Option::Some(
+                                        ::std::borrow::ToOwned::to_owned("address"),
+                                    ),
+                                },
+                            ],
+                            outputs: ::std::vec![],
+                            constant: ::core::option::Option::None,
+                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
                         },
                     ],
                 ),
@@ -1567,11 +958,9 @@ pub mod voter {
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
+                                        ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                             ],
@@ -1598,16 +987,7 @@ pub mod voter {
                             name: ::std::borrow::ToOwned::to_owned("vote"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
-                                    ),
-                                },
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_poolVote"),
+                                    name: ::std::borrow::ToOwned::to_owned("_plugins"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Array(
                                         ::std::boxed::Box::new(
                                             ::ethers::core::abi::ethabi::ParamType::Address,
@@ -1643,11 +1023,9 @@ pub mod voter {
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::Param {
                                     name: ::std::string::String::new(),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("uint256"),
+                                        ::std::borrow::ToOwned::to_owned("address"),
                                     ),
                                 },
                                 ::ethers::core::abi::ethabi::Param {
@@ -1704,39 +1082,40 @@ pub mod voter {
                         },
                     ],
                 ),
-                (
-                    ::std::borrow::ToOwned::to_owned("whitelist"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Function {
-                            name: ::std::borrow::ToOwned::to_owned("whitelist"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::Param {
-                                    name: ::std::borrow::ToOwned::to_owned("_token"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    internal_type: ::core::option::Option::Some(
-                                        ::std::borrow::ToOwned::to_owned("address"),
-                                    ),
-                                },
-                            ],
-                            outputs: ::std::vec![],
-                            constant: ::core::option::Option::None,
-                            state_mutability: ::ethers::core::abi::ethabi::StateMutability::NonPayable,
-                        },
-                    ],
-                ),
             ]),
             events: ::core::convert::From::from([
                 (
-                    ::std::borrow::ToOwned::to_owned("Abstained"),
+                    ::std::borrow::ToOwned::to_owned("OwnershipTransferred"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Abstained"),
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "OwnershipTransferred",
+                            ),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
+                                    name: ::std::borrow::ToOwned::to_owned("previousOwner"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    indexed: true,
+                                },
+                                ::ethers::core::abi::ethabi::EventParam {
+                                    name: ::std::borrow::ToOwned::to_owned("newOwner"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    indexed: true,
+                                },
+                            ],
+                            anonymous: false,
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__Abstained"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Event {
+                            name: ::std::borrow::ToOwned::to_owned("Voter__Abstained"),
+                            inputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::EventParam {
+                                    name: ::std::borrow::ToOwned::to_owned("account"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: false,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
@@ -1752,13 +1131,36 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("Attach"),
+                    ::std::borrow::ToOwned::to_owned("Voter__BribeRewardAdded"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Attach"),
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__BribeRewardAdded",
+                            ),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("owner"),
+                                    name: ::std::borrow::ToOwned::to_owned("bribe"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    indexed: true,
+                                },
+                                ::ethers::core::abi::ethabi::EventParam {
+                                    name: ::std::borrow::ToOwned::to_owned("reward"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    indexed: true,
+                                },
+                            ],
+                            anonymous: false,
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__Deposit"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::Event {
+                            name: ::std::borrow::ToOwned::to_owned("Voter__Deposit"),
+                            inputs: ::std::vec![
+                                ::ethers::core::abi::ethabi::EventParam {
+                                    name: ::std::borrow::ToOwned::to_owned("plugin"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: true,
                                 },
@@ -1768,80 +1170,8 @@ pub mod voter {
                                     indexed: true,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    indexed: false,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("Blacklisted"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Blacklisted"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("blacklister"),
+                                    name: ::std::borrow::ToOwned::to_owned("account"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("token"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("BribeFactorySet"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("BribeFactorySet"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("setter"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("newBribeFatory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: false,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("Deposit"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Deposit"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("lp"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("gauge"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
                                     indexed: false,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
@@ -1857,38 +1187,12 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("Detach"),
+                    ::std::borrow::ToOwned::to_owned("Voter__DistributeReward"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Detach"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("owner"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("gauge"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    indexed: false,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("DistributeReward"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("DistributeReward"),
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__DistributeReward",
+                            ),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
                                     name: ::std::borrow::ToOwned::to_owned("sender"),
@@ -1913,138 +1217,32 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("ExternalBribeSet"),
+                    ::std::borrow::ToOwned::to_owned("Voter__GaugeCreated"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("ExternalBribeSet"),
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__GaugeCreated",
+                            ),
                             inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("setter"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("gauge"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("externalBribe"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: false,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("FactoryAdded"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("FactoryAdded"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("setter"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("pairFactory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("gaugeFactory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("FactoryRemoved"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("FactoryRemoved"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("setter"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("pos"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    indexed: true,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("FactoryReplaced"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("FactoryReplaced"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("setter"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("pairFactory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("gaugeFactory"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("pos"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    indexed: false,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("GaugeCreated"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("GaugeCreated"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("gauge"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
                                 ::ethers::core::abi::ethabi::EventParam {
                                     name: ::std::borrow::ToOwned::to_owned("creator"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: false,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("external_bribe"),
+                                    name: ::std::borrow::ToOwned::to_owned("plugin"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: true,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("pool"),
+                                    name: ::std::borrow::ToOwned::to_owned("gauge"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: true,
+                                },
+                                ::ethers::core::abi::ethabi::EventParam {
+                                    name: ::std::borrow::ToOwned::to_owned("bribe"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
+                                    indexed: false,
                                 },
                             ],
                             anonymous: false,
@@ -2052,10 +1250,10 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("GaugeKilledTotally"),
+                    ::std::borrow::ToOwned::to_owned("Voter__GaugeKilled"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("GaugeKilledTotally"),
+                            name: ::std::borrow::ToOwned::to_owned("Voter__GaugeKilled"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
                                     name: ::std::borrow::ToOwned::to_owned("gauge"),
@@ -2068,10 +1266,12 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("GaugePaused"),
+                    ::std::borrow::ToOwned::to_owned("Voter__GaugeRevived"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("GaugePaused"),
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__GaugeRevived",
+                            ),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
                                     name: ::std::borrow::ToOwned::to_owned("gauge"),
@@ -2084,26 +1284,12 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("GaugeRestarted"),
+                    ::std::borrow::ToOwned::to_owned("Voter__NotifyReward"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("GaugeRestarted"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("gauge"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("NotifyReward"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("NotifyReward"),
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__NotifyReward",
+                            ),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
                                     name: ::std::borrow::ToOwned::to_owned("sender"),
@@ -2128,22 +1314,15 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("Voted"),
+                    ::std::borrow::ToOwned::to_owned("Voter__Voted"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Voted"),
+                            name: ::std::borrow::ToOwned::to_owned("Voter__Voted"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
                                     name: ::std::borrow::ToOwned::to_owned("voter"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
-                                    indexed: false,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
                                     name: ::std::borrow::ToOwned::to_owned("weight"),
@@ -2158,34 +1337,13 @@ pub mod voter {
                     ],
                 ),
                 (
-                    ::std::borrow::ToOwned::to_owned("Whitelisted"),
+                    ::std::borrow::ToOwned::to_owned("Voter__Withdraw"),
                     ::std::vec![
                         ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Whitelisted"),
+                            name: ::std::borrow::ToOwned::to_owned("Voter__Withdraw"),
                             inputs: ::std::vec![
                                 ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("whitelister"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("token"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
-                                    indexed: true,
-                                },
-                            ],
-                            anonymous: false,
-                        },
-                    ],
-                ),
-                (
-                    ::std::borrow::ToOwned::to_owned("Withdraw"),
-                    ::std::vec![
-                        ::ethers::core::abi::ethabi::Event {
-                            name: ::std::borrow::ToOwned::to_owned("Withdraw"),
-                            inputs: ::std::vec![
-                                ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("lp"),
+                                    name: ::std::borrow::ToOwned::to_owned("plugin"),
                                     kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: true,
                                 },
@@ -2195,10 +1353,8 @@ pub mod voter {
                                     indexed: true,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
-                                    name: ::std::borrow::ToOwned::to_owned("tokenId"),
-                                    kind: ::ethers::core::abi::ethabi::ParamType::Uint(
-                                        256usize,
-                                    ),
+                                    name: ::std::borrow::ToOwned::to_owned("account"),
+                                    kind: ::ethers::core::abi::ethabi::ParamType::Address,
                                     indexed: false,
                                 },
                                 ::ethers::core::abi::ethabi::EventParam {
@@ -2214,7 +1370,112 @@ pub mod voter {
                     ],
                 ),
             ]),
-            errors: ::std::collections::BTreeMap::new(),
+            errors: ::core::convert::From::from([
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__AlreadyVotedThisEpoch"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__AlreadyVotedThisEpoch",
+                            ),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__GaugeExists"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("Voter__GaugeExists"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__GaugeIsAlive"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__GaugeIsAlive",
+                            ),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__GaugeIsDead"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("Voter__GaugeIsDead"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__InvalidZeroAddress"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__InvalidZeroAddress",
+                            ),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__NotAuthorizedGovernance"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__NotAuthorizedGovernance",
+                            ),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__NotAuthorizedMinter"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__NotAuthorizedMinter",
+                            ),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__NotGauge"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("Voter__NotGauge"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned("Voter__NotMinter"),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned("Voter__NotMinter"),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+                (
+                    ::std::borrow::ToOwned::to_owned(
+                        "Voter__PluginLengthNotEqualToWeightLength",
+                    ),
+                    ::std::vec![
+                        ::ethers::core::abi::ethabi::AbiError {
+                            name: ::std::borrow::ToOwned::to_owned(
+                                "Voter__PluginLengthNotEqualToWeightLength",
+                            ),
+                            inputs: ::std::vec![],
+                        },
+                    ],
+                ),
+            ]),
             receive: false,
             fallback: false,
         }
@@ -2260,77 +1521,48 @@ pub mod voter {
                 ),
             )
         }
-        ///Calls the contract's `_factories` (0xe9f6adfa) function
-        pub fn _factories(
-            &self,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::std::vec::Vec<::ethers::core::types::Address>,
-        > {
-            self.0
-                .method_hash([233, 246, 173, 250], ())
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `_gaugeFactories` (0x9fb5dc05) function
-        pub fn _gauge_factories(
-            &self,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::std::vec::Vec<::ethers::core::types::Address>,
-        > {
-            self.0
-                .method_hash([159, 181, 220, 5], ())
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `_killedGauges` (0xcbadada4) function
-        pub fn _killed_gauges(
-            &self,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::std::vec::Vec<::ethers::core::types::Address>,
-        > {
-            self.0
-                .method_hash([203, 173, 173, 164], ())
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `_ve` (0x8dd598fb) function
-        pub fn ve(
+        ///Calls the contract's `OTOKEN` (0xc544df0c) function
+        pub fn otoken(
             &self,
         ) -> ::ethers::contract::builders::ContractCall<
             M,
             ::ethers::core::types::Address,
         > {
             self.0
-                .method_hash([141, 213, 152, 251], ())
+                .method_hash([197, 68, 223, 12], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `addFactory` (0x6566afad) function
-        pub fn add_factory(
+        ///Calls the contract's `VTOKEN` (0xfb548427) function
+        pub fn vtoken(
             &self,
-            pair_factory: ::ethers::core::types::Address,
-            gauge_factory: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
+        ) -> ::ethers::contract::builders::ContractCall<
+            M,
+            ::ethers::core::types::Address,
+        > {
             self.0
-                .method_hash([101, 102, 175, 173], (pair_factory, gauge_factory))
+                .method_hash([251, 84, 132, 39], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `attachTokenToGauge` (0x698473e3) function
-        pub fn attach_token_to_gauge(
+        ///Calls the contract's `addBribeReward` (0x7ceed4af) function
+        pub fn add_bribe_reward(
             &self,
-            token_id: ::ethers::core::types::U256,
-            account: ::ethers::core::types::Address,
+            bribe: ::ethers::core::types::Address,
+            reward_token: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([105, 132, 115, 227], (token_id, account))
+                .method_hash([124, 238, 212, 175], (bribe, reward_token))
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `blacklist` (0xf9f92be4) function
-        pub fn blacklist(
+        ///Calls the contract's `addPlugin` (0xd8867fc8) function
+        pub fn add_plugin(
             &self,
-            token: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
+            plugin: ::ethers::core::types::Address,
+        ) -> ::ethers::contract::builders::ContractCall<
+            M,
+            ::ethers::core::types::Address,
+        > {
             self.0
-                .method_hash([249, 249, 43, 228], token)
+                .method_hash([216, 134, 127, 200], plugin)
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `bribefactory` (0x38752a9d) function
@@ -2344,25 +1576,34 @@ pub mod voter {
                 .method_hash([56, 117, 42, 157], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `claimBribes` (0x7715ee75) function
+        ///Calls the contract's `bribes` (0xa8c5d95a) function
+        pub fn bribes(
+            &self,
+            p0: ::ethers::core::types::Address,
+        ) -> ::ethers::contract::builders::ContractCall<
+            M,
+            ::ethers::core::types::Address,
+        > {
+            self.0
+                .method_hash([168, 197, 217, 90], p0)
+                .expect("method not found (this should never happen)")
+        }
+        ///Calls the contract's `claimBribes` (0x240f9774) function
         pub fn claim_bribes(
             &self,
             bribes: ::std::vec::Vec<::ethers::core::types::Address>,
-            tokens: ::std::vec::Vec<::std::vec::Vec<::ethers::core::types::Address>>,
-            token_id: ::ethers::core::types::U256,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([119, 21, 238, 117], (bribes, tokens, token_id))
+                .method_hash([36, 15, 151, 116], bribes)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `claimRewards` (0x20b1cb6f) function
+        ///Calls the contract's `claimRewards` (0xf9f031df) function
         pub fn claim_rewards(
             &self,
             gauges: ::std::vec::Vec<::ethers::core::types::Address>,
-            tokens: ::std::vec::Vec<::std::vec::Vec<::ethers::core::types::Address>>,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([32, 177, 203, 111], (gauges, tokens))
+                .method_hash([249, 240, 49, 223], gauges)
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `claimable` (0x402914f5) function
@@ -2374,40 +1615,8 @@ pub mod voter {
                 .method_hash([64, 41, 20, 245], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `createGauge` (0xdcd9e47a) function
-        pub fn create_gauge(
-            &self,
-            pool: ::ethers::core::types::Address,
-            gauge_type: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::ethers::core::types::Address,
-        > {
-            self.0
-                .method_hash([220, 217, 228, 122], (pool, gauge_type))
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `detachTokenFromGauge` (0x411b1f77) function
-        pub fn detach_token_from_gauge(
-            &self,
-            token_id: ::ethers::core::types::U256,
-            account: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([65, 27, 31, 119], (token_id, account))
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `distribute` (0x6138889b) function
-        pub fn distribute_1(
-            &self,
-            gauges: ::std::vec::Vec<::ethers::core::types::Address>,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([97, 56, 136, 155], gauges)
-                .expect("method not found (this should never happen)")
-        }
         ///Calls the contract's `distribute` (0x63453ae1) function
-        pub fn distribute_2(
+        pub fn distribute(
             &self,
             gauge: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
@@ -2416,7 +1625,7 @@ pub mod voter {
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `distribute` (0x7625391a) function
-        pub fn distribute_3(
+        pub fn distribute_with_start(
             &self,
             start: ::ethers::core::types::U256,
             finish: ::ethers::core::types::U256,
@@ -2425,10 +1634,13 @@ pub mod voter {
                 .method_hash([118, 37, 57, 26], (start, finish))
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `distribute` (0xe4fc6b6d) function
-        pub fn distribute_0(&self) -> ::ethers::contract::builders::ContractCall<M, ()> {
+        ///Calls the contract's `distributeToBribes` (0x4978c512) function
+        pub fn distribute_to_bribes(
+            &self,
+            plugins: ::std::vec::Vec<::ethers::core::types::Address>,
+        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([228, 252, 107, 109], ())
+                .method_hash([73, 120, 197, 18], plugins)
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `distro` (0x47b3c6ba) function
@@ -2437,89 +1649,35 @@ pub mod voter {
                 .method_hash([71, 179, 198, 186], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `emergencyCouncil` (0x7778960e) function
-        pub fn emergency_council(
-            &self,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::ethers::core::types::Address,
-        > {
-            self.0
-                .method_hash([119, 120, 150, 14], ())
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `emitDeposit` (0xa61c713a) function
+        ///Calls the contract's `emitDeposit` (0x28ba84ca) function
         pub fn emit_deposit(
             &self,
-            token_id: ::ethers::core::types::U256,
             account: ::ethers::core::types::Address,
             amount: ::ethers::core::types::U256,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([166, 28, 113, 58], (token_id, account, amount))
+                .method_hash([40, 186, 132, 202], (account, amount))
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `emitWithdraw` (0xea94ee44) function
+        ///Calls the contract's `emitWithdraw` (0xb014da21) function
         pub fn emit_withdraw(
             &self,
-            token_id: ::ethers::core::types::U256,
             account: ::ethers::core::types::Address,
             amount: ::ethers::core::types::U256,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([234, 148, 238, 68], (token_id, account, amount))
+                .method_hash([176, 20, 218, 33], (account, amount))
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `external_bribes` (0xae21c4cb) function
-        pub fn external_bribes(
+        ///Calls the contract's `gaugefactory` (0x68c3acb3) function
+        pub fn gaugefactory(
             &self,
-            p0: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<
             M,
             ::ethers::core::types::Address,
         > {
             self.0
-                .method_hash([174, 33, 196, 203], p0)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `factories` (0x672383c4) function
-        pub fn factories(
-            &self,
-            p0: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::ethers::core::types::Address,
-        > {
-            self.0
-                .method_hash([103, 35, 131, 196], p0)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `factoryLength` (0x470f4985) function
-        pub fn factory_length(
-            &self,
-        ) -> ::ethers::contract::builders::ContractCall<M, ::ethers::core::types::U256> {
-            self.0
-                .method_hash([71, 15, 73, 133], ())
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `gaugeFactories` (0x23e1af42) function
-        pub fn gauge_factories(
-            &self,
-            p0: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::ethers::core::types::Address,
-        > {
-            self.0
-                .method_hash([35, 225, 175, 66], p0)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `gaugeFactoriesLength` (0xb52a3151) function
-        pub fn gauge_factories_length(
-            &self,
-        ) -> ::ethers::contract::builders::ContractCall<M, ::ethers::core::types::U256> {
-            self.0
-                .method_hash([181, 42, 49, 81], ())
+                .method_hash([104, 195, 172, 179], ())
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `gauges` (0xb9a09fd5) function
@@ -2534,25 +1692,24 @@ pub mod voter {
                 .method_hash([185, 160, 159, 213], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `governor` (0x0c340a24) function
-        pub fn governor(
+        ///Calls the contract's `getPlugins` (0xa2d869b2) function
+        pub fn get_plugins(
             &self,
         ) -> ::ethers::contract::builders::ContractCall<
             M,
-            ::ethers::core::types::Address,
+            ::std::vec::Vec<::ethers::core::types::Address>,
         > {
             self.0
-                .method_hash([12, 52, 10, 36], ())
+                .method_hash([162, 216, 105, 178], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `initialize` (0x462d0b2e) function
+        ///Calls the contract's `initialize` (0xc4d66de8) function
         pub fn initialize(
             &self,
-            tokens: ::std::vec::Vec<::ethers::core::types::Address>,
             minter: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([70, 45, 11, 46], (tokens, minter))
+                .method_hash([196, 214, 109, 232], minter)
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `isAlive` (0x1703e5f9) function
@@ -2564,15 +1721,6 @@ pub mod voter {
                 .method_hash([23, 3, 229, 249], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `isFactory` (0x0f04ba67) function
-        pub fn is_factory(
-            &self,
-            p0: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, bool> {
-            self.0
-                .method_hash([15, 4, 186, 103], p0)
-                .expect("method not found (this should never happen)")
-        }
         ///Calls the contract's `isGauge` (0xaa79979b) function
         pub fn is_gauge(
             &self,
@@ -2582,60 +1730,22 @@ pub mod voter {
                 .method_hash([170, 121, 151, 155], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `isGaugeFactory` (0x657021fb) function
-        pub fn is_gauge_factory(
-            &self,
-            p0: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, bool> {
-            self.0
-                .method_hash([101, 112, 33, 251], p0)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `isWhitelisted` (0x3af32abf) function
-        pub fn is_whitelisted(
-            &self,
-            p0: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, bool> {
-            self.0
-                .method_hash([58, 243, 42, 191], p0)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `killGaugeTotally` (0x9edfd460) function
-        pub fn kill_gauge_totally(
+        ///Calls the contract's `killGauge` (0x992a7933) function
+        pub fn kill_gauge(
             &self,
             gauge: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([158, 223, 212, 96], gauge)
+                .method_hash([153, 42, 121, 51], gauge)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `killedGauges` (0x173de600) function
-        pub fn killed_gauges(
-            &self,
-            p0: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<
-            M,
-            ::ethers::core::types::Address,
-        > {
-            self.0
-                .method_hash([23, 61, 230, 0], p0)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `killedGaugesLength` (0xc448c78d) function
-        pub fn killed_gauges_length(
-            &self,
-        ) -> ::ethers::contract::builders::ContractCall<M, ::ethers::core::types::U256> {
-            self.0
-                .method_hash([196, 72, 199, 141], ())
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `lastVoted` (0xf3594be0) function
+        ///Calls the contract's `lastVoted` (0x9a61df89) function
         pub fn last_voted(
             &self,
-            p0: ::ethers::core::types::U256,
+            p0: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ::ethers::core::types::U256> {
             self.0
-                .method_hash([243, 89, 75, 224], p0)
+                .method_hash([154, 97, 223, 137], p0)
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `length` (0x1f7b6d32) function
@@ -2666,26 +1776,19 @@ pub mod voter {
                 .method_hash([60, 107, 22, 171], amount)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `pauseGauge` (0x03c39b00) function
-        pub fn pause_gauge(
+        ///Calls the contract's `owner` (0x8da5cb5b) function
+        pub fn owner(
             &self,
-            gauge: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
+        ) -> ::ethers::contract::builders::ContractCall<
+            M,
+            ::ethers::core::types::Address,
+        > {
             self.0
-                .method_hash([3, 195, 155, 0], gauge)
+                .method_hash([141, 165, 203, 91], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `poke` (0x32145f90) function
-        pub fn poke(
-            &self,
-            token_id: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([50, 20, 95, 144], token_id)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `poolForGauge` (0x06d6a1b2) function
-        pub fn pool_for_gauge(
+        ///Calls the contract's `pluginForGauge` (0x6c60f246) function
+        pub fn plugin_for_gauge(
             &self,
             p0: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<
@@ -2693,24 +1796,24 @@ pub mod voter {
             ::ethers::core::types::Address,
         > {
             self.0
-                .method_hash([6, 214, 161, 178], p0)
+                .method_hash([108, 96, 242, 70], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `poolVote` (0xa86a366d) function
-        pub fn pool_vote(
+        ///Calls the contract's `pluginVote` (0x773fac7d) function
+        pub fn plugin_vote(
             &self,
-            p0: ::ethers::core::types::U256,
+            p0: ::ethers::core::types::Address,
             p1: ::ethers::core::types::U256,
         ) -> ::ethers::contract::builders::ContractCall<
             M,
             ::ethers::core::types::Address,
         > {
             self.0
-                .method_hash([168, 106, 54, 109], (p0, p1))
+                .method_hash([119, 63, 172, 125], (p0, p1))
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `pools` (0xac4afa38) function
-        pub fn pools(
+        ///Calls the contract's `plugins` (0xf0a317eb) function
+        pub fn plugins(
             &self,
             p0: ::ethers::core::types::U256,
         ) -> ::ethers::contract::builders::ContractCall<
@@ -2718,82 +1821,30 @@ pub mod voter {
             ::ethers::core::types::Address,
         > {
             self.0
-                .method_hash([172, 74, 250, 56], p0)
+                .method_hash([240, 163, 23, 235], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `removeFactory` (0x577387b5) function
-        pub fn remove_factory(
+        ///Calls the contract's `renounceOwnership` (0x715018a6) function
+        pub fn renounce_ownership(
             &self,
-            pos: ::ethers::core::types::U256,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([87, 115, 135, 181], pos)
+                .method_hash([113, 80, 24, 166], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `replaceFactory` (0x27e5c823) function
-        pub fn replace_factory(
-            &self,
-            pair_factory: ::ethers::core::types::Address,
-            gauge_factory: ::ethers::core::types::Address,
-            pos: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
+        ///Calls the contract's `reset` (0xd826f88f) function
+        pub fn reset(&self) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([39, 229, 200, 35], (pair_factory, gauge_factory, pos))
+                .method_hash([216, 38, 248, 143], ())
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `reset` (0x310bd74b) function
-        pub fn reset(
-            &self,
-            token_id: ::ethers::core::types::U256,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([49, 11, 215, 75], token_id)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `restartGauge` (0xa82029f9) function
-        pub fn restart_gauge(
+        ///Calls the contract's `reviveGauge` (0x9f06247b) function
+        pub fn revive_gauge(
             &self,
             gauge: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([168, 32, 41, 249], gauge)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `setBribeFactory` (0xa9b5aa7e) function
-        pub fn set_bribe_factory(
-            &self,
-            bribe_factory: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([169, 181, 170, 126], bribe_factory)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `setEmergencyCouncil` (0xe586875f) function
-        pub fn set_emergency_council(
-            &self,
-            council: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([229, 134, 135, 95], council)
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `setExternalBribeFor` (0xdaa168bd) function
-        pub fn set_external_bribe_for(
-            &self,
-            gauge: ::ethers::core::types::Address,
-            external: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([218, 161, 104, 189], (gauge, external))
-                .expect("method not found (this should never happen)")
-        }
-        ///Calls the contract's `setGovernor` (0xc42cf535) function
-        pub fn set_governor(
-            &self,
-            governor: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([196, 44, 245, 53], governor)
+                .method_hash([159, 6, 36, 123], gauge)
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `totalWeight` (0x96c82e57) function
@@ -2802,6 +1853,15 @@ pub mod voter {
         ) -> ::ethers::contract::builders::ContractCall<M, ::ethers::core::types::U256> {
             self.0
                 .method_hash([150, 200, 46, 87], ())
+                .expect("method not found (this should never happen)")
+        }
+        ///Calls the contract's `transferOwnership` (0xf2fde38b) function
+        pub fn transfer_ownership(
+            &self,
+            new_owner: ::ethers::core::types::Address,
+        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
+            self.0
+                .method_hash([242, 253, 227, 139], new_owner)
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `updateAll` (0x53d78693) function
@@ -2838,34 +1898,33 @@ pub mod voter {
                 .method_hash([110, 203, 227, 138], gauge)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `usedWeights` (0x79e93824) function
+        ///Calls the contract's `usedWeights` (0x002f8de4) function
         pub fn used_weights(
             &self,
-            p0: ::ethers::core::types::U256,
+            p0: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ::ethers::core::types::U256> {
             self.0
-                .method_hash([121, 233, 56, 36], p0)
+                .method_hash([0, 47, 141, 228], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `vote` (0x7ac09bf7) function
+        ///Calls the contract's `vote` (0x6f816a20) function
         pub fn vote(
             &self,
-            token_id: ::ethers::core::types::U256,
-            pool_vote: ::std::vec::Vec<::ethers::core::types::Address>,
+            plugins: ::std::vec::Vec<::ethers::core::types::Address>,
             weights: ::std::vec::Vec<::ethers::core::types::U256>,
         ) -> ::ethers::contract::builders::ContractCall<M, ()> {
             self.0
-                .method_hash([122, 192, 155, 247], (token_id, pool_vote, weights))
+                .method_hash([111, 129, 106, 32], (plugins, weights))
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `votes` (0xd23254b4) function
+        ///Calls the contract's `votes` (0xcad1b906) function
         pub fn votes(
             &self,
-            p0: ::ethers::core::types::U256,
+            p0: ::ethers::core::types::Address,
             p1: ::ethers::core::types::Address,
         ) -> ::ethers::contract::builders::ContractCall<M, ::ethers::core::types::U256> {
             self.0
-                .method_hash([210, 50, 84, 180], (p0, p1))
+                .method_hash([202, 209, 185, 6], (p0, p1))
                 .expect("method not found (this should never happen)")
         }
         ///Calls the contract's `weights` (0xa7cac846) function
@@ -2877,186 +1936,113 @@ pub mod voter {
                 .method_hash([167, 202, 200, 70], p0)
                 .expect("method not found (this should never happen)")
         }
-        ///Calls the contract's `whitelist` (0x9b19251a) function
-        pub fn whitelist(
-            &self,
-            token: ::ethers::core::types::Address,
-        ) -> ::ethers::contract::builders::ContractCall<M, ()> {
-            self.0
-                .method_hash([155, 25, 37, 26], token)
-                .expect("method not found (this should never happen)")
-        }
-        ///Gets the contract's `Abstained` event
-        pub fn abstained_filter(
+        ///Gets the contract's `OwnershipTransferred` event
+        pub fn ownership_transferred_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            AbstainedFilter,
+            OwnershipTransferredFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `Attach` event
-        pub fn attach_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<::std::sync::Arc<M>, M, AttachFilter> {
-            self.0.event()
-        }
-        ///Gets the contract's `Blacklisted` event
-        pub fn blacklisted_filter(
+        ///Gets the contract's `Voter__Abstained` event
+        pub fn voter_abstained_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            BlacklistedFilter,
+            VoterAbstainedFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `BribeFactorySet` event
-        pub fn bribe_factory_set_filter(
+        ///Gets the contract's `Voter__BribeRewardAdded` event
+        pub fn voter_bribe_reward_added_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            BribeFactorySetFilter,
+            VoterBribeRewardAddedFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `Deposit` event
-        pub fn deposit_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<::std::sync::Arc<M>, M, DepositFilter> {
-            self.0.event()
-        }
-        ///Gets the contract's `Detach` event
-        pub fn detach_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<::std::sync::Arc<M>, M, DetachFilter> {
-            self.0.event()
-        }
-        ///Gets the contract's `DistributeReward` event
-        pub fn distribute_reward_filter(
+        ///Gets the contract's `Voter__Deposit` event
+        pub fn voter_deposit_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            DistributeRewardFilter,
+            VoterDepositFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `ExternalBribeSet` event
-        pub fn external_bribe_set_filter(
+        ///Gets the contract's `Voter__DistributeReward` event
+        pub fn voter_distribute_reward_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            ExternalBribeSetFilter,
+            VoterDistributeRewardFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `FactoryAdded` event
-        pub fn factory_added_filter(
+        ///Gets the contract's `Voter__GaugeCreated` event
+        pub fn voter_gauge_created_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            FactoryAddedFilter,
+            VoterGaugeCreatedFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `FactoryRemoved` event
-        pub fn factory_removed_filter(
+        ///Gets the contract's `Voter__GaugeKilled` event
+        pub fn voter_gauge_killed_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            FactoryRemovedFilter,
+            VoterGaugeKilledFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `FactoryReplaced` event
-        pub fn factory_replaced_filter(
+        ///Gets the contract's `Voter__GaugeRevived` event
+        pub fn voter_gauge_revived_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            FactoryReplacedFilter,
+            VoterGaugeRevivedFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `GaugeCreated` event
-        pub fn gauge_created_filter(
+        ///Gets the contract's `Voter__NotifyReward` event
+        pub fn voter_notify_reward_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            GaugeCreatedFilter,
+            VoterNotifyRewardFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `GaugeKilledTotally` event
-        pub fn gauge_killed_totally_filter(
+        ///Gets the contract's `Voter__Voted` event
+        pub fn voter_voted_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            GaugeKilledTotallyFilter,
+            VoterVotedFilter,
         > {
             self.0.event()
         }
-        ///Gets the contract's `GaugePaused` event
-        pub fn gauge_paused_filter(
+        ///Gets the contract's `Voter__Withdraw` event
+        pub fn voter_withdraw_filter(
             &self,
         ) -> ::ethers::contract::builders::Event<
             ::std::sync::Arc<M>,
             M,
-            GaugePausedFilter,
-        > {
-            self.0.event()
-        }
-        ///Gets the contract's `GaugeRestarted` event
-        pub fn gauge_restarted_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<
-            ::std::sync::Arc<M>,
-            M,
-            GaugeRestartedFilter,
-        > {
-            self.0.event()
-        }
-        ///Gets the contract's `NotifyReward` event
-        pub fn notify_reward_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<
-            ::std::sync::Arc<M>,
-            M,
-            NotifyRewardFilter,
-        > {
-            self.0.event()
-        }
-        ///Gets the contract's `Voted` event
-        pub fn voted_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<::std::sync::Arc<M>, M, VotedFilter> {
-            self.0.event()
-        }
-        ///Gets the contract's `Whitelisted` event
-        pub fn whitelisted_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<
-            ::std::sync::Arc<M>,
-            M,
-            WhitelistedFilter,
-        > {
-            self.0.event()
-        }
-        ///Gets the contract's `Withdraw` event
-        pub fn withdraw_filter(
-            &self,
-        ) -> ::ethers::contract::builders::Event<
-            ::std::sync::Arc<M>,
-            M,
-            WithdrawFilter,
+            VoterWithdrawFilter,
         > {
             self.0.event()
         }
@@ -3073,9 +2059,10 @@ pub mod voter {
             Self::new(contract.address(), contract.client())
         }
     }
+    ///Custom Error type `Voter__AlreadyVotedThisEpoch` with signature `Voter__AlreadyVotedThisEpoch()` and selector `0xb3bd7114`
     #[derive(
         Clone,
-        ::ethers::contract::EthEvent,
+        ::ethers::contract::EthError,
         ::ethers::contract::EthDisplay,
         Default,
         Debug,
@@ -3083,98 +2070,393 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethevent(name = "Abstained", abi = "Abstained(uint256,uint256)")]
-    pub struct AbstainedFilter {
-        pub token_id: ::ethers::core::types::U256,
-        pub weight: ::ethers::core::types::U256,
+    #[etherror(
+        name = "Voter__AlreadyVotedThisEpoch",
+        abi = "Voter__AlreadyVotedThisEpoch()"
+    )]
+    pub struct Voter__AlreadyVotedThisEpoch;
+    ///Custom Error type `Voter__GaugeExists` with signature `Voter__GaugeExists()` and selector `0x25d9db2f`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "Voter__GaugeExists", abi = "Voter__GaugeExists()")]
+    pub struct Voter__GaugeExists;
+    ///Custom Error type `Voter__GaugeIsAlive` with signature `Voter__GaugeIsAlive()` and selector `0xac6553cd`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "Voter__GaugeIsAlive", abi = "Voter__GaugeIsAlive()")]
+    pub struct Voter__GaugeIsAlive;
+    ///Custom Error type `Voter__GaugeIsDead` with signature `Voter__GaugeIsDead()` and selector `0x5cf06fbb`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "Voter__GaugeIsDead", abi = "Voter__GaugeIsDead()")]
+    pub struct Voter__GaugeIsDead;
+    ///Custom Error type `Voter__InvalidZeroAddress` with signature `Voter__InvalidZeroAddress()` and selector `0xc7a2af73`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "Voter__InvalidZeroAddress", abi = "Voter__InvalidZeroAddress()")]
+    pub struct Voter__InvalidZeroAddress;
+    ///Custom Error type `Voter__NotAuthorizedGovernance` with signature `Voter__NotAuthorizedGovernance()` and selector `0x931ddde6`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(
+        name = "Voter__NotAuthorizedGovernance",
+        abi = "Voter__NotAuthorizedGovernance()"
+    )]
+    pub struct Voter__NotAuthorizedGovernance;
+    ///Custom Error type `Voter__NotAuthorizedMinter` with signature `Voter__NotAuthorizedMinter()` and selector `0x290507e7`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(
+        name = "Voter__NotAuthorizedMinter",
+        abi = "Voter__NotAuthorizedMinter()"
+    )]
+    pub struct Voter__NotAuthorizedMinter;
+    ///Custom Error type `Voter__NotGauge` with signature `Voter__NotGauge()` and selector `0xaa7a99d1`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "Voter__NotGauge", abi = "Voter__NotGauge()")]
+    pub struct Voter__NotGauge;
+    ///Custom Error type `Voter__NotMinter` with signature `Voter__NotMinter()` and selector `0x62f39aea`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(name = "Voter__NotMinter", abi = "Voter__NotMinter()")]
+    pub struct Voter__NotMinter;
+    ///Custom Error type `Voter__PluginLengthNotEqualToWeightLength` with signature `Voter__PluginLengthNotEqualToWeightLength()` and selector `0x070fd29b`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthError,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[etherror(
+        name = "Voter__PluginLengthNotEqualToWeightLength",
+        abi = "Voter__PluginLengthNotEqualToWeightLength()"
+    )]
+    pub struct Voter__PluginLengthNotEqualToWeightLength;
+    ///Container type for all of the contract's custom errors
+    #[derive(Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash)]
+    pub enum VoterErrors {
+        Voter__AlreadyVotedThisEpoch(Voter__AlreadyVotedThisEpoch),
+        Voter__GaugeExists(Voter__GaugeExists),
+        Voter__GaugeIsAlive(Voter__GaugeIsAlive),
+        Voter__GaugeIsDead(Voter__GaugeIsDead),
+        Voter__InvalidZeroAddress(Voter__InvalidZeroAddress),
+        Voter__NotAuthorizedGovernance(Voter__NotAuthorizedGovernance),
+        Voter__NotAuthorizedMinter(Voter__NotAuthorizedMinter),
+        Voter__NotGauge(Voter__NotGauge),
+        Voter__NotMinter(Voter__NotMinter),
+        Voter__PluginLengthNotEqualToWeightLength(
+            Voter__PluginLengthNotEqualToWeightLength,
+        ),
+        /// The standard solidity revert string, with selector
+        /// Error(string) -- 0x08c379a0
+        RevertString(::std::string::String),
     }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(name = "Attach", abi = "Attach(address,address,uint256)")]
-    pub struct AttachFilter {
-        #[ethevent(indexed)]
-        pub owner: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub gauge: ::ethers::core::types::Address,
-        pub token_id: ::ethers::core::types::U256,
+    impl ::ethers::core::abi::AbiDecode for VoterErrors {
+        fn decode(
+            data: impl AsRef<[u8]>,
+        ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError> {
+            let data = data.as_ref();
+            if let Ok(decoded)
+                = <::std::string::String as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::RevertString(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__AlreadyVotedThisEpoch as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::Voter__AlreadyVotedThisEpoch(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__GaugeExists as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Voter__GaugeExists(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__GaugeIsAlive as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Voter__GaugeIsAlive(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__GaugeIsDead as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Voter__GaugeIsDead(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__InvalidZeroAddress as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::Voter__InvalidZeroAddress(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__NotAuthorizedGovernance as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::Voter__NotAuthorizedGovernance(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__NotAuthorizedMinter as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::Voter__NotAuthorizedMinter(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__NotGauge as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Voter__NotGauge(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__NotMinter as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Voter__NotMinter(decoded));
+            }
+            if let Ok(decoded)
+                = <Voter__PluginLengthNotEqualToWeightLength as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::Voter__PluginLengthNotEqualToWeightLength(decoded));
+            }
+            Err(::ethers::core::abi::Error::InvalidData.into())
+        }
     }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(name = "Blacklisted", abi = "Blacklisted(address,address)")]
-    pub struct BlacklistedFilter {
-        #[ethevent(indexed)]
-        pub blacklister: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub token: ::ethers::core::types::Address,
+    impl ::ethers::core::abi::AbiEncode for VoterErrors {
+        fn encode(self) -> ::std::vec::Vec<u8> {
+            match self {
+                Self::Voter__AlreadyVotedThisEpoch(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__GaugeExists(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__GaugeIsAlive(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__GaugeIsDead(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__InvalidZeroAddress(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__NotAuthorizedGovernance(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__NotAuthorizedMinter(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__NotGauge(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__NotMinter(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::Voter__PluginLengthNotEqualToWeightLength(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::RevertString(s) => ::ethers::core::abi::AbiEncode::encode(s),
+            }
+        }
     }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(name = "BribeFactorySet", abi = "BribeFactorySet(address,address)")]
-    pub struct BribeFactorySetFilter {
-        #[ethevent(indexed)]
-        pub setter: ::ethers::core::types::Address,
-        pub new_bribe_fatory: ::ethers::core::types::Address,
+    impl ::ethers::contract::ContractRevert for VoterErrors {
+        fn valid_selector(selector: [u8; 4]) -> bool {
+            match selector {
+                [0x08, 0xc3, 0x79, 0xa0] => true,
+                _ if selector
+                    == <Voter__AlreadyVotedThisEpoch as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__GaugeExists as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__GaugeIsAlive as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__GaugeIsDead as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__InvalidZeroAddress as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__NotAuthorizedGovernance as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__NotAuthorizedMinter as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__NotGauge as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__NotMinter as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ if selector
+                    == <Voter__PluginLengthNotEqualToWeightLength as ::ethers::contract::EthError>::selector() => {
+                    true
+                }
+                _ => false,
+            }
+        }
     }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(name = "Deposit", abi = "Deposit(address,address,uint256,uint256)")]
-    pub struct DepositFilter {
-        #[ethevent(indexed)]
-        pub lp: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub gauge: ::ethers::core::types::Address,
-        pub token_id: ::ethers::core::types::U256,
-        pub amount: ::ethers::core::types::U256,
+    impl ::core::fmt::Display for VoterErrors {
+        fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+            match self {
+                Self::Voter__AlreadyVotedThisEpoch(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::Voter__GaugeExists(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::Voter__GaugeIsAlive(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::Voter__GaugeIsDead(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::Voter__InvalidZeroAddress(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::Voter__NotAuthorizedGovernance(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::Voter__NotAuthorizedMinter(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::Voter__NotGauge(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Voter__NotMinter(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Voter__PluginLengthNotEqualToWeightLength(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
+                Self::RevertString(s) => ::core::fmt::Display::fmt(s, f),
+            }
+        }
     }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(name = "Detach", abi = "Detach(address,address,uint256)")]
-    pub struct DetachFilter {
-        #[ethevent(indexed)]
-        pub owner: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub gauge: ::ethers::core::types::Address,
-        pub token_id: ::ethers::core::types::U256,
+    impl ::core::convert::From<::std::string::String> for VoterErrors {
+        fn from(value: String) -> Self {
+            Self::RevertString(value)
+        }
+    }
+    impl ::core::convert::From<Voter__AlreadyVotedThisEpoch> for VoterErrors {
+        fn from(value: Voter__AlreadyVotedThisEpoch) -> Self {
+            Self::Voter__AlreadyVotedThisEpoch(value)
+        }
+    }
+    impl ::core::convert::From<Voter__GaugeExists> for VoterErrors {
+        fn from(value: Voter__GaugeExists) -> Self {
+            Self::Voter__GaugeExists(value)
+        }
+    }
+    impl ::core::convert::From<Voter__GaugeIsAlive> for VoterErrors {
+        fn from(value: Voter__GaugeIsAlive) -> Self {
+            Self::Voter__GaugeIsAlive(value)
+        }
+    }
+    impl ::core::convert::From<Voter__GaugeIsDead> for VoterErrors {
+        fn from(value: Voter__GaugeIsDead) -> Self {
+            Self::Voter__GaugeIsDead(value)
+        }
+    }
+    impl ::core::convert::From<Voter__InvalidZeroAddress> for VoterErrors {
+        fn from(value: Voter__InvalidZeroAddress) -> Self {
+            Self::Voter__InvalidZeroAddress(value)
+        }
+    }
+    impl ::core::convert::From<Voter__NotAuthorizedGovernance> for VoterErrors {
+        fn from(value: Voter__NotAuthorizedGovernance) -> Self {
+            Self::Voter__NotAuthorizedGovernance(value)
+        }
+    }
+    impl ::core::convert::From<Voter__NotAuthorizedMinter> for VoterErrors {
+        fn from(value: Voter__NotAuthorizedMinter) -> Self {
+            Self::Voter__NotAuthorizedMinter(value)
+        }
+    }
+    impl ::core::convert::From<Voter__NotGauge> for VoterErrors {
+        fn from(value: Voter__NotGauge) -> Self {
+            Self::Voter__NotGauge(value)
+        }
+    }
+    impl ::core::convert::From<Voter__NotMinter> for VoterErrors {
+        fn from(value: Voter__NotMinter) -> Self {
+            Self::Voter__NotMinter(value)
+        }
+    }
+    impl ::core::convert::From<Voter__PluginLengthNotEqualToWeightLength>
+    for VoterErrors {
+        fn from(value: Voter__PluginLengthNotEqualToWeightLength) -> Self {
+            Self::Voter__PluginLengthNotEqualToWeightLength(value)
+        }
     }
     #[derive(
         Clone,
@@ -3187,10 +2469,87 @@ pub mod voter {
         Hash
     )]
     #[ethevent(
-        name = "DistributeReward",
-        abi = "DistributeReward(address,address,uint256)"
+        name = "OwnershipTransferred",
+        abi = "OwnershipTransferred(address,address)"
     )]
-    pub struct DistributeRewardFilter {
+    pub struct OwnershipTransferredFilter {
+        #[ethevent(indexed)]
+        pub previous_owner: ::ethers::core::types::Address,
+        #[ethevent(indexed)]
+        pub new_owner: ::ethers::core::types::Address,
+    }
+    #[derive(
+        Clone,
+        ::ethers::contract::EthEvent,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethevent(name = "Voter__Abstained", abi = "Voter__Abstained(address,uint256)")]
+    pub struct VoterAbstainedFilter {
+        pub account: ::ethers::core::types::Address,
+        pub weight: ::ethers::core::types::U256,
+    }
+    #[derive(
+        Clone,
+        ::ethers::contract::EthEvent,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethevent(
+        name = "Voter__BribeRewardAdded",
+        abi = "Voter__BribeRewardAdded(address,address)"
+    )]
+    pub struct VoterBribeRewardAddedFilter {
+        #[ethevent(indexed)]
+        pub bribe: ::ethers::core::types::Address,
+        #[ethevent(indexed)]
+        pub reward: ::ethers::core::types::Address,
+    }
+    #[derive(
+        Clone,
+        ::ethers::contract::EthEvent,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethevent(
+        name = "Voter__Deposit",
+        abi = "Voter__Deposit(address,address,address,uint256)"
+    )]
+    pub struct VoterDepositFilter {
+        #[ethevent(indexed)]
+        pub plugin: ::ethers::core::types::Address,
+        #[ethevent(indexed)]
+        pub gauge: ::ethers::core::types::Address,
+        pub account: ::ethers::core::types::Address,
+        pub amount: ::ethers::core::types::U256,
+    }
+    #[derive(
+        Clone,
+        ::ethers::contract::EthEvent,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethevent(
+        name = "Voter__DistributeReward",
+        abi = "Voter__DistributeReward(address,address,uint256)"
+    )]
+    pub struct VoterDistributeRewardFilter {
         #[ethevent(indexed)]
         pub sender: ::ethers::core::types::Address,
         #[ethevent(indexed)]
@@ -3208,97 +2567,16 @@ pub mod voter {
         Hash
     )]
     #[ethevent(
-        name = "ExternalBribeSet",
-        abi = "ExternalBribeSet(address,address,address)"
+        name = "Voter__GaugeCreated",
+        abi = "Voter__GaugeCreated(address,address,address,address)"
     )]
-    pub struct ExternalBribeSetFilter {
-        #[ethevent(indexed)]
-        pub setter: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub gauge: ::ethers::core::types::Address,
-        pub external_bribe: ::ethers::core::types::Address,
-    }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(name = "FactoryAdded", abi = "FactoryAdded(address,address,address)")]
-    pub struct FactoryAddedFilter {
-        #[ethevent(indexed)]
-        pub setter: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub pair_factory: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub gauge_factory: ::ethers::core::types::Address,
-    }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(name = "FactoryRemoved", abi = "FactoryRemoved(address,uint256)")]
-    pub struct FactoryRemovedFilter {
-        #[ethevent(indexed)]
-        pub setter: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub pos: ::ethers::core::types::U256,
-    }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(
-        name = "FactoryReplaced",
-        abi = "FactoryReplaced(address,address,address,uint256)"
-    )]
-    pub struct FactoryReplacedFilter {
-        #[ethevent(indexed)]
-        pub setter: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub pair_factory: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub gauge_factory: ::ethers::core::types::Address,
-        pub pos: ::ethers::core::types::U256,
-    }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethevent(
-        name = "GaugeCreated",
-        abi = "GaugeCreated(address,address,address,address)"
-    )]
-    pub struct GaugeCreatedFilter {
-        #[ethevent(indexed)]
-        pub gauge: ::ethers::core::types::Address,
+    pub struct VoterGaugeCreatedFilter {
         pub creator: ::ethers::core::types::Address,
         #[ethevent(indexed)]
-        pub external_bribe: ::ethers::core::types::Address,
+        pub plugin: ::ethers::core::types::Address,
         #[ethevent(indexed)]
-        pub pool: ::ethers::core::types::Address,
+        pub gauge: ::ethers::core::types::Address,
+        pub bribe: ::ethers::core::types::Address,
     }
     #[derive(
         Clone,
@@ -3310,8 +2588,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethevent(name = "GaugeKilledTotally", abi = "GaugeKilledTotally(address)")]
-    pub struct GaugeKilledTotallyFilter {
+    #[ethevent(name = "Voter__GaugeKilled", abi = "Voter__GaugeKilled(address)")]
+    pub struct VoterGaugeKilledFilter {
         #[ethevent(indexed)]
         pub gauge: ::ethers::core::types::Address,
     }
@@ -3325,8 +2603,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethevent(name = "GaugePaused", abi = "GaugePaused(address)")]
-    pub struct GaugePausedFilter {
+    #[ethevent(name = "Voter__GaugeRevived", abi = "Voter__GaugeRevived(address)")]
+    pub struct VoterGaugeRevivedFilter {
         #[ethevent(indexed)]
         pub gauge: ::ethers::core::types::Address,
     }
@@ -3340,23 +2618,11 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethevent(name = "GaugeRestarted", abi = "GaugeRestarted(address)")]
-    pub struct GaugeRestartedFilter {
-        #[ethevent(indexed)]
-        pub gauge: ::ethers::core::types::Address,
-    }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
+    #[ethevent(
+        name = "Voter__NotifyReward",
+        abi = "Voter__NotifyReward(address,address,uint256)"
     )]
-    #[ethevent(name = "NotifyReward", abi = "NotifyReward(address,address,uint256)")]
-    pub struct NotifyRewardFilter {
+    pub struct VoterNotifyRewardFilter {
         #[ethevent(indexed)]
         pub sender: ::ethers::core::types::Address,
         #[ethevent(indexed)]
@@ -3373,11 +2639,10 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethevent(name = "Voted", abi = "Voted(address,uint256,uint256)")]
-    pub struct VotedFilter {
+    #[ethevent(name = "Voter__Voted", abi = "Voter__Voted(address,uint256)")]
+    pub struct VoterVotedFilter {
         #[ethevent(indexed)]
         pub voter: ::ethers::core::types::Address,
-        pub token_id: ::ethers::core::types::U256,
         pub weight: ::ethers::core::types::U256,
     }
     #[derive(
@@ -3390,115 +2655,69 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethevent(name = "Whitelisted", abi = "Whitelisted(address,address)")]
-    pub struct WhitelistedFilter {
-        #[ethevent(indexed)]
-        pub whitelister: ::ethers::core::types::Address,
-        #[ethevent(indexed)]
-        pub token: ::ethers::core::types::Address,
-    }
-    #[derive(
-        Clone,
-        ::ethers::contract::EthEvent,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
+    #[ethevent(
+        name = "Voter__Withdraw",
+        abi = "Voter__Withdraw(address,address,address,uint256)"
     )]
-    #[ethevent(name = "Withdraw", abi = "Withdraw(address,address,uint256,uint256)")]
-    pub struct WithdrawFilter {
+    pub struct VoterWithdrawFilter {
         #[ethevent(indexed)]
-        pub lp: ::ethers::core::types::Address,
+        pub plugin: ::ethers::core::types::Address,
         #[ethevent(indexed)]
         pub gauge: ::ethers::core::types::Address,
-        pub token_id: ::ethers::core::types::U256,
+        pub account: ::ethers::core::types::Address,
         pub amount: ::ethers::core::types::U256,
     }
     ///Container type for all of the contract's events
     #[derive(Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash)]
     pub enum VoterEvents {
-        AbstainedFilter(AbstainedFilter),
-        AttachFilter(AttachFilter),
-        BlacklistedFilter(BlacklistedFilter),
-        BribeFactorySetFilter(BribeFactorySetFilter),
-        DepositFilter(DepositFilter),
-        DetachFilter(DetachFilter),
-        DistributeRewardFilter(DistributeRewardFilter),
-        ExternalBribeSetFilter(ExternalBribeSetFilter),
-        FactoryAddedFilter(FactoryAddedFilter),
-        FactoryRemovedFilter(FactoryRemovedFilter),
-        FactoryReplacedFilter(FactoryReplacedFilter),
-        GaugeCreatedFilter(GaugeCreatedFilter),
-        GaugeKilledTotallyFilter(GaugeKilledTotallyFilter),
-        GaugePausedFilter(GaugePausedFilter),
-        GaugeRestartedFilter(GaugeRestartedFilter),
-        NotifyRewardFilter(NotifyRewardFilter),
-        VotedFilter(VotedFilter),
-        WhitelistedFilter(WhitelistedFilter),
-        WithdrawFilter(WithdrawFilter),
+        OwnershipTransferredFilter(OwnershipTransferredFilter),
+        VoterAbstainedFilter(VoterAbstainedFilter),
+        VoterBribeRewardAddedFilter(VoterBribeRewardAddedFilter),
+        VoterDepositFilter(VoterDepositFilter),
+        VoterDistributeRewardFilter(VoterDistributeRewardFilter),
+        VoterGaugeCreatedFilter(VoterGaugeCreatedFilter),
+        VoterGaugeKilledFilter(VoterGaugeKilledFilter),
+        VoterGaugeRevivedFilter(VoterGaugeRevivedFilter),
+        VoterNotifyRewardFilter(VoterNotifyRewardFilter),
+        VoterVotedFilter(VoterVotedFilter),
+        VoterWithdrawFilter(VoterWithdrawFilter),
     }
     impl ::ethers::contract::EthLogDecode for VoterEvents {
         fn decode_log(
             log: &::ethers::core::abi::RawLog,
         ) -> ::core::result::Result<Self, ::ethers::core::abi::Error> {
-            if let Ok(decoded) = AbstainedFilter::decode_log(log) {
-                return Ok(VoterEvents::AbstainedFilter(decoded));
+            if let Ok(decoded) = OwnershipTransferredFilter::decode_log(log) {
+                return Ok(VoterEvents::OwnershipTransferredFilter(decoded));
             }
-            if let Ok(decoded) = AttachFilter::decode_log(log) {
-                return Ok(VoterEvents::AttachFilter(decoded));
+            if let Ok(decoded) = VoterAbstainedFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterAbstainedFilter(decoded));
             }
-            if let Ok(decoded) = BlacklistedFilter::decode_log(log) {
-                return Ok(VoterEvents::BlacklistedFilter(decoded));
+            if let Ok(decoded) = VoterBribeRewardAddedFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterBribeRewardAddedFilter(decoded));
             }
-            if let Ok(decoded) = BribeFactorySetFilter::decode_log(log) {
-                return Ok(VoterEvents::BribeFactorySetFilter(decoded));
+            if let Ok(decoded) = VoterDepositFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterDepositFilter(decoded));
             }
-            if let Ok(decoded) = DepositFilter::decode_log(log) {
-                return Ok(VoterEvents::DepositFilter(decoded));
+            if let Ok(decoded) = VoterDistributeRewardFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterDistributeRewardFilter(decoded));
             }
-            if let Ok(decoded) = DetachFilter::decode_log(log) {
-                return Ok(VoterEvents::DetachFilter(decoded));
+            if let Ok(decoded) = VoterGaugeCreatedFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterGaugeCreatedFilter(decoded));
             }
-            if let Ok(decoded) = DistributeRewardFilter::decode_log(log) {
-                return Ok(VoterEvents::DistributeRewardFilter(decoded));
+            if let Ok(decoded) = VoterGaugeKilledFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterGaugeKilledFilter(decoded));
             }
-            if let Ok(decoded) = ExternalBribeSetFilter::decode_log(log) {
-                return Ok(VoterEvents::ExternalBribeSetFilter(decoded));
+            if let Ok(decoded) = VoterGaugeRevivedFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterGaugeRevivedFilter(decoded));
             }
-            if let Ok(decoded) = FactoryAddedFilter::decode_log(log) {
-                return Ok(VoterEvents::FactoryAddedFilter(decoded));
+            if let Ok(decoded) = VoterNotifyRewardFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterNotifyRewardFilter(decoded));
             }
-            if let Ok(decoded) = FactoryRemovedFilter::decode_log(log) {
-                return Ok(VoterEvents::FactoryRemovedFilter(decoded));
+            if let Ok(decoded) = VoterVotedFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterVotedFilter(decoded));
             }
-            if let Ok(decoded) = FactoryReplacedFilter::decode_log(log) {
-                return Ok(VoterEvents::FactoryReplacedFilter(decoded));
-            }
-            if let Ok(decoded) = GaugeCreatedFilter::decode_log(log) {
-                return Ok(VoterEvents::GaugeCreatedFilter(decoded));
-            }
-            if let Ok(decoded) = GaugeKilledTotallyFilter::decode_log(log) {
-                return Ok(VoterEvents::GaugeKilledTotallyFilter(decoded));
-            }
-            if let Ok(decoded) = GaugePausedFilter::decode_log(log) {
-                return Ok(VoterEvents::GaugePausedFilter(decoded));
-            }
-            if let Ok(decoded) = GaugeRestartedFilter::decode_log(log) {
-                return Ok(VoterEvents::GaugeRestartedFilter(decoded));
-            }
-            if let Ok(decoded) = NotifyRewardFilter::decode_log(log) {
-                return Ok(VoterEvents::NotifyRewardFilter(decoded));
-            }
-            if let Ok(decoded) = VotedFilter::decode_log(log) {
-                return Ok(VoterEvents::VotedFilter(decoded));
-            }
-            if let Ok(decoded) = WhitelistedFilter::decode_log(log) {
-                return Ok(VoterEvents::WhitelistedFilter(decoded));
-            }
-            if let Ok(decoded) = WithdrawFilter::decode_log(log) {
-                return Ok(VoterEvents::WithdrawFilter(decoded));
+            if let Ok(decoded) = VoterWithdrawFilter::decode_log(log) {
+                return Ok(VoterEvents::VoterWithdrawFilter(decoded));
             }
             Err(::ethers::core::abi::Error::InvalidData)
         }
@@ -3506,144 +2725,96 @@ pub mod voter {
     impl ::core::fmt::Display for VoterEvents {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
             match self {
-                Self::AbstainedFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::AttachFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::BlacklistedFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::BribeFactorySetFilter(element) => {
+                Self::OwnershipTransferredFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::DepositFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::DetachFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::DistributeRewardFilter(element) => {
+                Self::VoterAbstainedFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::ExternalBribeSetFilter(element) => {
+                Self::VoterBribeRewardAddedFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::FactoryAddedFilter(element) => {
+                Self::VoterDepositFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::FactoryRemovedFilter(element) => {
+                Self::VoterDistributeRewardFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::FactoryReplacedFilter(element) => {
+                Self::VoterGaugeCreatedFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::GaugeCreatedFilter(element) => {
+                Self::VoterGaugeKilledFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::GaugeKilledTotallyFilter(element) => {
+                Self::VoterGaugeRevivedFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::GaugePausedFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::GaugeRestartedFilter(element) => {
+                Self::VoterNotifyRewardFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::NotifyRewardFilter(element) => {
+                Self::VoterVotedFilter(element) => ::core::fmt::Display::fmt(element, f),
+                Self::VoterWithdrawFilter(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::VotedFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::WhitelistedFilter(element) => ::core::fmt::Display::fmt(element, f),
-                Self::WithdrawFilter(element) => ::core::fmt::Display::fmt(element, f),
             }
         }
     }
-    impl ::core::convert::From<AbstainedFilter> for VoterEvents {
-        fn from(value: AbstainedFilter) -> Self {
-            Self::AbstainedFilter(value)
+    impl ::core::convert::From<OwnershipTransferredFilter> for VoterEvents {
+        fn from(value: OwnershipTransferredFilter) -> Self {
+            Self::OwnershipTransferredFilter(value)
         }
     }
-    impl ::core::convert::From<AttachFilter> for VoterEvents {
-        fn from(value: AttachFilter) -> Self {
-            Self::AttachFilter(value)
+    impl ::core::convert::From<VoterAbstainedFilter> for VoterEvents {
+        fn from(value: VoterAbstainedFilter) -> Self {
+            Self::VoterAbstainedFilter(value)
         }
     }
-    impl ::core::convert::From<BlacklistedFilter> for VoterEvents {
-        fn from(value: BlacklistedFilter) -> Self {
-            Self::BlacklistedFilter(value)
+    impl ::core::convert::From<VoterBribeRewardAddedFilter> for VoterEvents {
+        fn from(value: VoterBribeRewardAddedFilter) -> Self {
+            Self::VoterBribeRewardAddedFilter(value)
         }
     }
-    impl ::core::convert::From<BribeFactorySetFilter> for VoterEvents {
-        fn from(value: BribeFactorySetFilter) -> Self {
-            Self::BribeFactorySetFilter(value)
+    impl ::core::convert::From<VoterDepositFilter> for VoterEvents {
+        fn from(value: VoterDepositFilter) -> Self {
+            Self::VoterDepositFilter(value)
         }
     }
-    impl ::core::convert::From<DepositFilter> for VoterEvents {
-        fn from(value: DepositFilter) -> Self {
-            Self::DepositFilter(value)
+    impl ::core::convert::From<VoterDistributeRewardFilter> for VoterEvents {
+        fn from(value: VoterDistributeRewardFilter) -> Self {
+            Self::VoterDistributeRewardFilter(value)
         }
     }
-    impl ::core::convert::From<DetachFilter> for VoterEvents {
-        fn from(value: DetachFilter) -> Self {
-            Self::DetachFilter(value)
+    impl ::core::convert::From<VoterGaugeCreatedFilter> for VoterEvents {
+        fn from(value: VoterGaugeCreatedFilter) -> Self {
+            Self::VoterGaugeCreatedFilter(value)
         }
     }
-    impl ::core::convert::From<DistributeRewardFilter> for VoterEvents {
-        fn from(value: DistributeRewardFilter) -> Self {
-            Self::DistributeRewardFilter(value)
+    impl ::core::convert::From<VoterGaugeKilledFilter> for VoterEvents {
+        fn from(value: VoterGaugeKilledFilter) -> Self {
+            Self::VoterGaugeKilledFilter(value)
         }
     }
-    impl ::core::convert::From<ExternalBribeSetFilter> for VoterEvents {
-        fn from(value: ExternalBribeSetFilter) -> Self {
-            Self::ExternalBribeSetFilter(value)
+    impl ::core::convert::From<VoterGaugeRevivedFilter> for VoterEvents {
+        fn from(value: VoterGaugeRevivedFilter) -> Self {
+            Self::VoterGaugeRevivedFilter(value)
         }
     }
-    impl ::core::convert::From<FactoryAddedFilter> for VoterEvents {
-        fn from(value: FactoryAddedFilter) -> Self {
-            Self::FactoryAddedFilter(value)
+    impl ::core::convert::From<VoterNotifyRewardFilter> for VoterEvents {
+        fn from(value: VoterNotifyRewardFilter) -> Self {
+            Self::VoterNotifyRewardFilter(value)
         }
     }
-    impl ::core::convert::From<FactoryRemovedFilter> for VoterEvents {
-        fn from(value: FactoryRemovedFilter) -> Self {
-            Self::FactoryRemovedFilter(value)
+    impl ::core::convert::From<VoterVotedFilter> for VoterEvents {
+        fn from(value: VoterVotedFilter) -> Self {
+            Self::VoterVotedFilter(value)
         }
     }
-    impl ::core::convert::From<FactoryReplacedFilter> for VoterEvents {
-        fn from(value: FactoryReplacedFilter) -> Self {
-            Self::FactoryReplacedFilter(value)
+    impl ::core::convert::From<VoterWithdrawFilter> for VoterEvents {
+        fn from(value: VoterWithdrawFilter) -> Self {
+            Self::VoterWithdrawFilter(value)
         }
     }
-    impl ::core::convert::From<GaugeCreatedFilter> for VoterEvents {
-        fn from(value: GaugeCreatedFilter) -> Self {
-            Self::GaugeCreatedFilter(value)
-        }
-    }
-    impl ::core::convert::From<GaugeKilledTotallyFilter> for VoterEvents {
-        fn from(value: GaugeKilledTotallyFilter) -> Self {
-            Self::GaugeKilledTotallyFilter(value)
-        }
-    }
-    impl ::core::convert::From<GaugePausedFilter> for VoterEvents {
-        fn from(value: GaugePausedFilter) -> Self {
-            Self::GaugePausedFilter(value)
-        }
-    }
-    impl ::core::convert::From<GaugeRestartedFilter> for VoterEvents {
-        fn from(value: GaugeRestartedFilter) -> Self {
-            Self::GaugeRestartedFilter(value)
-        }
-    }
-    impl ::core::convert::From<NotifyRewardFilter> for VoterEvents {
-        fn from(value: NotifyRewardFilter) -> Self {
-            Self::NotifyRewardFilter(value)
-        }
-    }
-    impl ::core::convert::From<VotedFilter> for VoterEvents {
-        fn from(value: VotedFilter) -> Self {
-            Self::VotedFilter(value)
-        }
-    }
-    impl ::core::convert::From<WhitelistedFilter> for VoterEvents {
-        fn from(value: WhitelistedFilter) -> Self {
-            Self::WhitelistedFilter(value)
-        }
-    }
-    impl ::core::convert::From<WithdrawFilter> for VoterEvents {
-        fn from(value: WithdrawFilter) -> Self {
-            Self::WithdrawFilter(value)
-        }
-    }
-    ///Container type for all input parameters for the `_factories` function with signature `_factories()` and selector `0xe9f6adfa`
+    ///Container type for all input parameters for the `OTOKEN` function with signature `OTOKEN()` and selector `0xc544df0c`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3654,9 +2825,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "_factories", abi = "_factories()")]
-    pub struct _FactoriesCall;
-    ///Container type for all input parameters for the `_gaugeFactories` function with signature `_gaugeFactories()` and selector `0x9fb5dc05`
+    #[ethcall(name = "OTOKEN", abi = "OTOKEN()")]
+    pub struct OtokenCall;
+    ///Container type for all input parameters for the `VTOKEN` function with signature `VTOKEN()` and selector `0xfb548427`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3667,9 +2838,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "_gaugeFactories", abi = "_gaugeFactories()")]
-    pub struct _GaugeFactoriesCall;
-    ///Container type for all input parameters for the `_killedGauges` function with signature `_killedGauges()` and selector `0xcbadada4`
+    #[ethcall(name = "VTOKEN", abi = "VTOKEN()")]
+    pub struct VtokenCall;
+    ///Container type for all input parameters for the `addBribeReward` function with signature `addBribeReward(address,address)` and selector `0x7ceed4af`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3680,38 +2851,12 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "_killedGauges", abi = "_killedGauges()")]
-    pub struct _KilledGaugesCall;
-    ///Container type for all input parameters for the `_ve` function with signature `_ve()` and selector `0x8dd598fb`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "_ve", abi = "_ve()")]
-    pub struct VeCall;
-    ///Container type for all input parameters for the `addFactory` function with signature `addFactory(address,address)` and selector `0x6566afad`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "addFactory", abi = "addFactory(address,address)")]
-    pub struct AddFactoryCall {
-        pub pair_factory: ::ethers::core::types::Address,
-        pub gauge_factory: ::ethers::core::types::Address,
+    #[ethcall(name = "addBribeReward", abi = "addBribeReward(address,address)")]
+    pub struct AddBribeRewardCall {
+        pub bribe: ::ethers::core::types::Address,
+        pub reward_token: ::ethers::core::types::Address,
     }
-    ///Container type for all input parameters for the `attachTokenToGauge` function with signature `attachTokenToGauge(uint256,address)` and selector `0x698473e3`
+    ///Container type for all input parameters for the `addPlugin` function with signature `addPlugin(address)` and selector `0xd8867fc8`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3722,25 +2867,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "attachTokenToGauge", abi = "attachTokenToGauge(uint256,address)")]
-    pub struct AttachTokenToGaugeCall {
-        pub token_id: ::ethers::core::types::U256,
-        pub account: ::ethers::core::types::Address,
-    }
-    ///Container type for all input parameters for the `blacklist` function with signature `blacklist(address)` and selector `0xf9f92be4`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "blacklist", abi = "blacklist(address)")]
-    pub struct BlacklistCall {
-        pub token: ::ethers::core::types::Address,
+    #[ethcall(name = "addPlugin", abi = "addPlugin(address)")]
+    pub struct AddPluginCall {
+        pub plugin: ::ethers::core::types::Address,
     }
     ///Container type for all input parameters for the `bribefactory` function with signature `bribefactory()` and selector `0x38752a9d`
     #[derive(
@@ -3755,7 +2884,7 @@ pub mod voter {
     )]
     #[ethcall(name = "bribefactory", abi = "bribefactory()")]
     pub struct BribefactoryCall;
-    ///Container type for all input parameters for the `claimBribes` function with signature `claimBribes(address[],address[][],uint256)` and selector `0x7715ee75`
+    ///Container type for all input parameters for the `bribes` function with signature `bribes(address)` and selector `0xa8c5d95a`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3766,13 +2895,24 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "claimBribes", abi = "claimBribes(address[],address[][],uint256)")]
+    #[ethcall(name = "bribes", abi = "bribes(address)")]
+    pub struct BribesCall(pub ::ethers::core::types::Address);
+    ///Container type for all input parameters for the `claimBribes` function with signature `claimBribes(address[])` and selector `0x240f9774`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthCall,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethcall(name = "claimBribes", abi = "claimBribes(address[])")]
     pub struct ClaimBribesCall {
         pub bribes: ::std::vec::Vec<::ethers::core::types::Address>,
-        pub tokens: ::std::vec::Vec<::std::vec::Vec<::ethers::core::types::Address>>,
-        pub token_id: ::ethers::core::types::U256,
     }
-    ///Container type for all input parameters for the `claimRewards` function with signature `claimRewards(address[],address[][])` and selector `0x20b1cb6f`
+    ///Container type for all input parameters for the `claimRewards` function with signature `claimRewards(address[])` and selector `0xf9f031df`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3783,10 +2923,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "claimRewards", abi = "claimRewards(address[],address[][])")]
+    #[ethcall(name = "claimRewards", abi = "claimRewards(address[])")]
     pub struct ClaimRewardsCall {
         pub gauges: ::std::vec::Vec<::ethers::core::types::Address>,
-        pub tokens: ::std::vec::Vec<::std::vec::Vec<::ethers::core::types::Address>>,
     }
     ///Container type for all input parameters for the `claimable` function with signature `claimable(address)` and selector `0x402914f5`
     #[derive(
@@ -3801,56 +2940,6 @@ pub mod voter {
     )]
     #[ethcall(name = "claimable", abi = "claimable(address)")]
     pub struct ClaimableCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `createGauge` function with signature `createGauge(address,uint256)` and selector `0xdcd9e47a`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "createGauge", abi = "createGauge(address,uint256)")]
-    pub struct CreateGaugeCall {
-        pub pool: ::ethers::core::types::Address,
-        pub gauge_type: ::ethers::core::types::U256,
-    }
-    ///Container type for all input parameters for the `detachTokenFromGauge` function with signature `detachTokenFromGauge(uint256,address)` and selector `0x411b1f77`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(
-        name = "detachTokenFromGauge",
-        abi = "detachTokenFromGauge(uint256,address)"
-    )]
-    pub struct DetachTokenFromGaugeCall {
-        pub token_id: ::ethers::core::types::U256,
-        pub account: ::ethers::core::types::Address,
-    }
-    ///Container type for all input parameters for the `distribute` function with signature `distribute(address[])` and selector `0x6138889b`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "distribute", abi = "distribute(address[])")]
-    pub struct Distribute1Call {
-        pub gauges: ::std::vec::Vec<::ethers::core::types::Address>,
-    }
     ///Container type for all input parameters for the `distribute` function with signature `distribute(address)` and selector `0x63453ae1`
     #[derive(
         Clone,
@@ -3863,7 +2952,7 @@ pub mod voter {
         Hash
     )]
     #[ethcall(name = "distribute", abi = "distribute(address)")]
-    pub struct Distribute2Call {
+    pub struct DistributeCall {
         pub gauge: ::ethers::core::types::Address,
     }
     ///Container type for all input parameters for the `distribute` function with signature `distribute(uint256,uint256)` and selector `0x7625391a`
@@ -3878,11 +2967,11 @@ pub mod voter {
         Hash
     )]
     #[ethcall(name = "distribute", abi = "distribute(uint256,uint256)")]
-    pub struct Distribute3Call {
+    pub struct DistributeWithStartCall {
         pub start: ::ethers::core::types::U256,
         pub finish: ::ethers::core::types::U256,
     }
-    ///Container type for all input parameters for the `distribute` function with signature `distribute()` and selector `0xe4fc6b6d`
+    ///Container type for all input parameters for the `distributeToBribes` function with signature `distributeToBribes(address[])` and selector `0x4978c512`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3893,8 +2982,10 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "distribute", abi = "distribute()")]
-    pub struct Distribute0Call;
+    #[ethcall(name = "distributeToBribes", abi = "distributeToBribes(address[])")]
+    pub struct DistributeToBribesCall {
+        pub plugins: ::std::vec::Vec<::ethers::core::types::Address>,
+    }
     ///Container type for all input parameters for the `distro` function with signature `distro()` and selector `0x47b3c6ba`
     #[derive(
         Clone,
@@ -3908,7 +2999,7 @@ pub mod voter {
     )]
     #[ethcall(name = "distro", abi = "distro()")]
     pub struct DistroCall;
-    ///Container type for all input parameters for the `emergencyCouncil` function with signature `emergencyCouncil()` and selector `0x7778960e`
+    ///Container type for all input parameters for the `emitDeposit` function with signature `emitDeposit(address,uint256)` and selector `0x28ba84ca`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3919,26 +3010,12 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "emergencyCouncil", abi = "emergencyCouncil()")]
-    pub struct EmergencyCouncilCall;
-    ///Container type for all input parameters for the `emitDeposit` function with signature `emitDeposit(uint256,address,uint256)` and selector `0xa61c713a`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "emitDeposit", abi = "emitDeposit(uint256,address,uint256)")]
+    #[ethcall(name = "emitDeposit", abi = "emitDeposit(address,uint256)")]
     pub struct EmitDepositCall {
-        pub token_id: ::ethers::core::types::U256,
         pub account: ::ethers::core::types::Address,
         pub amount: ::ethers::core::types::U256,
     }
-    ///Container type for all input parameters for the `emitWithdraw` function with signature `emitWithdraw(uint256,address,uint256)` and selector `0xea94ee44`
+    ///Container type for all input parameters for the `emitWithdraw` function with signature `emitWithdraw(address,uint256)` and selector `0xb014da21`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3949,13 +3026,12 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "emitWithdraw", abi = "emitWithdraw(uint256,address,uint256)")]
+    #[ethcall(name = "emitWithdraw", abi = "emitWithdraw(address,uint256)")]
     pub struct EmitWithdrawCall {
-        pub token_id: ::ethers::core::types::U256,
         pub account: ::ethers::core::types::Address,
         pub amount: ::ethers::core::types::U256,
     }
-    ///Container type for all input parameters for the `external_bribes` function with signature `external_bribes(address)` and selector `0xae21c4cb`
+    ///Container type for all input parameters for the `gaugefactory` function with signature `gaugefactory()` and selector `0x68c3acb3`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -3966,60 +3042,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "external_bribes", abi = "external_bribes(address)")]
-    pub struct ExternalBribesCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `factories` function with signature `factories(uint256)` and selector `0x672383c4`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "factories", abi = "factories(uint256)")]
-    pub struct FactoriesCall(pub ::ethers::core::types::U256);
-    ///Container type for all input parameters for the `factoryLength` function with signature `factoryLength()` and selector `0x470f4985`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "factoryLength", abi = "factoryLength()")]
-    pub struct FactoryLengthCall;
-    ///Container type for all input parameters for the `gaugeFactories` function with signature `gaugeFactories(uint256)` and selector `0x23e1af42`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "gaugeFactories", abi = "gaugeFactories(uint256)")]
-    pub struct GaugeFactoriesCall(pub ::ethers::core::types::U256);
-    ///Container type for all input parameters for the `gaugeFactoriesLength` function with signature `gaugeFactoriesLength()` and selector `0xb52a3151`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "gaugeFactoriesLength", abi = "gaugeFactoriesLength()")]
-    pub struct GaugeFactoriesLengthCall;
+    #[ethcall(name = "gaugefactory", abi = "gaugefactory()")]
+    pub struct GaugefactoryCall;
     ///Container type for all input parameters for the `gauges` function with signature `gauges(address)` and selector `0xb9a09fd5`
     #[derive(
         Clone,
@@ -4033,7 +3057,7 @@ pub mod voter {
     )]
     #[ethcall(name = "gauges", abi = "gauges(address)")]
     pub struct GaugesCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `governor` function with signature `governor()` and selector `0x0c340a24`
+    ///Container type for all input parameters for the `getPlugins` function with signature `getPlugins()` and selector `0xa2d869b2`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4044,9 +3068,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "governor", abi = "governor()")]
-    pub struct GovernorCall;
-    ///Container type for all input parameters for the `initialize` function with signature `initialize(address[],address)` and selector `0x462d0b2e`
+    #[ethcall(name = "getPlugins", abi = "getPlugins()")]
+    pub struct GetPluginsCall;
+    ///Container type for all input parameters for the `initialize` function with signature `initialize(address)` and selector `0xc4d66de8`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4057,9 +3081,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "initialize", abi = "initialize(address[],address)")]
+    #[ethcall(name = "initialize", abi = "initialize(address)")]
     pub struct InitializeCall {
-        pub tokens: ::std::vec::Vec<::ethers::core::types::Address>,
         pub minter: ::ethers::core::types::Address,
     }
     ///Container type for all input parameters for the `isAlive` function with signature `isAlive(address)` and selector `0x1703e5f9`
@@ -4075,19 +3098,6 @@ pub mod voter {
     )]
     #[ethcall(name = "isAlive", abi = "isAlive(address)")]
     pub struct IsAliveCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `isFactory` function with signature `isFactory(address)` and selector `0x0f04ba67`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "isFactory", abi = "isFactory(address)")]
-    pub struct IsFactoryCall(pub ::ethers::core::types::Address);
     ///Container type for all input parameters for the `isGauge` function with signature `isGauge(address)` and selector `0xaa79979b`
     #[derive(
         Clone,
@@ -4101,7 +3111,7 @@ pub mod voter {
     )]
     #[ethcall(name = "isGauge", abi = "isGauge(address)")]
     pub struct IsGaugeCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `isGaugeFactory` function with signature `isGaugeFactory(address)` and selector `0x657021fb`
+    ///Container type for all input parameters for the `killGauge` function with signature `killGauge(address)` and selector `0x992a7933`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4112,37 +3122,11 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "isGaugeFactory", abi = "isGaugeFactory(address)")]
-    pub struct IsGaugeFactoryCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `isWhitelisted` function with signature `isWhitelisted(address)` and selector `0x3af32abf`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "isWhitelisted", abi = "isWhitelisted(address)")]
-    pub struct IsWhitelistedCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `killGaugeTotally` function with signature `killGaugeTotally(address)` and selector `0x9edfd460`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "killGaugeTotally", abi = "killGaugeTotally(address)")]
-    pub struct KillGaugeTotallyCall {
+    #[ethcall(name = "killGauge", abi = "killGauge(address)")]
+    pub struct KillGaugeCall {
         pub gauge: ::ethers::core::types::Address,
     }
-    ///Container type for all input parameters for the `killedGauges` function with signature `killedGauges(uint256)` and selector `0x173de600`
+    ///Container type for all input parameters for the `lastVoted` function with signature `lastVoted(address)` and selector `0x9a61df89`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4153,34 +3137,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "killedGauges", abi = "killedGauges(uint256)")]
-    pub struct KilledGaugesCall(pub ::ethers::core::types::U256);
-    ///Container type for all input parameters for the `killedGaugesLength` function with signature `killedGaugesLength()` and selector `0xc448c78d`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "killedGaugesLength", abi = "killedGaugesLength()")]
-    pub struct KilledGaugesLengthCall;
-    ///Container type for all input parameters for the `lastVoted` function with signature `lastVoted(uint256)` and selector `0xf3594be0`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "lastVoted", abi = "lastVoted(uint256)")]
-    pub struct LastVotedCall(pub ::ethers::core::types::U256);
+    #[ethcall(name = "lastVoted", abi = "lastVoted(address)")]
+    pub struct LastVotedCall(pub ::ethers::core::types::Address);
     ///Container type for all input parameters for the `length` function with signature `length()` and selector `0x1f7b6d32`
     #[derive(
         Clone,
@@ -4222,7 +3180,7 @@ pub mod voter {
     pub struct NotifyRewardAmountCall {
         pub amount: ::ethers::core::types::U256,
     }
-    ///Container type for all input parameters for the `pauseGauge` function with signature `pauseGauge(address)` and selector `0x03c39b00`
+    ///Container type for all input parameters for the `owner` function with signature `owner()` and selector `0x8da5cb5b`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4233,11 +3191,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "pauseGauge", abi = "pauseGauge(address)")]
-    pub struct PauseGaugeCall {
-        pub gauge: ::ethers::core::types::Address,
-    }
-    ///Container type for all input parameters for the `poke` function with signature `poke(uint256)` and selector `0x32145f90`
+    #[ethcall(name = "owner", abi = "owner()")]
+    pub struct OwnerCall;
+    ///Container type for all input parameters for the `pluginForGauge` function with signature `pluginForGauge(address)` and selector `0x6c60f246`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4248,11 +3204,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "poke", abi = "poke(uint256)")]
-    pub struct PokeCall {
-        pub token_id: ::ethers::core::types::U256,
-    }
-    ///Container type for all input parameters for the `poolForGauge` function with signature `poolForGauge(address)` and selector `0x06d6a1b2`
+    #[ethcall(name = "pluginForGauge", abi = "pluginForGauge(address)")]
+    pub struct PluginForGaugeCall(pub ::ethers::core::types::Address);
+    ///Container type for all input parameters for the `pluginVote` function with signature `pluginVote(address,uint256)` and selector `0x773fac7d`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4263,25 +3217,12 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "poolForGauge", abi = "poolForGauge(address)")]
-    pub struct PoolForGaugeCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `poolVote` function with signature `poolVote(uint256,uint256)` and selector `0xa86a366d`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "poolVote", abi = "poolVote(uint256,uint256)")]
-    pub struct PoolVoteCall(
-        pub ::ethers::core::types::U256,
+    #[ethcall(name = "pluginVote", abi = "pluginVote(address,uint256)")]
+    pub struct PluginVoteCall(
+        pub ::ethers::core::types::Address,
         pub ::ethers::core::types::U256,
     );
-    ///Container type for all input parameters for the `pools` function with signature `pools(uint256)` and selector `0xac4afa38`
+    ///Container type for all input parameters for the `plugins` function with signature `plugins(uint256)` and selector `0xf0a317eb`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4292,9 +3233,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "pools", abi = "pools(uint256)")]
-    pub struct PoolsCall(pub ::ethers::core::types::U256);
-    ///Container type for all input parameters for the `removeFactory` function with signature `removeFactory(uint256)` and selector `0x577387b5`
+    #[ethcall(name = "plugins", abi = "plugins(uint256)")]
+    pub struct PluginsCall(pub ::ethers::core::types::U256);
+    ///Container type for all input parameters for the `renounceOwnership` function with signature `renounceOwnership()` and selector `0x715018a6`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4305,11 +3246,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "removeFactory", abi = "removeFactory(uint256)")]
-    pub struct RemoveFactoryCall {
-        pub pos: ::ethers::core::types::U256,
-    }
-    ///Container type for all input parameters for the `replaceFactory` function with signature `replaceFactory(address,address,uint256)` and selector `0x27e5c823`
+    #[ethcall(name = "renounceOwnership", abi = "renounceOwnership()")]
+    pub struct RenounceOwnershipCall;
+    ///Container type for all input parameters for the `reset` function with signature `reset()` and selector `0xd826f88f`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4320,13 +3259,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "replaceFactory", abi = "replaceFactory(address,address,uint256)")]
-    pub struct ReplaceFactoryCall {
-        pub pair_factory: ::ethers::core::types::Address,
-        pub gauge_factory: ::ethers::core::types::Address,
-        pub pos: ::ethers::core::types::U256,
-    }
-    ///Container type for all input parameters for the `reset` function with signature `reset(uint256)` and selector `0x310bd74b`
+    #[ethcall(name = "reset", abi = "reset()")]
+    pub struct ResetCall;
+    ///Container type for all input parameters for the `reviveGauge` function with signature `reviveGauge(address)` and selector `0x9f06247b`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4337,88 +3272,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "reset", abi = "reset(uint256)")]
-    pub struct ResetCall {
-        pub token_id: ::ethers::core::types::U256,
-    }
-    ///Container type for all input parameters for the `restartGauge` function with signature `restartGauge(address)` and selector `0xa82029f9`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "restartGauge", abi = "restartGauge(address)")]
-    pub struct RestartGaugeCall {
+    #[ethcall(name = "reviveGauge", abi = "reviveGauge(address)")]
+    pub struct ReviveGaugeCall {
         pub gauge: ::ethers::core::types::Address,
-    }
-    ///Container type for all input parameters for the `setBribeFactory` function with signature `setBribeFactory(address)` and selector `0xa9b5aa7e`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "setBribeFactory", abi = "setBribeFactory(address)")]
-    pub struct SetBribeFactoryCall {
-        pub bribe_factory: ::ethers::core::types::Address,
-    }
-    ///Container type for all input parameters for the `setEmergencyCouncil` function with signature `setEmergencyCouncil(address)` and selector `0xe586875f`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "setEmergencyCouncil", abi = "setEmergencyCouncil(address)")]
-    pub struct SetEmergencyCouncilCall {
-        pub council: ::ethers::core::types::Address,
-    }
-    ///Container type for all input parameters for the `setExternalBribeFor` function with signature `setExternalBribeFor(address,address)` and selector `0xdaa168bd`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(
-        name = "setExternalBribeFor",
-        abi = "setExternalBribeFor(address,address)"
-    )]
-    pub struct SetExternalBribeForCall {
-        pub gauge: ::ethers::core::types::Address,
-        pub external: ::ethers::core::types::Address,
-    }
-    ///Container type for all input parameters for the `setGovernor` function with signature `setGovernor(address)` and selector `0xc42cf535`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "setGovernor", abi = "setGovernor(address)")]
-    pub struct SetGovernorCall {
-        pub governor: ::ethers::core::types::Address,
     }
     ///Container type for all input parameters for the `totalWeight` function with signature `totalWeight()` and selector `0x96c82e57`
     #[derive(
@@ -4433,6 +3289,21 @@ pub mod voter {
     )]
     #[ethcall(name = "totalWeight", abi = "totalWeight()")]
     pub struct TotalWeightCall;
+    ///Container type for all input parameters for the `transferOwnership` function with signature `transferOwnership(address)` and selector `0xf2fde38b`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthCall,
+        ::ethers::contract::EthDisplay,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    #[ethcall(name = "transferOwnership", abi = "transferOwnership(address)")]
+    pub struct TransferOwnershipCall {
+        pub new_owner: ::ethers::core::types::Address,
+    }
     ///Container type for all input parameters for the `updateAll` function with signature `updateAll()` and selector `0x53d78693`
     #[derive(
         Clone,
@@ -4492,7 +3363,7 @@ pub mod voter {
     pub struct UpdateGaugeCall {
         pub gauge: ::ethers::core::types::Address,
     }
-    ///Container type for all input parameters for the `usedWeights` function with signature `usedWeights(uint256)` and selector `0x79e93824`
+    ///Container type for all input parameters for the `usedWeights` function with signature `usedWeights(address)` and selector `0x002f8de4`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4503,9 +3374,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "usedWeights", abi = "usedWeights(uint256)")]
-    pub struct UsedWeightsCall(pub ::ethers::core::types::U256);
-    ///Container type for all input parameters for the `vote` function with signature `vote(uint256,address[],uint256[])` and selector `0x7ac09bf7`
+    #[ethcall(name = "usedWeights", abi = "usedWeights(address)")]
+    pub struct UsedWeightsCall(pub ::ethers::core::types::Address);
+    ///Container type for all input parameters for the `vote` function with signature `vote(address[],uint256[])` and selector `0x6f816a20`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4516,13 +3387,12 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "vote", abi = "vote(uint256,address[],uint256[])")]
+    #[ethcall(name = "vote", abi = "vote(address[],uint256[])")]
     pub struct VoteCall {
-        pub token_id: ::ethers::core::types::U256,
-        pub pool_vote: ::std::vec::Vec<::ethers::core::types::Address>,
+        pub plugins: ::std::vec::Vec<::ethers::core::types::Address>,
         pub weights: ::std::vec::Vec<::ethers::core::types::U256>,
     }
-    ///Container type for all input parameters for the `votes` function with signature `votes(uint256,address)` and selector `0xd23254b4`
+    ///Container type for all input parameters for the `votes` function with signature `votes(address,address)` and selector `0xcad1b906`
     #[derive(
         Clone,
         ::ethers::contract::EthCall,
@@ -4533,9 +3403,9 @@ pub mod voter {
         Eq,
         Hash
     )]
-    #[ethcall(name = "votes", abi = "votes(uint256,address)")]
+    #[ethcall(name = "votes", abi = "votes(address,address)")]
     pub struct VotesCall(
-        pub ::ethers::core::types::U256,
+        pub ::ethers::core::types::Address,
         pub ::ethers::core::types::Address,
     );
     ///Container type for all input parameters for the `weights` function with signature `weights(address)` and selector `0xa7cac846`
@@ -4551,79 +3421,44 @@ pub mod voter {
     )]
     #[ethcall(name = "weights", abi = "weights(address)")]
     pub struct WeightsCall(pub ::ethers::core::types::Address);
-    ///Container type for all input parameters for the `whitelist` function with signature `whitelist(address)` and selector `0x9b19251a`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthCall,
-        ::ethers::contract::EthDisplay,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    #[ethcall(name = "whitelist", abi = "whitelist(address)")]
-    pub struct WhitelistCall {
-        pub token: ::ethers::core::types::Address,
-    }
     ///Container type for all of the contract's call
     #[derive(Clone, ::ethers::contract::EthAbiType, Debug, PartialEq, Eq, Hash)]
     pub enum VoterCalls {
-        _Factories(_FactoriesCall),
-        _GaugeFactories(_GaugeFactoriesCall),
-        _KilledGauges(_KilledGaugesCall),
-        Ve(VeCall),
-        AddFactory(AddFactoryCall),
-        AttachTokenToGauge(AttachTokenToGaugeCall),
-        Blacklist(BlacklistCall),
+        Otoken(OtokenCall),
+        Vtoken(VtokenCall),
+        AddBribeReward(AddBribeRewardCall),
+        AddPlugin(AddPluginCall),
         Bribefactory(BribefactoryCall),
+        Bribes(BribesCall),
         ClaimBribes(ClaimBribesCall),
         ClaimRewards(ClaimRewardsCall),
         Claimable(ClaimableCall),
-        CreateGauge(CreateGaugeCall),
-        DetachTokenFromGauge(DetachTokenFromGaugeCall),
-        Distribute1(Distribute1Call),
-        Distribute2(Distribute2Call),
-        Distribute3(Distribute3Call),
-        Distribute0(Distribute0Call),
+        Distribute(DistributeCall),
+        DistributeWithStart(DistributeWithStartCall),
+        DistributeToBribes(DistributeToBribesCall),
         Distro(DistroCall),
-        EmergencyCouncil(EmergencyCouncilCall),
         EmitDeposit(EmitDepositCall),
         EmitWithdraw(EmitWithdrawCall),
-        ExternalBribes(ExternalBribesCall),
-        Factories(FactoriesCall),
-        FactoryLength(FactoryLengthCall),
-        GaugeFactories(GaugeFactoriesCall),
-        GaugeFactoriesLength(GaugeFactoriesLengthCall),
+        Gaugefactory(GaugefactoryCall),
         Gauges(GaugesCall),
-        Governor(GovernorCall),
+        GetPlugins(GetPluginsCall),
         Initialize(InitializeCall),
         IsAlive(IsAliveCall),
-        IsFactory(IsFactoryCall),
         IsGauge(IsGaugeCall),
-        IsGaugeFactory(IsGaugeFactoryCall),
-        IsWhitelisted(IsWhitelistedCall),
-        KillGaugeTotally(KillGaugeTotallyCall),
-        KilledGauges(KilledGaugesCall),
-        KilledGaugesLength(KilledGaugesLengthCall),
+        KillGauge(KillGaugeCall),
         LastVoted(LastVotedCall),
         Length(LengthCall),
         Minter(MinterCall),
         NotifyRewardAmount(NotifyRewardAmountCall),
-        PauseGauge(PauseGaugeCall),
-        Poke(PokeCall),
-        PoolForGauge(PoolForGaugeCall),
-        PoolVote(PoolVoteCall),
-        Pools(PoolsCall),
-        RemoveFactory(RemoveFactoryCall),
-        ReplaceFactory(ReplaceFactoryCall),
+        Owner(OwnerCall),
+        PluginForGauge(PluginForGaugeCall),
+        PluginVote(PluginVoteCall),
+        Plugins(PluginsCall),
+        RenounceOwnership(RenounceOwnershipCall),
         Reset(ResetCall),
-        RestartGauge(RestartGaugeCall),
-        SetBribeFactory(SetBribeFactoryCall),
-        SetEmergencyCouncil(SetEmergencyCouncilCall),
-        SetExternalBribeFor(SetExternalBribeForCall),
-        SetGovernor(SetGovernorCall),
+        ReviveGauge(ReviveGaugeCall),
         TotalWeight(TotalWeightCall),
+        TransferOwnership(TransferOwnershipCall),
         UpdateAll(UpdateAllCall),
         UpdateFor(UpdateForCall),
         UpdateForRange(UpdateForRangeCall),
@@ -4632,7 +3467,6 @@ pub mod voter {
         Vote(VoteCall),
         Votes(VotesCall),
         Weights(WeightsCall),
-        Whitelist(WhitelistCall),
     }
     impl ::ethers::core::abi::AbiDecode for VoterCalls {
         fn decode(
@@ -4640,38 +3474,28 @@ pub mod voter {
         ) -> ::core::result::Result<Self, ::ethers::core::abi::AbiError> {
             let data = data.as_ref();
             if let Ok(decoded)
-                = <_FactoriesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::_Factories(decoded));
+                = <OtokenCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Otoken(decoded));
             }
             if let Ok(decoded)
-                = <_GaugeFactoriesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::_GaugeFactories(decoded));
+                = <VtokenCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Vtoken(decoded));
             }
             if let Ok(decoded)
-                = <_KilledGaugesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::_KilledGauges(decoded));
+                = <AddBribeRewardCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::AddBribeReward(decoded));
             }
             if let Ok(decoded)
-                = <VeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Ve(decoded));
-            }
-            if let Ok(decoded)
-                = <AddFactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::AddFactory(decoded));
-            }
-            if let Ok(decoded)
-                = <AttachTokenToGaugeCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::AttachTokenToGauge(decoded));
-            }
-            if let Ok(decoded)
-                = <BlacklistCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Blacklist(decoded));
+                = <AddPluginCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::AddPlugin(decoded));
             }
             if let Ok(decoded)
                 = <BribefactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::Bribefactory(decoded));
+            }
+            if let Ok(decoded)
+                = <BribesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Bribes(decoded));
             }
             if let Ok(decoded)
                 = <ClaimBribesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
@@ -4686,40 +3510,24 @@ pub mod voter {
                 return Ok(Self::Claimable(decoded));
             }
             if let Ok(decoded)
-                = <CreateGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::CreateGauge(decoded));
+                = <DistributeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Distribute(decoded));
             }
             if let Ok(decoded)
-                = <DetachTokenFromGaugeCall as ::ethers::core::abi::AbiDecode>::decode(
+                = <DistributeWithStartCall as ::ethers::core::abi::AbiDecode>::decode(
                     data,
                 ) {
-                return Ok(Self::DetachTokenFromGauge(decoded));
+                return Ok(Self::DistributeWithStart(decoded));
             }
             if let Ok(decoded)
-                = <Distribute1Call as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Distribute1(decoded));
-            }
-            if let Ok(decoded)
-                = <Distribute2Call as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Distribute2(decoded));
-            }
-            if let Ok(decoded)
-                = <Distribute3Call as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Distribute3(decoded));
-            }
-            if let Ok(decoded)
-                = <Distribute0Call as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Distribute0(decoded));
+                = <DistributeToBribesCall as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::DistributeToBribes(decoded));
             }
             if let Ok(decoded)
                 = <DistroCall as ::ethers::core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::Distro(decoded));
-            }
-            if let Ok(decoded)
-                = <EmergencyCouncilCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::EmergencyCouncil(decoded));
             }
             if let Ok(decoded)
                 = <EmitDepositCall as ::ethers::core::abi::AbiDecode>::decode(data) {
@@ -4730,34 +3538,16 @@ pub mod voter {
                 return Ok(Self::EmitWithdraw(decoded));
             }
             if let Ok(decoded)
-                = <ExternalBribesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::ExternalBribes(decoded));
-            }
-            if let Ok(decoded)
-                = <FactoriesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Factories(decoded));
-            }
-            if let Ok(decoded)
-                = <FactoryLengthCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::FactoryLength(decoded));
-            }
-            if let Ok(decoded)
-                = <GaugeFactoriesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::GaugeFactories(decoded));
-            }
-            if let Ok(decoded)
-                = <GaugeFactoriesLengthCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::GaugeFactoriesLength(decoded));
+                = <GaugefactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Gaugefactory(decoded));
             }
             if let Ok(decoded)
                 = <GaugesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::Gauges(decoded));
             }
             if let Ok(decoded)
-                = <GovernorCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Governor(decoded));
+                = <GetPluginsCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::GetPlugins(decoded));
             }
             if let Ok(decoded)
                 = <InitializeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
@@ -4768,36 +3558,12 @@ pub mod voter {
                 return Ok(Self::IsAlive(decoded));
             }
             if let Ok(decoded)
-                = <IsFactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::IsFactory(decoded));
-            }
-            if let Ok(decoded)
                 = <IsGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::IsGauge(decoded));
             }
             if let Ok(decoded)
-                = <IsGaugeFactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::IsGaugeFactory(decoded));
-            }
-            if let Ok(decoded)
-                = <IsWhitelistedCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::IsWhitelisted(decoded));
-            }
-            if let Ok(decoded)
-                = <KillGaugeTotallyCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::KillGaugeTotally(decoded));
-            }
-            if let Ok(decoded)
-                = <KilledGaugesCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::KilledGauges(decoded));
-            }
-            if let Ok(decoded)
-                = <KilledGaugesLengthCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::KilledGaugesLength(decoded));
+                = <KillGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::KillGauge(decoded));
             }
             if let Ok(decoded)
                 = <LastVotedCall as ::ethers::core::abi::AbiDecode>::decode(data) {
@@ -4818,64 +3584,44 @@ pub mod voter {
                 return Ok(Self::NotifyRewardAmount(decoded));
             }
             if let Ok(decoded)
-                = <PauseGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::PauseGauge(decoded));
+                = <OwnerCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Owner(decoded));
             }
             if let Ok(decoded)
-                = <PokeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Poke(decoded));
+                = <PluginForGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::PluginForGauge(decoded));
             }
             if let Ok(decoded)
-                = <PoolForGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::PoolForGauge(decoded));
+                = <PluginVoteCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::PluginVote(decoded));
             }
             if let Ok(decoded)
-                = <PoolVoteCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::PoolVote(decoded));
+                = <PluginsCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::Plugins(decoded));
             }
             if let Ok(decoded)
-                = <PoolsCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Pools(decoded));
-            }
-            if let Ok(decoded)
-                = <RemoveFactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::RemoveFactory(decoded));
-            }
-            if let Ok(decoded)
-                = <ReplaceFactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::ReplaceFactory(decoded));
+                = <RenounceOwnershipCall as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::RenounceOwnership(decoded));
             }
             if let Ok(decoded)
                 = <ResetCall as ::ethers::core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::Reset(decoded));
             }
             if let Ok(decoded)
-                = <RestartGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::RestartGauge(decoded));
-            }
-            if let Ok(decoded)
-                = <SetBribeFactoryCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::SetBribeFactory(decoded));
-            }
-            if let Ok(decoded)
-                = <SetEmergencyCouncilCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::SetEmergencyCouncil(decoded));
-            }
-            if let Ok(decoded)
-                = <SetExternalBribeForCall as ::ethers::core::abi::AbiDecode>::decode(
-                    data,
-                ) {
-                return Ok(Self::SetExternalBribeFor(decoded));
-            }
-            if let Ok(decoded)
-                = <SetGovernorCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::SetGovernor(decoded));
+                = <ReviveGaugeCall as ::ethers::core::abi::AbiDecode>::decode(data) {
+                return Ok(Self::ReviveGauge(decoded));
             }
             if let Ok(decoded)
                 = <TotalWeightCall as ::ethers::core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::TotalWeight(decoded));
+            }
+            if let Ok(decoded)
+                = <TransferOwnershipCall as ::ethers::core::abi::AbiDecode>::decode(
+                    data,
+                ) {
+                return Ok(Self::TransferOwnership(decoded));
             }
             if let Ok(decoded)
                 = <UpdateAllCall as ::ethers::core::abi::AbiDecode>::decode(data) {
@@ -4909,38 +3655,24 @@ pub mod voter {
                 = <WeightsCall as ::ethers::core::abi::AbiDecode>::decode(data) {
                 return Ok(Self::Weights(decoded));
             }
-            if let Ok(decoded)
-                = <WhitelistCall as ::ethers::core::abi::AbiDecode>::decode(data) {
-                return Ok(Self::Whitelist(decoded));
-            }
             Err(::ethers::core::abi::Error::InvalidData.into())
         }
     }
     impl ::ethers::core::abi::AbiEncode for VoterCalls {
         fn encode(self) -> Vec<u8> {
             match self {
-                Self::_Factories(element) => {
+                Self::Otoken(element) => ::ethers::core::abi::AbiEncode::encode(element),
+                Self::Vtoken(element) => ::ethers::core::abi::AbiEncode::encode(element),
+                Self::AddBribeReward(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::_GaugeFactories(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::_KilledGauges(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::Ve(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::AddFactory(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::AttachTokenToGauge(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::Blacklist(element) => {
+                Self::AddPlugin(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::Bribefactory(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
+                Self::Bribes(element) => ::ethers::core::abi::AbiEncode::encode(element),
                 Self::ClaimBribes(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
@@ -4950,74 +3682,35 @@ pub mod voter {
                 Self::Claimable(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::CreateGauge(element) => {
+                Self::Distribute(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::DetachTokenFromGauge(element) => {
+                Self::DistributeWithStart(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::Distribute1(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::Distribute2(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::Distribute3(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::Distribute0(element) => {
+                Self::DistributeToBribes(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::Distro(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::EmergencyCouncil(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
                 Self::EmitDeposit(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::EmitWithdraw(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::ExternalBribes(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::Factories(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::FactoryLength(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::GaugeFactories(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::GaugeFactoriesLength(element) => {
+                Self::Gaugefactory(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::Gauges(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::Governor(element) => {
+                Self::GetPlugins(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::Initialize(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::IsAlive(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::IsFactory(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
                 Self::IsGauge(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::IsGaugeFactory(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::IsWhitelisted(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::KillGaugeTotally(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::KilledGauges(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::KilledGaugesLength(element) => {
+                Self::KillGauge(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::LastVoted(element) => {
@@ -5028,40 +3721,25 @@ pub mod voter {
                 Self::NotifyRewardAmount(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::PauseGauge(element) => {
+                Self::Owner(element) => ::ethers::core::abi::AbiEncode::encode(element),
+                Self::PluginForGauge(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::Poke(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::PoolForGauge(element) => {
+                Self::PluginVote(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
-                Self::PoolVote(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::Pools(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::RemoveFactory(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::ReplaceFactory(element) => {
+                Self::Plugins(element) => ::ethers::core::abi::AbiEncode::encode(element),
+                Self::RenounceOwnership(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::Reset(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::RestartGauge(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::SetBribeFactory(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::SetEmergencyCouncil(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::SetExternalBribeFor(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
-                Self::SetGovernor(element) => {
+                Self::ReviveGauge(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::TotalWeight(element) => {
+                    ::ethers::core::abi::AbiEncode::encode(element)
+                }
+                Self::TransferOwnership(element) => {
                     ::ethers::core::abi::AbiEncode::encode(element)
                 }
                 Self::UpdateAll(element) => {
@@ -5082,84 +3760,53 @@ pub mod voter {
                 Self::Vote(element) => ::ethers::core::abi::AbiEncode::encode(element),
                 Self::Votes(element) => ::ethers::core::abi::AbiEncode::encode(element),
                 Self::Weights(element) => ::ethers::core::abi::AbiEncode::encode(element),
-                Self::Whitelist(element) => {
-                    ::ethers::core::abi::AbiEncode::encode(element)
-                }
             }
         }
     }
     impl ::core::fmt::Display for VoterCalls {
         fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
             match self {
-                Self::_Factories(element) => ::core::fmt::Display::fmt(element, f),
-                Self::_GaugeFactories(element) => ::core::fmt::Display::fmt(element, f),
-                Self::_KilledGauges(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Ve(element) => ::core::fmt::Display::fmt(element, f),
-                Self::AddFactory(element) => ::core::fmt::Display::fmt(element, f),
-                Self::AttachTokenToGauge(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
-                Self::Blacklist(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Otoken(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Vtoken(element) => ::core::fmt::Display::fmt(element, f),
+                Self::AddBribeReward(element) => ::core::fmt::Display::fmt(element, f),
+                Self::AddPlugin(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Bribefactory(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Bribes(element) => ::core::fmt::Display::fmt(element, f),
                 Self::ClaimBribes(element) => ::core::fmt::Display::fmt(element, f),
                 Self::ClaimRewards(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Claimable(element) => ::core::fmt::Display::fmt(element, f),
-                Self::CreateGauge(element) => ::core::fmt::Display::fmt(element, f),
-                Self::DetachTokenFromGauge(element) => {
+                Self::Distribute(element) => ::core::fmt::Display::fmt(element, f),
+                Self::DistributeWithStart(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::Distribute1(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Distribute2(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Distribute3(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Distribute0(element) => ::core::fmt::Display::fmt(element, f),
+                Self::DistributeToBribes(element) => {
+                    ::core::fmt::Display::fmt(element, f)
+                }
                 Self::Distro(element) => ::core::fmt::Display::fmt(element, f),
-                Self::EmergencyCouncil(element) => ::core::fmt::Display::fmt(element, f),
                 Self::EmitDeposit(element) => ::core::fmt::Display::fmt(element, f),
                 Self::EmitWithdraw(element) => ::core::fmt::Display::fmt(element, f),
-                Self::ExternalBribes(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Factories(element) => ::core::fmt::Display::fmt(element, f),
-                Self::FactoryLength(element) => ::core::fmt::Display::fmt(element, f),
-                Self::GaugeFactories(element) => ::core::fmt::Display::fmt(element, f),
-                Self::GaugeFactoriesLength(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
+                Self::Gaugefactory(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Gauges(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Governor(element) => ::core::fmt::Display::fmt(element, f),
+                Self::GetPlugins(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Initialize(element) => ::core::fmt::Display::fmt(element, f),
                 Self::IsAlive(element) => ::core::fmt::Display::fmt(element, f),
-                Self::IsFactory(element) => ::core::fmt::Display::fmt(element, f),
                 Self::IsGauge(element) => ::core::fmt::Display::fmt(element, f),
-                Self::IsGaugeFactory(element) => ::core::fmt::Display::fmt(element, f),
-                Self::IsWhitelisted(element) => ::core::fmt::Display::fmt(element, f),
-                Self::KillGaugeTotally(element) => ::core::fmt::Display::fmt(element, f),
-                Self::KilledGauges(element) => ::core::fmt::Display::fmt(element, f),
-                Self::KilledGaugesLength(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
+                Self::KillGauge(element) => ::core::fmt::Display::fmt(element, f),
                 Self::LastVoted(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Length(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Minter(element) => ::core::fmt::Display::fmt(element, f),
                 Self::NotifyRewardAmount(element) => {
                     ::core::fmt::Display::fmt(element, f)
                 }
-                Self::PauseGauge(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Poke(element) => ::core::fmt::Display::fmt(element, f),
-                Self::PoolForGauge(element) => ::core::fmt::Display::fmt(element, f),
-                Self::PoolVote(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Pools(element) => ::core::fmt::Display::fmt(element, f),
-                Self::RemoveFactory(element) => ::core::fmt::Display::fmt(element, f),
-                Self::ReplaceFactory(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Owner(element) => ::core::fmt::Display::fmt(element, f),
+                Self::PluginForGauge(element) => ::core::fmt::Display::fmt(element, f),
+                Self::PluginVote(element) => ::core::fmt::Display::fmt(element, f),
+                Self::Plugins(element) => ::core::fmt::Display::fmt(element, f),
+                Self::RenounceOwnership(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Reset(element) => ::core::fmt::Display::fmt(element, f),
-                Self::RestartGauge(element) => ::core::fmt::Display::fmt(element, f),
-                Self::SetBribeFactory(element) => ::core::fmt::Display::fmt(element, f),
-                Self::SetEmergencyCouncil(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
-                Self::SetExternalBribeFor(element) => {
-                    ::core::fmt::Display::fmt(element, f)
-                }
-                Self::SetGovernor(element) => ::core::fmt::Display::fmt(element, f),
+                Self::ReviveGauge(element) => ::core::fmt::Display::fmt(element, f),
                 Self::TotalWeight(element) => ::core::fmt::Display::fmt(element, f),
+                Self::TransferOwnership(element) => ::core::fmt::Display::fmt(element, f),
                 Self::UpdateAll(element) => ::core::fmt::Display::fmt(element, f),
                 Self::UpdateFor(element) => ::core::fmt::Display::fmt(element, f),
                 Self::UpdateForRange(element) => ::core::fmt::Display::fmt(element, f),
@@ -5168,48 +3815,37 @@ pub mod voter {
                 Self::Vote(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Votes(element) => ::core::fmt::Display::fmt(element, f),
                 Self::Weights(element) => ::core::fmt::Display::fmt(element, f),
-                Self::Whitelist(element) => ::core::fmt::Display::fmt(element, f),
             }
         }
     }
-    impl ::core::convert::From<_FactoriesCall> for VoterCalls {
-        fn from(value: _FactoriesCall) -> Self {
-            Self::_Factories(value)
+    impl ::core::convert::From<OtokenCall> for VoterCalls {
+        fn from(value: OtokenCall) -> Self {
+            Self::Otoken(value)
         }
     }
-    impl ::core::convert::From<_GaugeFactoriesCall> for VoterCalls {
-        fn from(value: _GaugeFactoriesCall) -> Self {
-            Self::_GaugeFactories(value)
+    impl ::core::convert::From<VtokenCall> for VoterCalls {
+        fn from(value: VtokenCall) -> Self {
+            Self::Vtoken(value)
         }
     }
-    impl ::core::convert::From<_KilledGaugesCall> for VoterCalls {
-        fn from(value: _KilledGaugesCall) -> Self {
-            Self::_KilledGauges(value)
+    impl ::core::convert::From<AddBribeRewardCall> for VoterCalls {
+        fn from(value: AddBribeRewardCall) -> Self {
+            Self::AddBribeReward(value)
         }
     }
-    impl ::core::convert::From<VeCall> for VoterCalls {
-        fn from(value: VeCall) -> Self {
-            Self::Ve(value)
-        }
-    }
-    impl ::core::convert::From<AddFactoryCall> for VoterCalls {
-        fn from(value: AddFactoryCall) -> Self {
-            Self::AddFactory(value)
-        }
-    }
-    impl ::core::convert::From<AttachTokenToGaugeCall> for VoterCalls {
-        fn from(value: AttachTokenToGaugeCall) -> Self {
-            Self::AttachTokenToGauge(value)
-        }
-    }
-    impl ::core::convert::From<BlacklistCall> for VoterCalls {
-        fn from(value: BlacklistCall) -> Self {
-            Self::Blacklist(value)
+    impl ::core::convert::From<AddPluginCall> for VoterCalls {
+        fn from(value: AddPluginCall) -> Self {
+            Self::AddPlugin(value)
         }
     }
     impl ::core::convert::From<BribefactoryCall> for VoterCalls {
         fn from(value: BribefactoryCall) -> Self {
             Self::Bribefactory(value)
+        }
+    }
+    impl ::core::convert::From<BribesCall> for VoterCalls {
+        fn from(value: BribesCall) -> Self {
+            Self::Bribes(value)
         }
     }
     impl ::core::convert::From<ClaimBribesCall> for VoterCalls {
@@ -5227,44 +3863,24 @@ pub mod voter {
             Self::Claimable(value)
         }
     }
-    impl ::core::convert::From<CreateGaugeCall> for VoterCalls {
-        fn from(value: CreateGaugeCall) -> Self {
-            Self::CreateGauge(value)
+    impl ::core::convert::From<DistributeCall> for VoterCalls {
+        fn from(value: DistributeCall) -> Self {
+            Self::Distribute(value)
         }
     }
-    impl ::core::convert::From<DetachTokenFromGaugeCall> for VoterCalls {
-        fn from(value: DetachTokenFromGaugeCall) -> Self {
-            Self::DetachTokenFromGauge(value)
+    impl ::core::convert::From<DistributeWithStartCall> for VoterCalls {
+        fn from(value: DistributeWithStartCall) -> Self {
+            Self::DistributeWithStart(value)
         }
     }
-    impl ::core::convert::From<Distribute1Call> for VoterCalls {
-        fn from(value: Distribute1Call) -> Self {
-            Self::Distribute1(value)
-        }
-    }
-    impl ::core::convert::From<Distribute2Call> for VoterCalls {
-        fn from(value: Distribute2Call) -> Self {
-            Self::Distribute2(value)
-        }
-    }
-    impl ::core::convert::From<Distribute3Call> for VoterCalls {
-        fn from(value: Distribute3Call) -> Self {
-            Self::Distribute3(value)
-        }
-    }
-    impl ::core::convert::From<Distribute0Call> for VoterCalls {
-        fn from(value: Distribute0Call) -> Self {
-            Self::Distribute0(value)
+    impl ::core::convert::From<DistributeToBribesCall> for VoterCalls {
+        fn from(value: DistributeToBribesCall) -> Self {
+            Self::DistributeToBribes(value)
         }
     }
     impl ::core::convert::From<DistroCall> for VoterCalls {
         fn from(value: DistroCall) -> Self {
             Self::Distro(value)
-        }
-    }
-    impl ::core::convert::From<EmergencyCouncilCall> for VoterCalls {
-        fn from(value: EmergencyCouncilCall) -> Self {
-            Self::EmergencyCouncil(value)
         }
     }
     impl ::core::convert::From<EmitDepositCall> for VoterCalls {
@@ -5277,29 +3893,9 @@ pub mod voter {
             Self::EmitWithdraw(value)
         }
     }
-    impl ::core::convert::From<ExternalBribesCall> for VoterCalls {
-        fn from(value: ExternalBribesCall) -> Self {
-            Self::ExternalBribes(value)
-        }
-    }
-    impl ::core::convert::From<FactoriesCall> for VoterCalls {
-        fn from(value: FactoriesCall) -> Self {
-            Self::Factories(value)
-        }
-    }
-    impl ::core::convert::From<FactoryLengthCall> for VoterCalls {
-        fn from(value: FactoryLengthCall) -> Self {
-            Self::FactoryLength(value)
-        }
-    }
-    impl ::core::convert::From<GaugeFactoriesCall> for VoterCalls {
-        fn from(value: GaugeFactoriesCall) -> Self {
-            Self::GaugeFactories(value)
-        }
-    }
-    impl ::core::convert::From<GaugeFactoriesLengthCall> for VoterCalls {
-        fn from(value: GaugeFactoriesLengthCall) -> Self {
-            Self::GaugeFactoriesLength(value)
+    impl ::core::convert::From<GaugefactoryCall> for VoterCalls {
+        fn from(value: GaugefactoryCall) -> Self {
+            Self::Gaugefactory(value)
         }
     }
     impl ::core::convert::From<GaugesCall> for VoterCalls {
@@ -5307,9 +3903,9 @@ pub mod voter {
             Self::Gauges(value)
         }
     }
-    impl ::core::convert::From<GovernorCall> for VoterCalls {
-        fn from(value: GovernorCall) -> Self {
-            Self::Governor(value)
+    impl ::core::convert::From<GetPluginsCall> for VoterCalls {
+        fn from(value: GetPluginsCall) -> Self {
+            Self::GetPlugins(value)
         }
     }
     impl ::core::convert::From<InitializeCall> for VoterCalls {
@@ -5322,39 +3918,14 @@ pub mod voter {
             Self::IsAlive(value)
         }
     }
-    impl ::core::convert::From<IsFactoryCall> for VoterCalls {
-        fn from(value: IsFactoryCall) -> Self {
-            Self::IsFactory(value)
-        }
-    }
     impl ::core::convert::From<IsGaugeCall> for VoterCalls {
         fn from(value: IsGaugeCall) -> Self {
             Self::IsGauge(value)
         }
     }
-    impl ::core::convert::From<IsGaugeFactoryCall> for VoterCalls {
-        fn from(value: IsGaugeFactoryCall) -> Self {
-            Self::IsGaugeFactory(value)
-        }
-    }
-    impl ::core::convert::From<IsWhitelistedCall> for VoterCalls {
-        fn from(value: IsWhitelistedCall) -> Self {
-            Self::IsWhitelisted(value)
-        }
-    }
-    impl ::core::convert::From<KillGaugeTotallyCall> for VoterCalls {
-        fn from(value: KillGaugeTotallyCall) -> Self {
-            Self::KillGaugeTotally(value)
-        }
-    }
-    impl ::core::convert::From<KilledGaugesCall> for VoterCalls {
-        fn from(value: KilledGaugesCall) -> Self {
-            Self::KilledGauges(value)
-        }
-    }
-    impl ::core::convert::From<KilledGaugesLengthCall> for VoterCalls {
-        fn from(value: KilledGaugesLengthCall) -> Self {
-            Self::KilledGaugesLength(value)
+    impl ::core::convert::From<KillGaugeCall> for VoterCalls {
+        fn from(value: KillGaugeCall) -> Self {
+            Self::KillGauge(value)
         }
     }
     impl ::core::convert::From<LastVotedCall> for VoterCalls {
@@ -5377,39 +3948,29 @@ pub mod voter {
             Self::NotifyRewardAmount(value)
         }
     }
-    impl ::core::convert::From<PauseGaugeCall> for VoterCalls {
-        fn from(value: PauseGaugeCall) -> Self {
-            Self::PauseGauge(value)
+    impl ::core::convert::From<OwnerCall> for VoterCalls {
+        fn from(value: OwnerCall) -> Self {
+            Self::Owner(value)
         }
     }
-    impl ::core::convert::From<PokeCall> for VoterCalls {
-        fn from(value: PokeCall) -> Self {
-            Self::Poke(value)
+    impl ::core::convert::From<PluginForGaugeCall> for VoterCalls {
+        fn from(value: PluginForGaugeCall) -> Self {
+            Self::PluginForGauge(value)
         }
     }
-    impl ::core::convert::From<PoolForGaugeCall> for VoterCalls {
-        fn from(value: PoolForGaugeCall) -> Self {
-            Self::PoolForGauge(value)
+    impl ::core::convert::From<PluginVoteCall> for VoterCalls {
+        fn from(value: PluginVoteCall) -> Self {
+            Self::PluginVote(value)
         }
     }
-    impl ::core::convert::From<PoolVoteCall> for VoterCalls {
-        fn from(value: PoolVoteCall) -> Self {
-            Self::PoolVote(value)
+    impl ::core::convert::From<PluginsCall> for VoterCalls {
+        fn from(value: PluginsCall) -> Self {
+            Self::Plugins(value)
         }
     }
-    impl ::core::convert::From<PoolsCall> for VoterCalls {
-        fn from(value: PoolsCall) -> Self {
-            Self::Pools(value)
-        }
-    }
-    impl ::core::convert::From<RemoveFactoryCall> for VoterCalls {
-        fn from(value: RemoveFactoryCall) -> Self {
-            Self::RemoveFactory(value)
-        }
-    }
-    impl ::core::convert::From<ReplaceFactoryCall> for VoterCalls {
-        fn from(value: ReplaceFactoryCall) -> Self {
-            Self::ReplaceFactory(value)
+    impl ::core::convert::From<RenounceOwnershipCall> for VoterCalls {
+        fn from(value: RenounceOwnershipCall) -> Self {
+            Self::RenounceOwnership(value)
         }
     }
     impl ::core::convert::From<ResetCall> for VoterCalls {
@@ -5417,34 +3978,19 @@ pub mod voter {
             Self::Reset(value)
         }
     }
-    impl ::core::convert::From<RestartGaugeCall> for VoterCalls {
-        fn from(value: RestartGaugeCall) -> Self {
-            Self::RestartGauge(value)
-        }
-    }
-    impl ::core::convert::From<SetBribeFactoryCall> for VoterCalls {
-        fn from(value: SetBribeFactoryCall) -> Self {
-            Self::SetBribeFactory(value)
-        }
-    }
-    impl ::core::convert::From<SetEmergencyCouncilCall> for VoterCalls {
-        fn from(value: SetEmergencyCouncilCall) -> Self {
-            Self::SetEmergencyCouncil(value)
-        }
-    }
-    impl ::core::convert::From<SetExternalBribeForCall> for VoterCalls {
-        fn from(value: SetExternalBribeForCall) -> Self {
-            Self::SetExternalBribeFor(value)
-        }
-    }
-    impl ::core::convert::From<SetGovernorCall> for VoterCalls {
-        fn from(value: SetGovernorCall) -> Self {
-            Self::SetGovernor(value)
+    impl ::core::convert::From<ReviveGaugeCall> for VoterCalls {
+        fn from(value: ReviveGaugeCall) -> Self {
+            Self::ReviveGauge(value)
         }
     }
     impl ::core::convert::From<TotalWeightCall> for VoterCalls {
         fn from(value: TotalWeightCall) -> Self {
             Self::TotalWeight(value)
+        }
+    }
+    impl ::core::convert::From<TransferOwnershipCall> for VoterCalls {
+        fn from(value: TransferOwnershipCall) -> Self {
+            Self::TransferOwnership(value)
         }
     }
     impl ::core::convert::From<UpdateAllCall> for VoterCalls {
@@ -5487,12 +4033,7 @@ pub mod voter {
             Self::Weights(value)
         }
     }
-    impl ::core::convert::From<WhitelistCall> for VoterCalls {
-        fn from(value: WhitelistCall) -> Self {
-            Self::Whitelist(value)
-        }
-    }
-    ///Container type for all return fields from the `_factories` function with signature `_factories()` and selector `0xe9f6adfa`
+    ///Container type for all return fields from the `OTOKEN` function with signature `OTOKEN()` and selector `0xc544df0c`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5503,8 +4044,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct _FactoriesReturn(pub ::std::vec::Vec<::ethers::core::types::Address>);
-    ///Container type for all return fields from the `_gaugeFactories` function with signature `_gaugeFactories()` and selector `0x9fb5dc05`
+    pub struct OtokenReturn(pub ::ethers::core::types::Address);
+    ///Container type for all return fields from the `VTOKEN` function with signature `VTOKEN()` and selector `0xfb548427`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5515,10 +4056,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct _GaugeFactoriesReturn(
-        pub ::std::vec::Vec<::ethers::core::types::Address>,
-    );
-    ///Container type for all return fields from the `_killedGauges` function with signature `_killedGauges()` and selector `0xcbadada4`
+    pub struct VtokenReturn(pub ::ethers::core::types::Address);
+    ///Container type for all return fields from the `addPlugin` function with signature `addPlugin(address)` and selector `0xd8867fc8`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5529,19 +4068,7 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct _KilledGaugesReturn(pub ::std::vec::Vec<::ethers::core::types::Address>);
-    ///Container type for all return fields from the `_ve` function with signature `_ve()` and selector `0x8dd598fb`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct VeReturn(pub ::ethers::core::types::Address);
+    pub struct AddPluginReturn(pub ::ethers::core::types::Address);
     ///Container type for all return fields from the `bribefactory` function with signature `bribefactory()` and selector `0x38752a9d`
     #[derive(
         Clone,
@@ -5554,6 +4081,18 @@ pub mod voter {
         Hash
     )]
     pub struct BribefactoryReturn(pub ::ethers::core::types::Address);
+    ///Container type for all return fields from the `bribes` function with signature `bribes(address)` and selector `0xa8c5d95a`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthAbiType,
+        ::ethers::contract::EthAbiCodec,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    pub struct BribesReturn(pub ::ethers::core::types::Address);
     ///Container type for all return fields from the `claimable` function with signature `claimable(address)` and selector `0x402914f5`
     #[derive(
         Clone,
@@ -5566,7 +4105,7 @@ pub mod voter {
         Hash
     )]
     pub struct ClaimableReturn(pub ::ethers::core::types::U256);
-    ///Container type for all return fields from the `createGauge` function with signature `createGauge(address,uint256)` and selector `0xdcd9e47a`
+    ///Container type for all return fields from the `gaugefactory` function with signature `gaugefactory()` and selector `0x68c3acb3`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5577,79 +4116,7 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct CreateGaugeReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `emergencyCouncil` function with signature `emergencyCouncil()` and selector `0x7778960e`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct EmergencyCouncilReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `external_bribes` function with signature `external_bribes(address)` and selector `0xae21c4cb`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct ExternalBribesReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `factories` function with signature `factories(uint256)` and selector `0x672383c4`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct FactoriesReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `factoryLength` function with signature `factoryLength()` and selector `0x470f4985`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct FactoryLengthReturn(pub ::ethers::core::types::U256);
-    ///Container type for all return fields from the `gaugeFactories` function with signature `gaugeFactories(uint256)` and selector `0x23e1af42`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct GaugeFactoriesReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `gaugeFactoriesLength` function with signature `gaugeFactoriesLength()` and selector `0xb52a3151`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct GaugeFactoriesLengthReturn(pub ::ethers::core::types::U256);
+    pub struct GaugefactoryReturn(pub ::ethers::core::types::Address);
     ///Container type for all return fields from the `gauges` function with signature `gauges(address)` and selector `0xb9a09fd5`
     #[derive(
         Clone,
@@ -5662,7 +4129,7 @@ pub mod voter {
         Hash
     )]
     pub struct GaugesReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `governor` function with signature `governor()` and selector `0x0c340a24`
+    ///Container type for all return fields from the `getPlugins` function with signature `getPlugins()` and selector `0xa2d869b2`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5673,7 +4140,7 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct GovernorReturn(pub ::ethers::core::types::Address);
+    pub struct GetPluginsReturn(pub ::std::vec::Vec<::ethers::core::types::Address>);
     ///Container type for all return fields from the `isAlive` function with signature `isAlive(address)` and selector `0x1703e5f9`
     #[derive(
         Clone,
@@ -5686,18 +4153,6 @@ pub mod voter {
         Hash
     )]
     pub struct IsAliveReturn(pub bool);
-    ///Container type for all return fields from the `isFactory` function with signature `isFactory(address)` and selector `0x0f04ba67`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct IsFactoryReturn(pub bool);
     ///Container type for all return fields from the `isGauge` function with signature `isGauge(address)` and selector `0xaa79979b`
     #[derive(
         Clone,
@@ -5710,55 +4165,7 @@ pub mod voter {
         Hash
     )]
     pub struct IsGaugeReturn(pub bool);
-    ///Container type for all return fields from the `isGaugeFactory` function with signature `isGaugeFactory(address)` and selector `0x657021fb`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct IsGaugeFactoryReturn(pub bool);
-    ///Container type for all return fields from the `isWhitelisted` function with signature `isWhitelisted(address)` and selector `0x3af32abf`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct IsWhitelistedReturn(pub bool);
-    ///Container type for all return fields from the `killedGauges` function with signature `killedGauges(uint256)` and selector `0x173de600`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct KilledGaugesReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `killedGaugesLength` function with signature `killedGaugesLength()` and selector `0xc448c78d`
-    #[derive(
-        Clone,
-        ::ethers::contract::EthAbiType,
-        ::ethers::contract::EthAbiCodec,
-        Default,
-        Debug,
-        PartialEq,
-        Eq,
-        Hash
-    )]
-    pub struct KilledGaugesLengthReturn(pub ::ethers::core::types::U256);
-    ///Container type for all return fields from the `lastVoted` function with signature `lastVoted(uint256)` and selector `0xf3594be0`
+    ///Container type for all return fields from the `lastVoted` function with signature `lastVoted(address)` and selector `0x9a61df89`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5794,7 +4201,7 @@ pub mod voter {
         Hash
     )]
     pub struct MinterReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `poolForGauge` function with signature `poolForGauge(address)` and selector `0x06d6a1b2`
+    ///Container type for all return fields from the `owner` function with signature `owner()` and selector `0x8da5cb5b`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5805,8 +4212,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct PoolForGaugeReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `poolVote` function with signature `poolVote(uint256,uint256)` and selector `0xa86a366d`
+    pub struct OwnerReturn(pub ::ethers::core::types::Address);
+    ///Container type for all return fields from the `pluginForGauge` function with signature `pluginForGauge(address)` and selector `0x6c60f246`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5817,8 +4224,8 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct PoolVoteReturn(pub ::ethers::core::types::Address);
-    ///Container type for all return fields from the `pools` function with signature `pools(uint256)` and selector `0xac4afa38`
+    pub struct PluginForGaugeReturn(pub ::ethers::core::types::Address);
+    ///Container type for all return fields from the `pluginVote` function with signature `pluginVote(address,uint256)` and selector `0x773fac7d`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5829,7 +4236,19 @@ pub mod voter {
         Eq,
         Hash
     )]
-    pub struct PoolsReturn(pub ::ethers::core::types::Address);
+    pub struct PluginVoteReturn(pub ::ethers::core::types::Address);
+    ///Container type for all return fields from the `plugins` function with signature `plugins(uint256)` and selector `0xf0a317eb`
+    #[derive(
+        Clone,
+        ::ethers::contract::EthAbiType,
+        ::ethers::contract::EthAbiCodec,
+        Default,
+        Debug,
+        PartialEq,
+        Eq,
+        Hash
+    )]
+    pub struct PluginsReturn(pub ::ethers::core::types::Address);
     ///Container type for all return fields from the `totalWeight` function with signature `totalWeight()` and selector `0x96c82e57`
     #[derive(
         Clone,
@@ -5842,7 +4261,7 @@ pub mod voter {
         Hash
     )]
     pub struct TotalWeightReturn(pub ::ethers::core::types::U256);
-    ///Container type for all return fields from the `usedWeights` function with signature `usedWeights(uint256)` and selector `0x79e93824`
+    ///Container type for all return fields from the `usedWeights` function with signature `usedWeights(address)` and selector `0x002f8de4`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,
@@ -5854,7 +4273,7 @@ pub mod voter {
         Hash
     )]
     pub struct UsedWeightsReturn(pub ::ethers::core::types::U256);
-    ///Container type for all return fields from the `votes` function with signature `votes(uint256,address)` and selector `0xd23254b4`
+    ///Container type for all return fields from the `votes` function with signature `votes(address,address)` and selector `0xcad1b906`
     #[derive(
         Clone,
         ::ethers::contract::EthAbiType,

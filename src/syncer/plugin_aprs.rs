@@ -12,16 +12,16 @@ use sea_orm::{
 use std::sync::Arc;
 use tracing::{error, info};
 
+use crate::server::internal_error;
 use crate::syncer::assets::{check_if_token_is_option, check_option_ve_discount, find_asset};
-use crate::{server::internal_error, syncer::types::Chain};
-
-use backend::bindings::{oTOKEN, Gauge, Voter};
+use backend::bindings::{Gauge, Voter};
+use backend::config::types::Chain;
 use backend::database::aprs::{
     ActiveModel as ActiveAprsModel, Column as AprsColumn, Entity as Aprs,
 };
 
-pub async fn update_pair_aprs(
-    pair_address: H160,
+pub async fn update_plugin_aprs(
+    plugin_address: H160,
     gauge_address: H160,
     tvl: f64,
     chain: &Chain,
@@ -29,7 +29,10 @@ pub async fn update_pair_aprs(
     conn: &Arc<DatabaseConnection>,
 ) -> Result<()> {
     let gauge = Gauge::new(gauge_address, Arc::clone(&client));
-    let voter_address = chain.get_chain_data().voter_address.parse::<Address>()?;
+    let voter_address = chain
+        .get_chain_data()
+        .wig_voter_address
+        .parse::<Address>()?;
     let voter = Voter::new(voter_address, Arc::clone(&client));
     let mut multicall = Multicall::<Provider<Http>>::new(
         client.clone(),
@@ -43,50 +46,38 @@ pub async fn update_pair_aprs(
     )
     .await?;
 
-    let rewards_list_lenght = gauge.rewards_list_length().call().await?;
-
-    let is_option_emissions = is_option_emission(gauge_address, chain, Arc::clone(&client)).await?;
+    // let rewards_list_lenght = gauge.rewards_list_length().call().await?;
+    // currently only one reward token is spitting out in toupee gauges
+    let rewards_list_lenght = 1;
 
     // list of reward tokens in gauge contract
     let mut reward_token_addresses = vec![];
 
-    for i in 0..rewards_list_lenght.as_u64() {
-        let reward_token_addy = gauge.rewards(U256::from(i)).call().await?;
+    for i in 0..rewards_list_lenght {
+        let reward_token_addy = gauge.reward_tokens(U256::from(i)).call().await?;
         reward_token_addresses.push(reward_token_addy);
     }
 
-    clean_up_stale_rewards(pair_address, reward_token_addresses.clone(), conn).await?;
+    clean_up_stale_rewards(plugin_address, reward_token_addresses.clone(), conn).await?;
 
     for reward_token_addy in reward_token_addresses {
         let formatted_reward_token_addy = to_checksum(&reward_token_addy, None);
 
-        // this the actual token that is being emitted when claim happens
-        let reward_token;
-        if is_option_emissions
-            && formatted_reward_token_addy.to_lowercase()
-                == chain.get_chain_data().default_token_address.to_lowercase()
-        {
-            reward_token = find_asset(
-                chain.get_chain_data().o_token_address.to_string(),
-                chain,
-                conn,
-            )
-            .await?;
-        } else {
-            reward_token = find_asset(formatted_reward_token_addy.to_owned(), chain, conn).await?;
-        }
+        let reward_token = find_asset(formatted_reward_token_addy.to_owned(), chain, conn).await?;
 
-        multicall.add_call(gauge.reward_rate(reward_token_addy), false);
+        multicall.add_call(gauge.get_reward_for_duration(reward_token_addy), false);
         multicall.add_call(gauge.left(reward_token_addy), false);
         multicall.add_call(voter.is_alive(gauge_address), false);
 
-        let (reward_rate, left, is_alive) = multicall.call::<(U256, U256, bool)>().await?;
+        let (seven_days_reward_rate, left, is_alive) =
+            multicall.call::<(U256, U256, bool)>().await?;
         multicall.clear_calls();
 
         let reward: f64;
         if is_alive && left > U256::zero() {
             // 86400 seconds in a day
-            reward = format_units(reward_rate, reward_token.decimals)?.parse::<f64>()? * 86400.0;
+            reward =
+                format_units(seven_days_reward_rate, reward_token.decimals)?.parse::<f64>()? / 7.0;
         } else {
             reward = 0.0;
         }
@@ -116,8 +107,7 @@ pub async fn update_pair_aprs(
             if max_apr < 0.1 {
                 let apr = ActiveAprsModel {
                     apr: ActiveValue::set(Some(0.0)),
-                    pair_address: ActiveValue::set(to_checksum(&pair_address, None)),
-                    chain_id: ActiveValue::set(chain.get_chain_data().id),
+                    plugin_address: ActiveValue::set(to_checksum(&plugin_address, None)),
                     logo_url: ActiveValue::set(reward_token.logoURI),
                     max_apr: ActiveValue::not_set(),
                     min_apr: ActiveValue::not_set(),
@@ -135,8 +125,7 @@ pub async fn update_pair_aprs(
             } else {
                 let apr = ActiveAprsModel {
                     apr: ActiveValue::not_set(),
-                    pair_address: ActiveValue::set(to_checksum(&pair_address, None)),
-                    chain_id: ActiveValue::set(chain.get_chain_data().id),
+                    plugin_address: ActiveValue::set(to_checksum(&plugin_address, None)),
                     logo_url: ActiveValue::set(reward_token.logoURI),
                     max_apr: ActiveValue::set(Some(max_apr)),
                     min_apr: ActiveValue::set(Some(min_apr)),
@@ -162,8 +151,7 @@ pub async fn update_pair_aprs(
 
             let apr = ActiveAprsModel {
                 apr: ActiveValue::set(Some(apr)),
-                pair_address: ActiveValue::set(to_checksum(&pair_address, None)),
-                chain_id: ActiveValue::set(chain.get_chain_data().id),
+                plugin_address: ActiveValue::set(to_checksum(&plugin_address, None)),
                 logo_url: ActiveValue::set(reward_token.logoURI),
                 max_apr: ActiveValue::not_set(),
                 min_apr: ActiveValue::not_set(),
@@ -183,53 +171,17 @@ pub async fn update_pair_aprs(
     Ok(())
 }
 
-async fn is_option_emission(
-    gauge_address: H160,
-    chain: &Chain,
-    client: Arc<Provider<Http>>,
-) -> Result<bool> {
-    let option_token_address = chain
-        .get_chain_data()
-        .o_token_address
-        .parse::<Address>()
-        .expect("Defined manually");
-    let o_token = oTOKEN::new(option_token_address, Arc::clone(&client));
-    let gauge = Gauge::new(gauge_address, Arc::clone(&client));
-    let mut multicall = Multicall::<Provider<Http>>::new(
-        client.clone(),
-        Some(
-            chain
-                .get_chain_data()
-                .multicall_address
-                .parse::<Address>()
-                .expect("Address is set by hand"),
-        ),
-    )
-    .await?;
-
-    let minter_role = o_token.minter_role().call().await?;
-
-    multicall.add_call(o_token.has_role(minter_role, gauge_address), false);
-    multicall.add_call(gauge.o_flow(), false);
-
-    let (has_role, option) = multicall.call::<(bool, H160)>().await?;
-
-    let is_option_emissions = has_role && option != Address::zero();
-
-    Ok(is_option_emissions)
-}
-
 ///
 /// If DB has rewards that are not longer in list of reward tokens in gauge contract, remove them.
 ///
 async fn clean_up_stale_rewards(
-    pair_address: H160,
+    plugin_address: H160,
     reward_tokens: Vec<Address>,
     conn: &Arc<DatabaseConnection>,
 ) -> Result<()> {
-    let pair_address = to_checksum(&pair_address, None);
+    let plugin_address = to_checksum(&plugin_address, None);
     let aprs = Aprs::find()
-        .filter(AprsColumn::PairAddress.eq(&pair_address))
+        .filter(AprsColumn::PluginAddress.eq(&plugin_address))
         .all(conn.as_ref())
         .await?;
 
@@ -244,7 +196,7 @@ async fn clean_up_stale_rewards(
 
     for apr in aprs {
         if !reward_tokens.contains(&apr.token_address.to_lowercase()) {
-            let p_a = apr.pair_address.clone();
+            let p_a = apr.plugin_address.clone();
             let t_s = apr.symbol.clone();
             let delete_result = apr.delete(conn.as_ref()).await;
             match delete_result {
@@ -264,13 +216,9 @@ async fn clean_up_stale_rewards(
 async fn write_apr(conn: &Arc<DatabaseConnection>, apr: ActiveAprsModel) -> Result<(), StatusCode> {
     match Aprs::insert(apr)
         .on_conflict(
-            sea_query::OnConflict::columns([
-                AprsColumn::PairAddress,
-                AprsColumn::ChainId,
-                AprsColumn::TokenAddress,
-            ])
-            .update_columns([AprsColumn::Apr, AprsColumn::MaxApr, AprsColumn::MinApr])
-            .to_owned(),
+            sea_query::OnConflict::columns([AprsColumn::PluginAddress, AprsColumn::TokenAddress])
+                .update_columns([AprsColumn::Apr, AprsColumn::MaxApr, AprsColumn::MinApr])
+                .to_owned(),
         )
         .exec(conn.as_ref())
         .await

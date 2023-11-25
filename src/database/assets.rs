@@ -8,8 +8,6 @@ use serde::{Deserialize, Serialize};
 pub struct Model {
     #[sea_orm(primary_key, auto_increment = false, column_type = "Text")]
     pub address: String,
-    #[sea_orm(primary_key, auto_increment = false)]
-    pub chain_id: i32,
     #[sea_orm(column_type = "Text")]
     pub name: String,
     #[sea_orm(column_type = "Text")]
@@ -38,6 +36,15 @@ impl Related<super::aprs::Entity> for Entity {
 impl Related<super::bribes::Entity> for Entity {
     fn to() -> RelationDef {
         Relation::Bribes.def()
+    }
+}
+
+impl Related<super::plugins::Entity> for Entity {
+    fn to() -> RelationDef {
+        super::aprs::Relation::Plugins.def()
+    }
+    fn via() -> Option<RelationDef> {
+        Some(super::aprs::Relation::Assets.def().rev())
     }
 }
 

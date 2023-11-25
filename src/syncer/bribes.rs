@@ -14,8 +14,8 @@ use std::sync::Arc;
 use tracing::{error, info};
 
 use crate::server::internal_error;
-use crate::syncer::types::Chain;
 use backend::bindings::Bribe;
+use backend::config::types::Chain;
 use backend::database::bribes::{
     ActiveModel as ActiveBribe, Column as BribesColumn, Entity as Bribes,
 };
@@ -30,7 +30,7 @@ use crate::syncer::assets::{check_if_token_is_option, check_option_ve_discount, 
 /// ```
 ///
 pub async fn update_bribe(
-    pair_address: H160,
+    plugin_address: H160,
     bribe_address: H160,
     chain: &Chain,
     client: Arc<Provider<Http>>,
@@ -52,14 +52,11 @@ pub async fn update_bribe(
     )
     .await?;
 
-    let tokens_len = bribe.rewards_list_length().call().await?;
-    let mut bribe_tokens = vec![];
+    let bribe_tokens = bribe.get_reward_tokens().call().await?;
 
     let mut calls = vec![];
-    for i in 0..tokens_len.as_u64() {
-        let bribe_token_address = bribe.rewards(U256::from(i)).call().await?;
-        bribe_tokens.push(bribe_token_address);
-        let call = bribe.left(bribe_token_address);
+    for bribe_token_address in &bribe_tokens {
+        let call = bribe.left(*bribe_token_address);
         calls.push(call);
     }
 
@@ -101,8 +98,7 @@ pub async fn update_bribe(
             bribe_address: ActiveValue::Set(bribe_address.to_owned()),
             token_address: ActiveValue::Set(bribe_token_address.to_lowercase()),
             token: ActiveValue::Set(json!(token)),
-            pair_address: ActiveValue::Set(to_checksum(&pair_address, None)),
-            chain_id: ActiveValue::Set(chain.get_chain_data().id),
+            plugin_address: ActiveValue::Set(to_checksum(&plugin_address, None)),
             reward_amount: ActiveValue::Set(reward_amount),
         };
 
@@ -174,7 +170,7 @@ async fn write_bribe(
             sea_query::OnConflict::columns([
                 BribesColumn::BribeAddress,
                 BribesColumn::TokenAddress,
-                BribesColumn::PairAddress,
+                BribesColumn::PluginAddress,
             ])
             .update_columns([BribesColumn::RewardAmount, BribesColumn::Token])
             .to_owned(),

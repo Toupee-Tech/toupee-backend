@@ -1,8 +1,8 @@
 use async_recursion::async_recursion;
 use axum::http::StatusCode;
-use backend::bindings::{oTOKEN, Router, ERC20};
+use backend::bindings::{oTOKEN, VelocimeterRouter, ERC20, WIG};
 use backend::database::assets::{
-    ActiveModel as ActiveAsset, Column as AssetColumn, Column as AssetsColumn, Entity as Assets,
+    ActiveModel as ActiveAsset, Column as AssetColumn, Entity as Assets,
 };
 use ethers::contract::abigen;
 use ethers::types::{H160, U256};
@@ -15,12 +15,14 @@ use ethers::{
 use eyre::Result;
 use sea_orm::{sea_query, ActiveValue, ColumnTrait, DatabaseConnection, EntityTrait, QueryFilter};
 use std::sync::Arc;
+use std::time::Duration;
+use tokio::time::sleep;
 use tracing::{error, info, instrument};
 
 use crate::server::internal_error;
-use crate::syncer::types::AssetWithPrice;
-use crate::syncer::types::{
-    Asset, Chain, DexscreenerPair, DexscreenerResponse, GeckoTerminalResponse,
+
+use backend::config::types::{
+    Asset, AssetWithPrice, Chain, DexscreenerPair, DexscreenerResponse, GeckoTerminalResponse,
 };
 
 ///
@@ -31,15 +33,13 @@ pub async fn find_asset(
     chain: &Chain,
     conn: &Arc<DatabaseConnection>,
 ) -> Result<AssetWithPrice> {
-    let chain_id = chain.get_chain_data().id;
-    let asset = Assets::find_by_id((address.to_string().to_lowercase(), chain_id))
+    let asset = Assets::find_by_id(address.to_string().to_lowercase())
         .one(conn.as_ref())
         .await?;
     match asset {
         Some(asset) => {
             let asset = AssetWithPrice {
                 address: asset.address,
-                chainId: asset.chain_id,
                 decimals: asset.decimals,
                 logoURI: asset.logo_url,
                 name: asset.name,
@@ -73,13 +73,11 @@ pub async fn update_assets_from_tokenlist(
     let res = res.json::<Vec<Asset>>().await?;
     info!("Assets from tokenlist: {}", res.len());
     for asset in res {
-        let chain_id = chain.get_chain_data().id;
         let client = Arc::clone(&client);
         let price =
             update_asset_price(&asset.address, asset.decimals, &chain, client, &conn).await?;
         let active_asset = ActiveAsset {
             address: ActiveValue::set(asset.address.to_string().to_lowercase()),
-            chain_id: ActiveValue::set(chain_id),
             decimals: ActiveValue::set(asset.decimals),
             logo_url: ActiveValue::set(asset.logoURI.to_string()),
             name: ActiveValue::set(asset.name.to_string()),
@@ -115,11 +113,7 @@ pub async fn update_other_db_assets_prices(
         .map(|asset| asset.address.to_lowercase())
         .collect();
     let res = Assets::find()
-        .filter(
-            AssetsColumn::ChainId
-                .eq(chain_id)
-                .and(AssetColumn::Address.is_not_in(tokenlist_assets_addresses)),
-        )
+        .filter(AssetColumn::Address.is_not_in(tokenlist_assets_addresses))
         .all(conn.as_ref())
         .await?;
 
@@ -132,13 +126,11 @@ pub async fn update_other_db_assets_prices(
     let client = Arc::new(provider);
 
     for asset in res {
-        let chain_id = chain.get_chain_data().id;
         let client = Arc::clone(&client);
         let price =
             update_asset_price(&asset.address, asset.decimals, &chain, client, &conn).await?;
         let active_asset = ActiveAsset {
             address: ActiveValue::set(asset.address.to_string().to_lowercase()),
-            chain_id: ActiveValue::set(chain_id),
             decimals: ActiveValue::set(asset.decimals),
             logo_url: ActiveValue::set(asset.logo_url.to_string()),
             name: ActiveValue::set(asset.name.to_string()),
@@ -165,7 +157,6 @@ pub async fn update_asset(
     info!("Updating asset: {:?}", address);
     let provider = Provider::<Http>::try_from(chain.get_chain_data().rpc_url.to_string())?;
     let client = Arc::new(provider);
-    let chain_id = chain.get_chain_data().id;
 
     let token_contract = ERC20::new(address.parse::<Address>()?, client.clone());
     let mut multicall = Multicall::<Provider<Http>>::new(
@@ -189,7 +180,6 @@ pub async fn update_asset(
 
     let asset = ActiveAsset {
         address: ActiveValue::set(address.to_string().to_lowercase()),
-        chain_id: ActiveValue::set(chain_id),
         decimals: ActiveValue::set(decimals.into()),
         logo_url: ActiveValue::set("".to_string()),
         name: ActiveValue::set(name.to_string()),
@@ -200,7 +190,6 @@ pub async fn update_asset(
 
     let asset = AssetWithPrice {
         address: address.to_string(),
-        chainId: chain_id,
         decimals: decimals.into(),
         logoURI: "".to_string(),
         name: name.to_string(),
@@ -223,9 +212,7 @@ async fn update_asset_price(
     conn: &Arc<DatabaseConnection>,
 ) -> Result<f64> {
     // wBLT integration price check
-    if chain.get_chain_data().id == 8453
-        && chain.get_chain_data().wblt_address.to_lowercase() == address.to_lowercase()
-    {
+    if chain.get_chain_data().wblt_address.to_lowercase() == address.to_lowercase() {
         let price = get_wblt_price(Arc::clone(&client)).await;
         match price {
             Ok(price) => return Ok(price),
@@ -267,27 +254,32 @@ async fn get_asset_price(
     client: Arc<Provider<Http>>,
     conn: &Arc<DatabaseConnection>,
 ) -> Result<f64> {
+    let owig_address = &chain.get_chain_data().o_wig_address;
+    if address.to_lowercase() == owig_address.to_lowercase() {
+        let price = get_price_of_owig(chain.clone(), Arc::clone(&client), conn).await;
+        match price {
+            Ok(price) => return Ok(price),
+            Err(e) => error!("Error getting oWIG price: {:?}", e),
+        }
+    }
+
+    let wig_address = &chain.get_chain_data().wig_address;
+    if address.to_lowercase() == wig_address.to_lowercase() {
+        let price = get_price_of_wig(chain.clone(), Arc::clone(&client), conn).await;
+        match price {
+            Ok(price) => return Ok(price),
+            Err(e) => error!("Error getting oWIG price: {:?}", e),
+        }
+    }
+
     let aggregated_in_stables = get_aggregated_price_in_stables(address, chain.clone()).await?;
     if aggregated_in_stables > 0.0 {
         return Ok(aggregated_in_stables);
     }
-    let aggregated_in_stablecoin =
-        get_aggregated_price_in_stablecoin(address, decimals, chain, Arc::clone(&client)).await?;
-    if aggregated_in_stablecoin > 0.0 {
-        return Ok(aggregated_in_stablecoin);
-    }
-    let aggregated_in_eth =
-        get_aggregated_price_in_eth(address, decimals, chain.clone(), Arc::clone(&client), conn)
-            .await?;
-    if aggregated_in_eth > 0.0 {
-        return Ok(aggregated_in_eth);
-    }
-    if chain.get_chain_data().id == 8453 {
-        let price =
-            get_aggregated_price_in_wblt(address, decimals, chain.clone(), client, conn).await?;
-        if price > 0.0 {
-            return Ok(price);
-        }
+    let price =
+        get_aggregated_price_in_wblt(address, decimals, chain.clone(), client, conn).await?;
+    if price > 0.0 {
+        return Ok(price);
     }
     Ok(0.0)
 }
@@ -315,6 +307,7 @@ async fn get_aggregated_price_in_stables(address: &String, chain: Chain) -> Resu
 
     Ok(0.0)
 }
+
 ///
 /// Get price from geckoterminal.
 ///
@@ -324,15 +317,26 @@ async fn geckoterminal(address: &String, chain_name: &String) -> Result<f64> {
         chain_name, address
     );
     let http_client = reqwest::Client::builder().build()?;
-    let res: reqwest::Response = http_client.get(url).send().await?;
-    let res = res.json::<GeckoTerminalResponse>().await?;
-    match res {
-        GeckoTerminalResponse::Success(res) => {
-            let price = res.data.attributes.price_usd.parse::<f64>()?;
-            return Ok(price);
+    let res = http_client.get(&url).send().await?;
+    let res_text = res.text().await?;
+    if let Ok(res_json) = serde_json::from_str::<GeckoTerminalResponse>(&res_text) {
+        match res_json {
+            GeckoTerminalResponse::Success(res) => {
+                let price = res
+                    .data
+                    .attributes
+                    .price_usd
+                    .unwrap_or_default()
+                    .parse::<f64>()?;
+                return Ok(price);
+            }
+            GeckoTerminalResponse::Error(_) => return Ok(0.0),
+            GeckoTerminalResponse::RateLimited(_) => return Ok(0.0),
         }
-        GeckoTerminalResponse::Error(_) => return Ok(0.0),
-    };
+    } else {
+        info!("Error parsing geckoterminal response: {:?}", res_text)
+    }
+    Ok(0.0)
 }
 
 ///
@@ -341,9 +345,13 @@ async fn geckoterminal(address: &String, chain_name: &String) -> Result<f64> {
 async fn dexscreener(address: &String, chain_name: &String) -> Result<f64> {
     let url = format!("https://api.dexscreener.com/latest/dex/tokens/{}", address);
     let http_client = reqwest::Client::builder().build()?;
-    let res = http_client.get(url).send().await?;
-    let res = res.json::<DexscreenerResponse>().await?;
-    let mut pairs = res.pairs;
+    let mut res = http_client.get(&url).send().await?;
+    if let StatusCode::TOO_MANY_REQUESTS = res.status() {
+        sleep(Duration::from_millis(2000)).await;
+        res = http_client.get(url).send().await?;
+    }
+    let res_json = res.json::<DexscreenerResponse>().await?;
+    let mut pairs = res_json.pairs;
     if pairs.len() == 0 {
         return Ok(0.0);
     }
@@ -380,76 +388,49 @@ async fn dexscreener(address: &String, chain_name: &String) -> Result<f64> {
 }
 
 ///
-/// Get price using ETH price using Router contract. Returns zero if Contract Logic error.
+/// Get price of oWIG  using oWIG contract and WETH price. Returns zero if Contract Logic error.
 ///
-async fn get_aggregated_price_in_eth(
-    address: &String,
-    decimals: i32,
+async fn get_price_of_wig(
     chain: Chain,
     client: Arc<Provider<Http>>,
     conn: &Arc<DatabaseConnection>,
 ) -> Result<f64> {
-    let route_token_address = &chain.get_chain_data().route_token_address;
-    let route_token_parsed_address = route_token_address.parse::<Address>()?;
-    let route_token = find_asset(route_token_address.to_string(), &chain, conn).await?;
+    let wig_token_address = &chain.get_chain_data().wig_address;
+    let wig_token_parsed_address = wig_token_address.parse::<Address>().expect("Set by hand");
+    let wig_token = WIG::new(wig_token_parsed_address, Arc::clone(&client));
 
-    let route_token_price = route_token.price;
+    let wig_token_price_contract = wig_token.get_market_price().call().await?;
+    let wig_token_price_eth = format_units(wig_token_price_contract, 18)?.parse::<f64>()?;
 
-    let router_address = &chain.get_chain_data().router_address;
-    let router_address = router_address.parse::<Address>()?;
+    let weth_token_address = &chain.get_chain_data().weth_address;
+    let weth_token = find_asset(weth_token_address.to_owned(), &chain, conn).await?;
 
-    let token_address = address.parse::<Address>()?;
+    let o_wig_price_usd = wig_token_price_eth * weth_token.price;
 
-    let router = Router::new(router_address, client);
-    let amount_in = parse_units(1, decimals)?;
-    let amount_out = router
-        .get_amount_out(amount_in.into(), token_address, route_token_parsed_address)
-        .call()
-        .await;
-
-    match amount_out {
-        Ok(amount_out) => {
-            let (amount_out, _is_stable) = amount_out;
-            let amount_out = format_units(amount_out, 18)?.parse::<f64>()?;
-            let price = amount_out * route_token_price;
-            Ok(price)
-        }
-        Err(_) => Ok(0.0),
-    }
+    Ok(o_wig_price_usd)
 }
 
 ///
-/// Get price using stablecoin using Router contract. Returns zero if Contract Logic error.
+/// Get price of oWIG  using oWIG contract and WETH price. Returns zero if Contract Logic error.
 ///
-async fn get_aggregated_price_in_stablecoin(
-    address: &String,
-    decimals: i32,
-    chain: &Chain,
+async fn get_price_of_owig(
+    chain: Chain,
     client: Arc<Provider<Http>>,
+    conn: &Arc<DatabaseConnection>,
 ) -> Result<f64> {
-    let stablecoin_address = &chain.get_chain_data().stablecoin_address;
-    let stablecoin_address = stablecoin_address.parse::<Address>()?;
+    let wig_token_address = &chain.get_chain_data().wig_address;
+    let wig_token_parsed_address = wig_token_address.parse::<Address>().expect("Set by hand");
+    let wig_token = WIG::new(wig_token_parsed_address, Arc::clone(&client));
 
-    let router_address = &chain.get_chain_data().router_address;
-    let router_address = router_address.parse::<Address>()?;
+    let o_wig_token_price_contract = wig_token.get_o_token_price().call().await?;
+    let o_wig_token_price_eth = format_units(o_wig_token_price_contract, 18)?.parse::<f64>()?;
 
-    let token_address = address.parse::<Address>()?;
+    let weth_token_address = &chain.get_chain_data().weth_address;
+    let weth_token = find_asset(weth_token_address.to_owned(), &chain, conn).await?;
 
-    let router = Router::new(router_address, client);
-    let amount_in = parse_units(1, decimals)?;
-    let amount_out = router
-        .get_amount_out(amount_in.into(), token_address, stablecoin_address)
-        .call()
-        .await;
+    let o_wig_price_usd = o_wig_token_price_eth * weth_token.price;
 
-    match amount_out {
-        Ok(amount_out) => {
-            let (amount_out, _is_stable) = amount_out;
-            let amount_out = format_units(amount_out, 6)?.parse::<f64>()?;
-            return Ok(amount_out);
-        }
-        Err(_) => Ok(0.0),
-    }
+    Ok(o_wig_price_usd)
 }
 
 ///
@@ -469,12 +450,12 @@ async fn get_aggregated_price_in_wblt(
 
     let wblt_token_price = wblt_token.price;
 
-    let router_address = &chain.get_chain_data().router_address;
+    let router_address = &chain.get_chain_data().velocimeter_router_address;
     let router_address = router_address.parse::<Address>()?;
 
     let token_address = address.parse::<Address>()?;
 
-    let router = Router::new(router_address, client);
+    let router = VelocimeterRouter::new(router_address, client);
     let amount_in = parse_units(1, decimals)?;
     let amount_out = router
         .get_amount_out(amount_in.into(), token_address, wblt_token_parsed_address)
@@ -575,7 +556,7 @@ async fn write_asset(
 ) -> Result<(), StatusCode> {
     match Assets::insert(asset)
         .on_conflict(
-            sea_query::OnConflict::columns([AssetColumn::Address, AssetColumn::ChainId])
+            sea_query::OnConflict::column(AssetColumn::Address)
                 .update_column(AssetColumn::Price)
                 .to_owned(),
         )

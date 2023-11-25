@@ -1,23 +1,23 @@
-# <h1 align="center"> Velocimeter backend </h1>
+# <h1 align="center"> Toupee backend </h1>
 
-Velocimeter backend service. Axum API. Postrgres DB via SEA-ORM. Ethers.rs
+Toupee backend service. Axum API. Postrgres DB via SEA-ORM. Ethers.rs
 
 ## Quickstart
 
 Create an .env file based on .env.example.
 
-Make sure Docker is installed, postgres image.
+Make sure Docker is installed.
 
 Run:
 
-```
+```bash
 docker compose up -d --wait
 ```
 
 Note:
 When closing processes run:
 
-```
+```bash
 docker compose down -v
 ```
 

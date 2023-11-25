@@ -6,7 +6,7 @@ use tracing::info;
 use std::env;
 
 mod handlers;
-use handlers::{give_asset, give_assets, give_pairs, give_routes, root};
+use handlers::{give_assets, give_plugins, root};
 
 mod types;
 
@@ -21,10 +21,8 @@ pub async fn server() {
     // build our application with some routes
     let app = Router::new()
         .route("/", get(root))
-        .route("/pairs/:chain_id", get(give_pairs))
-        .route("/assets/:chain_id", get(give_assets))
-        .route("/assets/:chain_id/:address", get(give_asset))
-        .route("/routes/:chain_id", get(give_routes))
+        .route("/plugins/", get(give_plugins))
+        .route("/assets/", get(give_assets))
         .layer(Extension(conn));
 
     // run it with hyper
