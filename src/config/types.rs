@@ -1,5 +1,3 @@
-use std::{fs, io::BufReader};
-
 use crate::config::addresses::*;
 use serde::{Deserialize, Serialize};
 
@@ -12,15 +10,14 @@ pub struct ChainData {
     pub velocimeter_router_address: String,
     pub aerodrome_router_address: String,
     pub wig_voter_address: String,
-    pub tokenlists_url: String,
     pub bvm_address: String,
     pub o_bvm_address: String,
     pub wig_address: String,
     pub o_wig_address: String,
     pub weth_address: String,
     pub wblt_address: String,
+    pub usdc_address: String,
     pub multicall_address: String,
-    pub plugin_addresses: Vec<String>,
 }
 
 #[derive(Debug, Clone)]
@@ -30,11 +27,6 @@ pub enum Chain {
 
 impl Chain {
     pub fn new(rpc_url: String, chain_id: i32) -> Self {
-        let addresses_json_file = fs::File::open("src/config/plugin_addresses.json")
-            .expect("Could not open plugin_addresses.json");
-        let reader = BufReader::new(addresses_json_file);
-        let plugin_addresses: Vec<String> =
-            serde_json::from_reader(reader).expect("Could not parse plugin_addresses.json");
         match chain_id {
             8453 => Self::Base(ChainData {
                 id: 8453,
@@ -44,15 +36,14 @@ impl Chain {
                 velocimeter_router_address: VELOCIMETER_ROUTER.to_string(),
                 aerodrome_router_address: AERODROME_ROUTER.to_string(),
                 wig_voter_address: WIG_VOTER.to_string(),
-                tokenlists_url: VELOCIMETER_TOKENLISTS.to_string(),
                 bvm_address: BVM_TOKEN.to_string(),
                 o_bvm_address: OBVM_TOKEN.to_string(),
                 wig_address: WIG_TOKEN.to_string(),
                 o_wig_address: OWIG_TOKEN.to_string(),
                 weth_address: WETH_TOKEN.to_string(),
                 wblt_address: WBLT_TOKEN.to_string(),
+                usdc_address: USDC_TOKEN.to_string(),
                 multicall_address: MULTICALL_ADDRESS.to_string(),
-                plugin_addresses,
             }),
             _ => panic!("Chain id not supported"),
         }

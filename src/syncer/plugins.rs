@@ -12,7 +12,7 @@ use serde_json::json;
 use std::sync::Arc;
 use tracing::{error, info, instrument};
 
-use backend::bindings::{AerodromeRouter, Pair, Plugin, VelocimeterRouter};
+use backend::bindings::{AerodromeRouter, Pair, Plugin, VelocimeterRouter, Voter};
 use backend::config::types::Chain;
 use backend::database::plugins::{
     ActiveModel as ActivePlugin, Column as PluginsColumn, Entity as Plugins,
@@ -36,12 +36,14 @@ pub async fn update_plugins(chain: &Chain, conn: &Arc<DatabaseConnection>) -> Re
     let provider = Provider::<Http>::try_from(chain.get_chain_data().rpc_url.to_string())?;
     let client = Arc::new(provider);
 
-    let plugin_addresses = chain
+    let voter_address = chain
         .get_chain_data()
-        .plugin_addresses
-        .iter()
-        .map(|addy| addy.parse::<Address>().expect("Set by hand"))
-        .collect::<Vec<Address>>();
+        .wig_voter_address
+        .parse::<Address>()
+        .expect("Set by hand");
+    let voter = Voter::new(voter_address, Arc::clone(&client));
+
+    let plugin_addresses = voter.get_plugins().call().await?;
 
     for plugin_address in plugin_addresses {
         match update_plugin(plugin_address, chain.clone(), Arc::clone(&client), &conn).await {

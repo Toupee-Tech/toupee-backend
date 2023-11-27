@@ -16,6 +16,7 @@ use eyre::Result;
 use sea_orm::{sea_query, ActiveValue, ColumnTrait, DatabaseConnection, EntityTrait, QueryFilter};
 use std::sync::Arc;
 use std::time::Duration;
+use std::{fs, io::BufReader};
 use tokio::time::sleep;
 use tracing::{error, info, instrument};
 
@@ -63,16 +64,19 @@ pub async fn update_assets_from_tokenlist(
     chain: &Chain,
     conn: &Arc<DatabaseConnection>,
 ) -> Result<()> {
-    info!("Updating assets: {} chain id", chain.get_chain_data().id);
-    let http_client = reqwest::Client::builder().build()?;
+    info!("Updating assets");
+    let assets_json_file =
+        fs::File::open("src/config/token-list.json").expect("Could not open token-list.json");
+    let reader = BufReader::new(assets_json_file);
+    let assets: Vec<Asset> =
+        serde_json::from_reader(reader).expect("Could not parse token-list.json");
+
+    info!("Assets from tokenlist: {}", assets.len());
+
     let provider = Provider::<Http>::try_from(chain.get_chain_data().rpc_url.to_string())?;
     let client = Arc::new(provider);
 
-    let token_list = &chain.get_chain_data().tokenlists_url;
-    let res = http_client.get(token_list).send().await?;
-    let res = res.json::<Vec<Asset>>().await?;
-    info!("Assets from tokenlist: {}", res.len());
-    for asset in res {
+    for asset in assets {
         let client = Arc::clone(&client);
         let price =
             update_asset_price(&asset.address, asset.decimals, &chain, client, &conn).await?;
@@ -103,12 +107,13 @@ pub async fn update_other_db_assets_prices(
     let chain_id = chain.get_chain_data().id;
     info!("Updating other db assets prices: {} chain id", chain_id);
 
-    let http_client = reqwest::Client::builder().build()?;
-    let token_list = &chain.get_chain_data().tokenlists_url;
-    let res = http_client.get(token_list).send().await?;
-    let tokenlist_assets_addresses: Vec<String> = res
-        .json::<Vec<Asset>>()
-        .await?
+    let assets_json_file =
+        fs::File::open("src/config/token-list.json").expect("Could not open token-list.json");
+    let reader = BufReader::new(assets_json_file);
+    let assets: Vec<Asset> =
+        serde_json::from_reader(reader).expect("Could not parse token-list.json");
+
+    let tokenlist_assets_addresses: Vec<String> = assets
         .into_iter()
         .map(|asset| asset.address.to_lowercase())
         .collect();
@@ -276,6 +281,19 @@ async fn get_asset_price(
     if aggregated_in_stables > 0.0 {
         return Ok(aggregated_in_stables);
     }
+
+    let aggregated_in_stablecoin =
+        get_aggregated_price_in_stablecoin(address, decimals, chain, Arc::clone(&client)).await?;
+    if aggregated_in_stablecoin > 0.0 {
+        return Ok(aggregated_in_stablecoin);
+    }
+    let aggregated_in_eth =
+        get_aggregated_price_in_eth(address, decimals, chain.clone(), Arc::clone(&client), conn)
+            .await?;
+    if aggregated_in_eth > 0.0 {
+        return Ok(aggregated_in_eth);
+    }
+
     let price =
         get_aggregated_price_in_wblt(address, decimals, chain.clone(), client, conn).await?;
     if price > 0.0 {
@@ -385,6 +403,79 @@ async fn dexscreener(address: &String, chain_name: &String) -> Result<f64> {
     }
 
     Ok(0.0)
+}
+
+///
+/// Get price using stablecoin using Router contract. Returns zero if Contract Logic error.
+///
+async fn get_aggregated_price_in_stablecoin(
+    address: &String,
+    decimals: i32,
+    chain: &Chain,
+    client: Arc<Provider<Http>>,
+) -> Result<f64> {
+    let stablecoin_address = &chain.get_chain_data().usdc_address;
+    let stablecoin_address = stablecoin_address.parse::<Address>()?;
+
+    let router_address = &chain.get_chain_data().velocimeter_router_address;
+    let router_address = router_address.parse::<Address>()?;
+
+    let token_address = address.parse::<Address>()?;
+
+    let router = VelocimeterRouter::new(router_address, client);
+    let amount_in = parse_units(1, decimals)?;
+    let amount_out = router
+        .get_amount_out(amount_in.into(), token_address, stablecoin_address)
+        .call()
+        .await;
+
+    match amount_out {
+        Ok(amount_out) => {
+            let (amount_out, _is_stable) = amount_out;
+            let amount_out = format_units(amount_out, 6)?.parse::<f64>()?;
+            return Ok(amount_out);
+        }
+        Err(_) => Ok(0.0),
+    }
+}
+
+///
+/// Get price using ETH price using Router contract. Returns zero if Contract Logic error.
+///
+async fn get_aggregated_price_in_eth(
+    address: &String,
+    decimals: i32,
+    chain: Chain,
+    client: Arc<Provider<Http>>,
+    conn: &Arc<DatabaseConnection>,
+) -> Result<f64> {
+    let route_token_address = &chain.get_chain_data().weth_address;
+    let route_token_parsed_address = route_token_address.parse::<Address>()?;
+    let route_token = find_asset(route_token_address.to_string(), &chain, conn).await?;
+
+    let route_token_price = route_token.price;
+
+    let router_address = &chain.get_chain_data().velocimeter_router_address;
+    let router_address = router_address.parse::<Address>()?;
+
+    let token_address = address.parse::<Address>()?;
+
+    let router = VelocimeterRouter::new(router_address, client);
+    let amount_in = parse_units(1, decimals)?;
+    let amount_out = router
+        .get_amount_out(amount_in.into(), token_address, route_token_parsed_address)
+        .call()
+        .await;
+
+    match amount_out {
+        Ok(amount_out) => {
+            let (amount_out, _is_stable) = amount_out;
+            let amount_out = format_units(amount_out, 18)?.parse::<f64>()?;
+            let price = amount_out * route_token_price;
+            Ok(price)
+        }
+        Err(_) => Ok(0.0),
+    }
 }
 
 ///
