@@ -79,7 +79,7 @@ pub async fn update_assets_from_tokenlist(
     for asset in assets {
         let client = Arc::clone(&client);
         let price =
-            update_asset_price(&asset.address, asset.decimals, &chain, client, &conn).await?;
+            update_asset_price(&asset.address, asset.decimals, chain, client, conn).await?;
         let active_asset = ActiveAsset {
             address: ActiveValue::set(asset.address.to_string().to_lowercase()),
             decimals: ActiveValue::set(asset.decimals),
@@ -123,7 +123,7 @@ pub async fn update_other_db_assets_prices(
         .await?;
 
     info!("Other assets from db: {}", res.len());
-    if res.len() == 0 {
+    if res.is_empty() {
         return Ok(());
     }
 
@@ -132,8 +132,7 @@ pub async fn update_other_db_assets_prices(
 
     for asset in res {
         let client = Arc::clone(&client);
-        let price =
-            update_asset_price(&asset.address, asset.decimals, &chain, client, &conn).await?;
+        let price = update_asset_price(&asset.address, asset.decimals, chain, client, conn).await?;
         let active_asset = ActiveAsset {
             address: ActiveValue::set(asset.address.to_string().to_lowercase()),
             decimals: ActiveValue::set(asset.decimals),
@@ -155,7 +154,7 @@ pub async fn update_other_db_assets_prices(
 ///
 #[async_recursion]
 pub async fn update_asset(
-    address: &String,
+    address: &str,
     chain: &Chain,
     conn: &Arc<DatabaseConnection>,
 ) -> Result<AssetWithPrice> {
@@ -181,7 +180,7 @@ pub async fn update_asset(
 
     let (name, symbol, decimals) = multicall.call::<(String, String, u8)>().await?;
 
-    let price = update_asset_price(address, decimals.into(), chain, client, &conn).await?;
+    let price = update_asset_price(address, decimals.into(), chain, client, conn).await?;
 
     let asset = ActiveAsset {
         address: ActiveValue::set(address.to_string().to_lowercase()),
@@ -191,7 +190,7 @@ pub async fn update_asset(
         symbol: ActiveValue::set(symbol.to_string()),
         price: ActiveValue::set(price),
     };
-    write_asset(&conn, address.to_owned(), asset).await.unwrap();
+    write_asset(conn, address.to_owned(), asset).await.unwrap();
 
     let asset = AssetWithPrice {
         address: address.to_string(),
@@ -210,7 +209,7 @@ pub async fn update_asset(
 /// If asset is an option, return discounted price "in market".
 ///
 async fn update_asset_price(
-    address: &String,
+    address: &str,
     decimals: i32,
     chain: &Chain,
     client: Arc<Provider<Http>>,
@@ -219,9 +218,8 @@ async fn update_asset_price(
     // wBLT integration price check
     if chain.get_chain_data().wblt_address.to_lowercase() == address.to_lowercase() {
         let price = get_wblt_price(Arc::clone(&client)).await;
-        match price {
-            Ok(price) => return Ok(price),
-            Err(_) => {}
+        if let Ok(price) = price {
+            return Ok(price);
         }
     }
 
@@ -253,7 +251,7 @@ async fn update_asset_price(
 /// Fourth check aggregated price in stablecoin.
 ///
 async fn get_asset_price(
-    address: &String,
+    address: &str,
     decimals: i32,
     chain: &Chain,
     client: Arc<Provider<Http>>,
@@ -305,22 +303,18 @@ async fn get_asset_price(
 ///
 /// Get aggregated price in stablecoins from geckoterminal or dexscreener.
 ///
-async fn get_aggregated_price_in_stables(address: &String, chain: Chain) -> Result<f64> {
+async fn get_aggregated_price_in_stables(address: &str, chain: Chain) -> Result<f64> {
     let geckoterminal_name = &chain.get_chain_data().geckoterminal_name;
     let chain_name = &chain.get_chain_data().name;
     let price = geckoterminal(address, geckoterminal_name).await;
-    match price {
-        Ok(price) => {
-            if price > 0.0 {
-                return Ok(price);
-            }
+    if let Ok(price) = price {
+        if price > 0.0 {
+            return Ok(price);
         }
-        Err(_) => {}
     }
     let price = dexscreener(address, chain_name).await;
-    match price {
-        Ok(price) => return Ok(price),
-        Err(_) => {}
+    if let Ok(price) = price {
+        return Ok(price);
     }
 
     Ok(0.0)
@@ -329,7 +323,7 @@ async fn get_aggregated_price_in_stables(address: &String, chain: Chain) -> Resu
 ///
 /// Get price from geckoterminal.
 ///
-async fn geckoterminal(address: &String, chain_name: &String) -> Result<f64> {
+async fn geckoterminal(address: &str, chain_name: &str) -> Result<f64> {
     let url = format!(
         "https://api.geckoterminal.com/api/v2/networks/{}/tokens/{}",
         chain_name, address
@@ -360,7 +354,7 @@ async fn geckoterminal(address: &String, chain_name: &String) -> Result<f64> {
 ///
 /// Get price from dexscreener.
 ///
-async fn dexscreener(address: &String, chain_name: &String) -> Result<f64> {
+async fn dexscreener(address: &str, chain_name: &str) -> Result<f64> {
     let url = format!("https://api.dexscreener.com/latest/dex/tokens/{}", address);
     let http_client = reqwest::Client::builder().build()?;
     let mut res = http_client.get(&url).send().await?;
@@ -370,7 +364,7 @@ async fn dexscreener(address: &String, chain_name: &String) -> Result<f64> {
     }
     let res_json = res.json::<DexscreenerResponse>().await?;
     let mut pairs = res_json.pairs;
-    if pairs.len() == 0 {
+    if pairs.is_empty() {
         return Ok(0.0);
     }
 
@@ -409,7 +403,7 @@ async fn dexscreener(address: &String, chain_name: &String) -> Result<f64> {
 /// Get price using stablecoin using Router contract. Returns zero if Contract Logic error.
 ///
 async fn get_aggregated_price_in_stablecoin(
-    address: &String,
+    address: &str,
     decimals: i32,
     chain: &Chain,
     client: Arc<Provider<Http>>,
@@ -433,7 +427,7 @@ async fn get_aggregated_price_in_stablecoin(
         Ok(amount_out) => {
             let (amount_out, _is_stable) = amount_out;
             let amount_out = format_units(amount_out, 6)?.parse::<f64>()?;
-            return Ok(amount_out);
+            Ok(amount_out)
         }
         Err(_) => Ok(0.0),
     }
@@ -443,7 +437,7 @@ async fn get_aggregated_price_in_stablecoin(
 /// Get price using ETH price using Router contract. Returns zero if Contract Logic error.
 ///
 async fn get_aggregated_price_in_eth(
-    address: &String,
+    address: &str,
     decimals: i32,
     chain: Chain,
     client: Arc<Provider<Http>>,
@@ -529,7 +523,7 @@ async fn get_price_of_owig(
 /// Part of wBLT integration.
 ///
 async fn get_aggregated_price_in_wblt(
-    address: &String,
+    address: &str,
     decimals: i32,
     chain: Chain,
     client: Arc<Provider<Http>>,
@@ -568,7 +562,7 @@ async fn get_aggregated_price_in_wblt(
 /// Check if token is an option. If it is, returns underlying address. Otherwise returns zero address.
 ///
 pub async fn check_if_token_is_option(
-    address: &String,
+    address: &str,
     client: Arc<Provider<Http>>,
 ) -> Result<(bool, H160)> {
     let is_option = false;
@@ -584,7 +578,7 @@ pub async fn check_if_token_is_option(
             if underlying_address == H160::zero() {
                 return Ok((is_option, underlying));
             }
-            return Ok((true, underlying_address));
+            Ok((true, underlying_address))
         }
         Err(_) => Ok((is_option, underlying)),
     }
@@ -593,7 +587,7 @@ pub async fn check_if_token_is_option(
 ///
 /// Check option liquid discount. Note, returns asian discount (reversed).
 ///
-pub async fn check_option_discount(address: &String, client: Arc<Provider<Http>>) -> Result<f64> {
+pub async fn check_option_discount(address: &str, client: Arc<Provider<Http>>) -> Result<f64> {
     let option_address = address.parse::<Address>()?;
     let o_token = oTOKEN::new(option_address, client.clone());
 
@@ -605,10 +599,7 @@ pub async fn check_option_discount(address: &String, client: Arc<Provider<Http>>
 ///
 /// Check option ve discount. Note, returns asian discount (reversed).
 ///
-pub async fn check_option_ve_discount(
-    address: &String,
-    client: Arc<Provider<Http>>,
-) -> Result<f64> {
+pub async fn check_option_ve_discount(address: &str, client: Arc<Provider<Http>>) -> Result<f64> {
     let option_address = address.parse::<Address>()?;
     let o_token = oTOKEN::new(option_address, client.clone());
 

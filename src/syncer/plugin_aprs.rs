@@ -73,14 +73,12 @@ pub async fn update_plugin_aprs(
             multicall.call::<(U256, U256, bool)>().await?;
         multicall.clear_calls();
 
-        let reward: f64;
-        if is_alive && left > U256::zero() {
+        let reward: f64 = if is_alive && left > U256::zero() {
             // 86400 seconds in a day
-            reward =
-                format_units(seven_days_reward_rate, reward_token.decimals)?.parse::<f64>()? / 7.0;
+            format_units(seven_days_reward_rate, reward_token.decimals)?.parse::<f64>()? / 7.0
         } else {
-            reward = 0.0;
-        }
+            0.0
+        };
 
         let (is_option, underlying_token) =
             check_if_token_is_option(&reward_token.address, Arc::clone(&client)).await?;
@@ -142,12 +140,11 @@ pub async fn update_plugin_aprs(
                 continue;
             }
         } else {
-            let apr: f64;
-            if tvl == 0.0 {
-                apr = 0.0;
+            let apr: f64 = if tvl == 0.0 {
+                0.0
             } else {
-                apr = reward * reward_token.price / tvl * 100.0 * 365.0;
-            }
+                reward * reward_token.price / tvl * 100.0 * 365.0
+            };
 
             let apr = ActiveAprsModel {
                 apr: ActiveValue::set(Some(apr)),
@@ -185,7 +182,7 @@ async fn clean_up_stale_rewards(
         .all(conn.as_ref())
         .await?;
 
-    if aprs.len() == 0 {
+    if aprs.is_empty() {
         return Ok(());
     }
 

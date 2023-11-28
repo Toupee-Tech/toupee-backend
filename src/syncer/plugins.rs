@@ -46,7 +46,7 @@ pub async fn update_plugins(chain: &Chain, conn: &Arc<DatabaseConnection>) -> Re
     let plugin_addresses = voter.get_plugins().call().await?;
 
     for plugin_address in plugin_addresses {
-        match update_plugin(plugin_address, chain.clone(), Arc::clone(&client), &conn).await {
+        match update_plugin(plugin_address, chain.clone(), Arc::clone(&client), conn).await {
             Ok(_) => {}
             Err(e) => {
                 info!("Error updating plugin {}: {:?}", plugin_address, e);
@@ -159,7 +159,7 @@ async fn update_plugin(
             tvl,
             &chain,
             Arc::clone(&client),
-            &conn,
+            conn,
         )
         .await?;
     } else {
@@ -205,7 +205,7 @@ async fn get_reserves(
         "Velocimeter" => {
             let router_address = &chain.get_chain_data().velocimeter_router_address;
             let router_parsed_address = router_address.parse::<Address>().expect("Set by hand");
-            let router = VelocimeterRouter::new(router_parsed_address, Arc::clone(&client));
+            let router = VelocimeterRouter::new(router_parsed_address, Arc::clone(client));
             let (reserve0, reserve1) = router
                 .quote_remove_liquidity(
                     token_0_address,
@@ -215,7 +215,7 @@ async fn get_reserves(
                 )
                 .call()
                 .await?;
-            return Ok((reserve0, reserve1));
+            Ok((reserve0, reserve1))
         }
         "Aerodrome" => {
             abigen!(
@@ -224,12 +224,12 @@ async fn get_reserves(
                     factory() public view returns (address)
                 ]"#,
             );
-            let aerodrome_pair = AerodromePair::new(pair_address, Arc::clone(&client));
+            let aerodrome_pair = AerodromePair::new(pair_address, Arc::clone(client));
             let factory_address = aerodrome_pair.factory().call().await?;
 
             let router_address = &chain.get_chain_data().aerodrome_router_address;
             let router_parsed_address = router_address.parse::<Address>().expect("Set by hand");
-            let router = AerodromeRouter::new(router_parsed_address, Arc::clone(&client));
+            let router = AerodromeRouter::new(router_parsed_address, Arc::clone(client));
             let (reserve0, reserve1) = router
                 .quote_remove_liquidity(
                     token_0_address,
@@ -240,7 +240,7 @@ async fn get_reserves(
                 )
                 .call()
                 .await?;
-            return Ok((reserve0, reserve1));
+            Ok((reserve0, reserve1))
         }
         _ => panic!("Protocol is not supported"),
     }

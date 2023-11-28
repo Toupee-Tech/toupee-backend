@@ -50,8 +50,8 @@ impl PluginResponse {
             token0: plugin.token0,
             token1: plugin.token1,
             gauge,
-            aprs: aprs.len().gt(&0).then(|| aprs),
-            bribes: bribes.len().gt(&0).then(|| bribes),
+            aprs: aprs.len().gt(&0).then_some(aprs),
+            bribes: bribes.len().gt(&0).then_some(bribes),
         }
     }
 }
