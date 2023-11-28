@@ -123,7 +123,12 @@ async fn update_gauge_aprs(
     let mut max_apr = 0.0;
     let mut min_apr = 0.0;
 
-    let token = find_asset(chain.get_chain_data().wig_address.to_string(), chain, conn).await?;
+    let token = find_asset(
+        chain.get_chain_data().o_wig_address.to_string(),
+        chain,
+        conn,
+    )
+    .await?;
 
     if token.price * votes > 0.0 {
         max_apr = max_tbv * 52.0 / (token.price * votes) * 100.0;
