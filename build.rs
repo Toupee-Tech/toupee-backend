@@ -19,6 +19,11 @@ fn main() {
         "./abi/AerodromeRouter.json",
         "./src/bindings/aerodrome_router.rs",
     );
+    rust_file_generation(
+        "ScaleRouter",
+        "./abi/ScaleRouter.json",
+        "./src/bindings/scale_router.rs",
+    );
 }
 
 fn rust_file_generation(name: &str, abi_source: &str, path: &str) {

@@ -6,13 +6,14 @@ use ethers::{
     types::{H160, U256},
     utils::{format_ether, format_units, to_checksum},
 };
-use eyre::Result;
+use eyre::{ErrReport, Result};
 use sea_orm::{sea_query, ActiveValue, DatabaseConnection, EntityTrait};
 use serde_json::json;
 use std::sync::Arc;
+use std::{error::Error, fmt::Display};
 use tracing::{error, info, instrument};
 
-use backend::bindings::{AerodromeRouter, Pair, Plugin, VelocimeterRouter, Voter};
+use backend::bindings::{AerodromeRouter, Pair, Plugin, ScaleRouter, VelocimeterRouter, Voter};
 use backend::config::types::Chain;
 use backend::database::plugins::{
     ActiveModel as ActivePlugin, Column as PluginsColumn, Entity as Plugins,
@@ -28,6 +29,31 @@ struct ReserveConfig {
     stable: bool,
     plugin_total_supply: U256,
     pair_address: H160,
+}
+
+#[derive(Debug)]
+struct ProtocolError {
+    details: String,
+}
+
+impl ProtocolError {
+    fn new(msg: &str) -> ProtocolError {
+        ProtocolError {
+            details: msg.to_string(),
+        }
+    }
+}
+
+impl Display for ProtocolError {
+    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
+        write!(f, "ProtocolError: {}", self.details)
+    }
+}
+
+impl Error for ProtocolError {
+    fn description(&self) -> &str {
+        &self.details
+    }
 }
 
 #[instrument(skip_all)]
@@ -242,7 +268,24 @@ async fn get_reserves(
                 .await?;
             Ok((reserve0, reserve1))
         }
-        _ => panic!("Protocol is not supported"),
+        "Equalizer" => {
+            let router_address = &chain.get_chain_data().scale_router_address;
+            let router_parsed_address = router_address.parse::<Address>().expect("Set by hand");
+            let router = ScaleRouter::new(router_parsed_address, Arc::clone(client));
+
+            let (reserve0, reserve1) = router
+                .quote_remove_liquidity(
+                    token_0_address,
+                    token_1_address,
+                    stable,
+                    plugin_total_supply,
+                )
+                .call()
+                .await?;
+
+            Ok((reserve0, reserve1))
+        }
+        _ => Err(ErrReport::new(ProtocolError::new("Protocol not supported"))),
     }
 }
 

@@ -27,3 +27,6 @@ pub use wig::WIG;
 
 mod aerodrome_router;
 pub use aerodrome_router::AerodromeRouter;
+
+mod scale_router;
+pub use scale_router::ScaleRouter;
