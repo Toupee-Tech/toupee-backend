@@ -50,9 +50,20 @@ pub async fn syncer() {
 async fn iteration_run(chain: Chain, conn: Arc<DatabaseConnection>) {
     let now = Instant::now();
 
-    update_assets_from_tokenlist(&chain, &conn).await.unwrap();
-    update_other_db_assets_prices(&chain, &conn).await.unwrap();
-    update_plugins(&chain, &conn).await.unwrap();
+    match update_assets_from_tokenlist(&chain, &conn).await {
+        Ok(_) => info!("Updated assets from tokenlist"),
+        Err(e) => info!("Error updating assets from tokenlist: {}", e),
+    }
+
+    match update_other_db_assets_prices(&chain, &conn).await {
+        Ok(_) => info!("Updated other db assets prices"),
+        Err(e) => info!("Error updating other db assets prices: {}", e),
+    }
+
+    match update_plugins(&chain, &conn).await {
+        Ok(_) => info!("Updated plugins"),
+        Err(e) => info!("Error updating plugins: {}", e),
+    }
 
     info!("Iteration took {} seconds", now.elapsed().as_secs());
 }
