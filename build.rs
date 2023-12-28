@@ -24,6 +24,11 @@ fn main() {
         "./abi/ScaleRouter.json",
         "./src/bindings/scale_router.rs",
     );
+    rust_file_generation(
+        "StargateVault",
+        "./abi/StargateVault.json",
+        "./src/bindings/stargate_vault.rs",
+    );
 }
 
 fn rust_file_generation(name: &str, abi_source: &str, path: &str) {

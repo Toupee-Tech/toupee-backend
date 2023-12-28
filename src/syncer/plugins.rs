@@ -13,7 +13,9 @@ use std::sync::Arc;
 use std::{error::Error, fmt::Display};
 use tracing::{error, info, instrument};
 
-use backend::bindings::{AerodromeRouter, Pair, Plugin, ScaleRouter, VelocimeterRouter, Voter};
+use backend::bindings::{
+    AerodromeRouter, Pair, Plugin, ScaleRouter, StargateVault, VelocimeterRouter, Voter,
+};
 use backend::config::types::Chain;
 use backend::database::plugins::{
     ActiveModel as ActivePlugin, Column as PluginsColumn, Entity as Plugins,
@@ -91,6 +93,69 @@ async fn update_plugin(
 ) -> Result<()> {
     let plugin = Plugin::new(plugin_address, Arc::clone(&client));
     let pair_address = plugin.get_underlying_address().await?;
+    let protocol = plugin.get_protocol().await?;
+
+    match protocol.as_str() {
+        "Velocimeter" => {
+            update_solidly_pair_plugin(
+                plugin_address,
+                plugin,
+                pair_address,
+                protocol,
+                chain,
+                Arc::clone(&client),
+                conn,
+            )
+            .await
+        }
+        "Aerodrome" => {
+            update_solidly_pair_plugin(
+                plugin_address,
+                plugin,
+                pair_address,
+                protocol,
+                chain,
+                Arc::clone(&client),
+                conn,
+            )
+            .await
+        }
+        "Equalizer" => {
+            update_solidly_pair_plugin(
+                plugin_address,
+                plugin,
+                pair_address,
+                protocol,
+                chain,
+                Arc::clone(&client),
+                conn,
+            )
+            .await
+        }
+        "Stargate" => {
+            update_stargate_vault_plugin(
+                plugin_address,
+                plugin,
+                pair_address,
+                chain,
+                Arc::clone(&client),
+                conn,
+            )
+            .await
+        }
+        _ => Err(ErrReport::new(ProtocolError::new("Protocol not supported"))),
+    }
+}
+
+async fn update_solidly_pair_plugin(
+    plugin_address: H160,
+    plugin: Plugin<Provider<Http>>,
+    pair_address: H160,
+    protocol: String,
+    chain: Chain,
+    client: Arc<Provider<Http>>,
+    conn: &Arc<DatabaseConnection>,
+) -> Result<()> {
     let pair = Pair::new(pair_address, Arc::clone(&client));
 
     let mut multicall = Multicall::<Provider<Http>>::new(
@@ -116,20 +181,12 @@ async fn update_plugin(
     );
     multicall.add_call(plugin.total_supply(), false);
     multicall.add_call(pair.stable(), false);
-    multicall.add_calls(false, [plugin.symbol(), plugin.get_protocol()]);
+    multicall.add_call(plugin.symbol(), false);
 
-    let (
-        token_0_address,
-        token_1_address,
-        gauge,
-        bribe,
-        plugin_total_supply,
-        stable,
-        symbol,
-        protocol,
-    ) = multicall
-        .call::<(H160, H160, H160, H160, U256, bool, String, String)>()
-        .await?;
+    let (token_0_address, token_1_address, gauge, bribe, plugin_total_supply, stable, symbol) =
+        multicall
+            .call::<(H160, H160, H160, H160, U256, bool, String)>()
+            .await?;
 
     let token_0 = find_asset(to_checksum(&token_0_address, None), &chain, conn).await?;
     let token_1 = find_asset(to_checksum(&token_1_address, None), &chain, conn).await?;
@@ -165,6 +222,89 @@ async fn update_plugin(
         token1: ActiveValue::Set(json!(token_1)),
         reserve0: ActiveValue::Set(reserve0),
         reserve1: ActiveValue::Set(reserve1),
+        total_supply: ActiveValue::Set(total_supply),
+        tvl: ActiveValue::Set(tvl),
+    };
+
+    match write_plugin(conn, plugin_address_checksumed, plugin).await {
+        Ok(_) => {}
+        Err(e) => {
+            error!("Error writing to DB: {:?}", e);
+        }
+    }
+
+    if gauge != Address::zero() {
+        info!("Pair {} is a gauge", plugin_address);
+        update_gauge(
+            plugin_address,
+            gauge,
+            bribe,
+            tvl,
+            &chain,
+            Arc::clone(&client),
+            conn,
+        )
+        .await?;
+    } else {
+        info!("Pair {} is not a gauge", plugin_address);
+    }
+
+    Ok(())
+}
+
+async fn update_stargate_vault_plugin(
+    plugin_address: H160,
+    plugin: Plugin<Provider<Http>>,
+    vault_address: H160,
+    chain: Chain,
+    client: Arc<Provider<Http>>,
+    conn: &Arc<DatabaseConnection>,
+) -> Result<()> {
+    let vault = StargateVault::new(vault_address, Arc::clone(&client));
+
+    let mut multicall = Multicall::<Provider<Http>>::new(
+        client.clone(),
+        Some(
+            chain
+                .get_chain_data()
+                .multicall_address
+                .parse::<Address>()
+                .expect("Address is set by hand"),
+        ),
+    )
+    .await?;
+
+    multicall.add_calls(
+        false,
+        [vault.token(), plugin.get_gauge(), plugin.get_bribe()],
+    );
+    multicall.add_calls(false, [plugin.total_supply(), vault.decimals()]);
+    multicall.add_call(plugin.symbol(), false);
+
+    let (token_address, gauge, bribe, plugin_total_supply, vault_decimals, symbol) = multicall
+        .call::<(H160, H160, H160, U256, U256, String)>()
+        .await?;
+
+    let token = find_asset(to_checksum(&token_address, None), &chain, conn).await?;
+
+    let reserve = format_units(plugin_total_supply, vault_decimals.as_usize())
+        .expect("Should not happen")
+        .parse::<f64>()?;
+    let total_supply = format_ether(plugin_total_supply).parse::<f64>()?;
+    let tvl = reserve * token.price;
+
+    let plugin_address_checksumed = to_checksum(&plugin_address, None);
+
+    let plugin = ActivePlugin {
+        address: ActiveValue::Set(plugin_address_checksumed.to_owned()),
+        gauge_address: ActiveValue::Set(to_checksum(&gauge, None)),
+        symbol: ActiveValue::Set(symbol),
+        token0_address: ActiveValue::Set(token.address.to_lowercase()),
+        token0: ActiveValue::Set(json!(token)),
+        token1_address: ActiveValue::Set(token.address.to_lowercase()),
+        token1: ActiveValue::Set(json!(token)),
+        reserve0: ActiveValue::Set(reserve),
+        reserve1: ActiveValue::Set(reserve),
         total_supply: ActiveValue::Set(total_supply),
         tvl: ActiveValue::Set(tvl),
     };
