@@ -26,6 +26,8 @@ use backend::config::types::{
     Asset, AssetWithPrice, Chain, DexscreenerPair, DexscreenerResponse, GeckoTerminalResponse,
 };
 
+const STARGATE_ETH: &str = "0x224D8Fd7aB6AD4c6eb4611Ce56EF35Dec2277F03";
+
 ///
 /// Return asset from DB if exists, otherwise update asset, save to DB and return.
 ///
@@ -78,8 +80,7 @@ pub async fn update_assets_from_tokenlist(
 
     for asset in assets {
         let client = Arc::clone(&client);
-        let price =
-            update_asset_price(&asset.address, asset.decimals, chain, client, conn).await?;
+        let price = update_asset_price(&asset.address, asset.decimals, chain, client, conn).await?;
         let active_asset = ActiveAsset {
             address: ActiveValue::set(asset.address.to_string().to_lowercase()),
             decimals: ActiveValue::set(asset.decimals),
@@ -220,6 +221,14 @@ async fn update_asset_price(
         let price = get_wblt_price(Arc::clone(&client)).await;
         if let Ok(price) = price {
             return Ok(price);
+        }
+    }
+
+    // No price for sgETH
+    if address.to_lowercase() == STARGATE_ETH.to_lowercase() {
+        let token = find_asset(chain.get_chain_data().weth_address.to_owned(), chain, conn).await;
+        if let Ok(token) = token {
+            return Ok(token.price);
         }
     }
 
