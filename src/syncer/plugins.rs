@@ -97,7 +97,7 @@ async fn update_plugin(
 
     match protocol.as_str() {
         "Velocimeter" => {
-            return update_solidly_pair_plugin(
+            update_solidly_pair_plugin(
                 plugin_address,
                 plugin,
                 pair_address,
@@ -106,10 +106,10 @@ async fn update_plugin(
                 Arc::clone(&client),
                 conn,
             )
-            .await;
+            .await
         }
         "Aerodrome" => {
-            return update_solidly_pair_plugin(
+            update_solidly_pair_plugin(
                 plugin_address,
                 plugin,
                 pair_address,
@@ -118,10 +118,10 @@ async fn update_plugin(
                 Arc::clone(&client),
                 conn,
             )
-            .await;
+            .await
         }
         "Equalizer" => {
-            return update_solidly_pair_plugin(
+            update_solidly_pair_plugin(
                 plugin_address,
                 plugin,
                 pair_address,
@@ -130,10 +130,10 @@ async fn update_plugin(
                 Arc::clone(&client),
                 conn,
             )
-            .await;
+            .await
         }
         "Stargate" => {
-            return update_stargate_vault_plugin(
+            update_stargate_vault_plugin(
                 plugin_address,
                 plugin,
                 pair_address,
@@ -141,9 +141,9 @@ async fn update_plugin(
                 Arc::clone(&client),
                 conn,
             )
-            .await;
+            .await
         }
-        _ => return Err(ErrReport::new(ProtocolError::new("Protocol not supported"))),
+        _ => Err(ErrReport::new(ProtocolError::new("Protocol not supported"))),
     }
 }
 
