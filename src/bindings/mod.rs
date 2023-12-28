@@ -30,3 +30,6 @@ pub use aerodrome_router::AerodromeRouter;
 
 mod scale_router;
 pub use scale_router::ScaleRouter;
+
+mod stargate_vault;
+pub use stargate_vault::StargateVault;
